@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-[#f0f2f5];
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  .stat-card {
+    @apply bg-white p-4 rounded-lg border border-gray-200;
+  }
+  
+  .stat-label {
+    @apply text-xs text-gray-500 font-medium;
+  }
+  
+  .stat-value {
+    @apply text-2xl font-semibold text-gray-900 mt-1;
+  }
+  
+  .stat-trend {
+    @apply text-xs text-gray-500 mt-1;
+  }
+  
+  .filter-label {
+    @apply text-xs text-gray-600 block mb-1;
+  }
+  
+  .filter-select, .filter-input {
+    @apply w-full px-3 py-1.5 text-sm border border-gray-300 rounded bg-white focus:outline-none focus:border-blue-500;
+  }
+  
+  .table-header {
+    @apply text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50 px-4 py-3 text-left;
+  }
+  
+  .table-cell {
+    @apply px-4 py-3 text-sm text-gray-900 border-b border-gray-200;
+  }
+  
+  .action-badge {
+    @apply px-2 py-1 text-xs font-medium rounded;
+  }
+  
+  .status-badge {
+    @apply inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded;
+  }
+  
+  .details-link {
+    @apply inline-flex items-center gap-1 text-xs text-blue-600 hover:text-blue-800;
+  }
+  
+  .lock-icon {
+    @apply w-3.5 h-3.5 text-gray-400;
+  }
+}
