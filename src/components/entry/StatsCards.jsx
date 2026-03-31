@@ -1,0 +1,51 @@
+import React from 'react';
+
+const StatsCards = () => {
+    const stats = [
+        { 
+            label: "TOTAL ISSUANCES", 
+            value: "24", 
+            icon: "/Overlay.png",
+            bgGradient: "from-[#3AA5B9] to-[#1E4F7A]"
+        },
+        { 
+            label: "PENDING APPROVALS", 
+            value: "05", 
+            icon: "/Overlay (1).png",
+            bgGradient: "from-[#3AA5B9] to-[#1E4F7A]"
+        },
+        { 
+            label: "APPROVED TOOM", 
+            value: "12", 
+            icon: "/Overlay (2).png",
+            bgGradient: "from-[#3AA5B9] to-[#1E4F7A]"
+        },
+        { 
+            label: "Low Stock Alerts", 
+            value: "03 Alerts", 
+            icon: "/Background (1).png",
+            bgGradient: "from-[#640404] to-[#640404]"
+        }
+    ];
+
+    return (
+        <div className="grid grid-cols-1 gap-4">
+            {stats.map((stat, index) => (
+                <div 
+                    key={index} 
+                    className={`bg-gradient-to-b ${stat.bgGradient} rounded-lg border border-gray-200 p-2 py-3 px-4 text-white`}
+                >
+                    <div className="flex items-center gap-2">
+                        <img src={stat.icon} alt="" className='h-11 w-11 mr-2' />
+                        <div>
+                            <div className="text-sm">{stat.label}</div>
+                            <div className="text-2xl font-bold">{stat.value}</div>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
+};
+
+export default StatsCards;
