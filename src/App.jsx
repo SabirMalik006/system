@@ -7,6 +7,8 @@ import Items from './pages/Items';
 import Vendors from './pages/Vendors';
 import PurchaseRequest from './pages/PurchaseRequest';
 import Entry from './pages/Entry';
+import Return from './pages/Return';
+import Store from './pages/Store';
 
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
                     <Route path="/vendors" element={<Vendors />} />
                     <Route path="/purchase-request" element={<PurchaseRequest />} />
                     <Route path="/entry" element={<Entry />} />
+                    <Route path="/return" element={<Return />} />
+                    <Route path="/store" element={<Store />} />
                 </Routes>
             </div>
         </Router>
