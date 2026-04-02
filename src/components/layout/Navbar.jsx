@@ -1,9 +1,26 @@
 import React, { useState } from 'react';
 import { Search, ChevronDown, Menu, X } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuItems = ['Dashboard', 'Inventory', 'Procurements', 'Reports', 'Vendors'];
+  const location = useLocation();
+  
+  const menuItems = [
+    { name: 'Dashboard', path: '/dashboard' },
+    { name: 'Inventory', path: '/items' },
+    { name: 'Procurements', path: '/purchase-request' },
+    { name: 'Reports', path: '/reports' },
+    { name: 'Vendors', path: '/vendors' },
+    // { name: 'Stock Out', path: '/stock-out' },
+    // { name: 'Entry', path: '/entry' },
+    // { name: 'Return', path: '/return' },
+    // { name: 'Store', path: '/store' },
+  ];
+
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
 
   return (
     <nav className="bg-[#1E4D7B] border-b border-gray-200 text-white sticky top-0 z-50">
@@ -12,21 +29,23 @@ const Navbar = () => {
           {/* Left side - Logo and Menu */}
           <div className="flex items-center gap-4 sm:gap-8">
             {/* Logo */}
-            <div className="flex items-center gap-2">
+            <Link to="/dashboard" className="flex items-center gap-2">
               <img src="/Background.png" alt="IMS logo" className="w-6 h-6 sm:w-8 sm:h-8 object-cover rounded-md cursor-pointer" />
               <span className="text-lg sm:text-xl font-bold text-white">IMS</span>
-            </div>
+            </Link>
 
             {/* Desktop Menu Items - Hidden on mobile */}
             <div className="hidden md:flex items-center space-x-2 lg:space-x-4">
               {menuItems.map((item) => (
-                <a
-                  key={item}
-                  href="#"
-                  className="text-xs lg:text-sm font-light text-white transition-all duration-150 rounded-xl px-3 lg:px-6 py-1 hover:bg-[#2166A0] hover:text-white whitespace-nowrap"
+                <Link
+                  key={item.name}
+                  to={item.path}
+                  className={`text-xs lg:text-sm font-light text-white transition-all duration-150 rounded-xl px-3 lg:px-6 py-1 hover:bg-[#2166A0] hover:text-white whitespace-nowrap ${
+                    isActive(item.path) ? 'bg-[#2166A0]' : ''
+                  }`}
                 >
-                  {item}
-                </a>
+                  {item.name}
+                </Link>
               ))}
             </div>
           </div>
@@ -86,14 +105,16 @@ const Navbar = () => {
             {/* Mobile Menu Items */}
             <div className="flex flex-col space-y-2">
               {menuItems.map((item) => (
-                <a
-                  key={item}
-                  href="#"
-                  className="text-sm font-light text-white transition-all duration-150 rounded-lg px-3 py-2 hover:bg-[#2166A0]"
+                <Link
+                  key={item.name}
+                  to={item.path}
+                  className={`text-sm font-light text-white transition-all duration-150 rounded-lg px-3 py-2 hover:bg-[#2166A0] ${
+                    isActive(item.path) ? 'bg-[#2166A0]' : ''
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  {item}
-                </a>
+                  {item.name}
+                </Link>
               ))}
             </div>
             

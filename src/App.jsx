@@ -9,6 +9,7 @@ import PurchaseRequest from './pages/PurchaseRequest';
 import Entry from './pages/Entry';
 import Return from './pages/Return';
 import Store from './pages/Store';
+import Dashboard from './pages/Dashboard';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
                     <Route path="/entry" element={<Entry />} />
                     <Route path="/return" element={<Return />} />
                     <Route path="/store" element={<Store />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
                 </Routes>
             </div>
         </Router>
