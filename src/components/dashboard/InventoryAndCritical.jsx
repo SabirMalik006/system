@@ -1,75 +1,133 @@
 import React from 'react';
-import { AlertCircle, TrendingDown, Package, ArrowRight } from 'lucide-react';
 
-const inventoryStats = [
-  { label: 'Running Balance', value: '84 units' },
-  { label: 'Issue Qty (Current Month)', value: '260 units' },
-  { label: 'Number Dept. / Floors', value: '280 units' },
-  { label: 'External Floors', value: '1 Floor' },
-  { label: 'Avg Daily Consumption', value: '390 units' },
-  { label: 'Active Items (In-Stock)', value: '465 units' },
+const RADIUS_OUTER = 72;
+const RADIUS_MID   = 58;
+const RADIUS_INNER = 44;
+const CX = 90, CY = 90;
+
+function polarToCartesian(cx, cy, r, angleDeg) {
+  const rad = ((angleDeg - 90) * Math.PI) / 180;
+  return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+}
+
+function arcPath(cx, cy, r, startAngle, endAngle) {
+  const s = polarToCartesian(cx, cy, r, startAngle);
+  const e = polarToCartesian(cx, cy, r, endAngle);
+  const large = endAngle - startAngle > 180 ? 1 : 0;
+  return `M ${s.x} ${s.y} A ${r} ${r} 0 ${large} 1 ${e.x} ${e.y}`;
+}
+
+// Data: IN STOCK 92%, CRITICAL 5%, SHORTFALL 3%
+// We draw 3 concentric arcs, each ring = one metric
+const rings = [
+  { pct: 0.92, color: '#2ec4b6', radius: RADIUS_OUTER, label: 'IN STOCK',  value: '92%' },
+  { pct: 0.35, color: '#1a4fa0', radius: RADIUS_MID,   label: 'CRITICAL',  value: '5%'  },
+  { pct: 0.28, color: '#3D82CC', radius: RADIUS_INNER, label: 'SHORTFALL', value: '3%'  },
 ];
 
-const criticalItems = [
-  { name: 'Circuit Breaker 10 Amp for AC with Plug', urgency: '4 days left', urgencyColor: '#dc2626', stock: 'Low', isLow: true },
-  { name: 'Transit all Paste', stock: 'Out', isOut: true },
-  { name: 'Unavailable Transfer in machine affecting (m)', stock: 'Transit not found', isNote: true },
-];
-
-export default function InventoryAndCritical() {
+export default function InventoryStatusCard() {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-4">
-      <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-3 sm:p-4">
-        <div className="flex items-center justify-between mb-3.5">
-          <h3 className="text-sm font-bold text-gray-900">Inventory Status</h3>
-          <div className="flex items-center gap-2">
-            <span className="text-xl sm:text-2xl font-bold text-green-600">82%</span>
-            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-green-100 flex items-center justify-center">
-              <TrendingDown size={16} className="text-green-600 transform rotate-180" />
-            </div>
-          </div>
-        </div>
-        <div className="h-1 rounded-full bg-gray-100 overflow-hidden mb-3.5">
-          <div className="h-full w-[82%] rounded-full bg-gradient-to-r from-[#1a6cb5] to-[#2ec4b6]" />
-        </div>
-        <div className="flex flex-col gap-1.5">
-          {inventoryStats.map((stat, i) => (
-            <div key={i} className={`flex justify-between items-center px-2.5 py-1.5 rounded-md ${i % 2 === 0 ? 'bg-gray-50' : 'bg-transparent'}`}>
-              <span className="text-xs text-gray-500">{stat.label}</span>
-              <span className="text-xs font-semibold text-gray-900">{stat.value}</span>
-            </div>
+    <div style={{
+      background: '#fff',
+      borderRadius: 26,
+      border: '1px solid #D7E6F8',
+      boxShadow: '0 2px 12px rgba(0,0,0,0.08)',
+      padding: '16px 18px 14px',
+      width: 220,
+      flexShrink: 0,
+    }}>
+      {/* Header */}
+      <div style={{
+        display: 'flex', alignItems: 'center',
+        justifyContent: 'space-between', marginBottom: 12 , borderBottom: '0.5px solid #eeeff2', paddingBottom: 8,
+      }}>
+        <span style={{
+          fontSize: 10, fontWeight: 700, letterSpacing: '0.08em',
+          color: '#476686', textTransform: 'uppercase',
+        }}>Inventory Status</span>
+        <div style={{ display: 'flex', gap: 3 }}>
+          {[0,1,2].map(i => (
+            <span key={i} style={{
+              width: 4, height: 4, borderRadius: '50%',
+              background: '#cbd5e1', display: 'inline-block',
+            }} />
           ))}
         </div>
-        <button className="w-full mt-3.5 py-2 rounded-lg bg-gradient-to-r from-[#1a6cb5] to-[#0891b2] text-white text-sm font-semibold flex items-center justify-center gap-1.5">
-          Create Purchase Order <ArrowRight size={14} />
-        </button>
       </div>
-      <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-3 sm:p-4">
-        <div className="flex items-center justify-between mb-3.5">
-          <div className="flex items-center gap-2">
-            <h3 className="text-sm font-bold text-gray-900">Critical Block Items</h3>
-            <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-red-100 text-red-700">3</span>
-          </div>
-          <button className="px-2.5 py-1 rounded-md bg-blue-100 text-blue-700 text-[11px] font-semibold">View All</button>
-        </div>
-        <div className="flex flex-col gap-2.5">
-          {criticalItems.map((item, i) => (
-            <div key={i} className={`p-2.5 rounded-lg flex items-start gap-2.5 ${item.isOut ? 'bg-red-50 border border-red-200' : item.isNote ? 'bg-amber-50 border border-amber-200' : 'bg-red-50 border border-red-200'}`}>
-              <div className={`w-7.5 h-7.5 rounded-lg flex-shrink-0 flex items-center justify-center ${item.isOut ? 'bg-red-100' : item.isNote ? 'bg-amber-100' : 'bg-red-100'}`}>
-                {item.isOut ? <Package size={14} className="text-red-600" /> : item.isNote ? <AlertCircle size={14} className="text-amber-600" /> : <AlertCircle size={14} className="text-red-600" />}
-              </div>
-              <div className="flex-1">
-                <div className="text-sm font-semibold text-gray-900 mb-0.5">{item.name}</div>
-                <div className="flex flex-wrap items-center gap-2">
-                  {item.urgency && <span className="text-[11px] font-semibold" style={{ color: item.urgencyColor }}>⏱ {item.urgency}</span>}
-                  <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${item.isOut ? 'bg-red-100 text-red-600' : item.isNote ? 'bg-amber-100 text-amber-600' : 'bg-red-100 text-red-600'}`}>{item.stock}</span>
-                </div>
-              </div>
-              {!item.isNote && <button className="px-2.5 py-1 rounded-md bg-blue-100 text-blue-700 text-[10px] font-semibold flex-shrink-0">{item.isOut ? '4 days left' : 'Restock'}</button>}
-              {item.isNote && <span className="text-[10px] text-amber-600 font-semibold flex-shrink-0">4 days left</span>}
+
+      {/* SVG Rings */}
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 10 }}>
+        <svg width="180" height="180" viewBox="0 0 180 180">
+          {rings.map((ring, i) => {
+            const bgEnd = 360;
+            const fillEnd = ring.pct * 330; // max arc = 330deg
+            return (
+              <g key={i}>
+                {/* Background track */}
+                <path
+                  d={arcPath(CX, CY, ring.radius, 0, 330)}
+                  fill="none"
+                  stroke="#f1f5f9"
+                  strokeWidth="10"
+                  strokeLinecap="round"
+                />
+                {/* Filled arc */}
+                {fillEnd > 0 && (
+                  <path
+                    d={arcPath(CX, CY, ring.radius, 0, fillEnd)}
+                    fill="none"
+                    stroke={ring.color}
+                    strokeWidth="10"
+                    strokeLinecap="round"
+                  />
+                )}
+              </g>
+            );
+          })}
+
+          {/* Center text */}
+          <text x={CX} y={CY - 12} textAnchor="middle"
+            fontSize="9" fill="#94a3b8" fontFamily="inherit"
+            letterSpacing="0.05em font-weight: 600">
+            IN STOCK
+          </text>
+          <text x={CX} y={CY + 14} textAnchor="middle"
+            fontSize="26" fontWeight="700" fill="#335075"
+            fontFamily="inherit">
+            92%
+          </text>
+          <text x={CX} y={CY + 30} textAnchor="middle"
+            fontSize="11" fill="#62CDA4" fontFamily="inherit"
+            fontWeight="600">
+            ↓5%
+          </text>
+        </svg>
+      </div>
+
+      {/* Legend row */}
+      <div style={{
+        display: 'flex', justifyContent: 'space-between',
+        paddingTop: 10,
+        borderTop: '1px solid #f1f5f9',
+      }}>
+        {rings.map((ring, i) => (
+          <div key={i} style={{ textAlign: 'center' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4, marginBottom: 3 }}>
+              <span style={{
+                width: 7, height: 7, borderRadius: '50%',
+                background: ring.color, display: 'inline-block',
+              }} />
+              <span style={{
+                fontSize: 9, color: '#94a3b8',
+                fontWeight: 600, letterSpacing: '0.06em',
+                textTransform: 'uppercase',
+              }}>{ring.label}</span>
             </div>
-          ))}
-        </div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: '#0f172a' }}>
+              {ring.value}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

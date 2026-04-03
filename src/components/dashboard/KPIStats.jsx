@@ -11,7 +11,7 @@ const stats = [
 
 export default function KPIStats() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 mb-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 mb-4 pt-3 px-3 sm:px-4 md:px-5 pb-8">
       {stats.map((s, i) => <StatCard key={i} stat={s} i={i} />)}
     </div>
   );
@@ -20,8 +20,8 @@ export default function KPIStats() {
 function StatCard({ stat, i }) {
   const Icon = stat.icon;
   return (
-    <div className="bg-[#1E4D7B] rounded-lg shadow-sm border border-gray-100 p-3.5">
-      <div className="flex items-start justify-between mb-3">
+    <div className="bg-[#1E4D7B] rounded-lg shadow-sm border border-gray-100 p-3.5 ">
+      <div className="flex items-start justify-between ">
         <div className="text-xs text-gray-400">{stat.label}</div>
         <div className="flex flex-col items-end gap-1">
           
@@ -48,13 +48,17 @@ function StatCard({ stat, i }) {
               {stat.up ? <TrendingUp size={11} /> : <TrendingDown size={11} />}{stat.trend}
             </span>
           )}
-      {!stat.isStatus && (
-        <div className="mt-3">
-          <div className="h-1 rounded-full bg-gray-700 overflow-hidden">
-            <div className="h-full rounded-full" style={{ background: stat.color, width: `${30 + (i * 15)}%` }} />
-          </div>
+      <div className={stat.isStatus ? 'mt-4' : 'mt-3'}>
+        <div className="h-1 rounded-full bg-gray-700 overflow-hidden">
+          <div
+            className="h-full rounded-full"
+            style={{
+              background: stat.isStatus ? '#ffffff' : stat.color,
+              width: stat.isStatus ? '60%' : `${30 + (i * 15)}%`,
+            }}
+          />
         </div>
-      )}
+      </div>
     </div>
   );
 }
