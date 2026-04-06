@@ -11,6 +11,7 @@ import Return from './pages/Return';
 import Store from './pages/Store';
 import Dashboard from './pages/Dashboard';
 import StockInGoodsReceipt from './pages/StockInGoodsReceipt';
+import StockReturns from './pages/StockReturns';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
                     <Route path="/store" element={<Store />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/stock-in" element={<StockInGoodsReceipt />} />
+                    <Route path="/stock-returns" element={<StockReturns />} />
                 </Routes>
             </div>
         </Router>

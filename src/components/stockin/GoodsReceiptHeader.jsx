@@ -12,7 +12,7 @@ export default function GoodsReceiptHeader() {
           Record all inventory received into unit store.
         </p>
       </div>
-      <button className="flex items-center justify-center gap-1.5 sm:gap-2 bg-gradient-to-r from-[#3B82F6] to-[#1E4D7B] hover:from-[#2563EB] hover:to-[#1A3A6B] text-white text-xs sm:text-sm font-semibold px-3 sm:px-4 py-1.5 sm:py-2 rounded-sm transition-all duration-300 shadow-sm hover:shadow-md w-full sm:w-auto">
+      <button className="flex items-center justify-center gap-1.5 sm:gap-2 bg-gradient-to-r from-[#3B82F6] to-[#1E4D7B] hover:from-[#2563EB] hover:to-[#1A3A6B] text-white text-xs sm:text-sm font-semibold px-3 sm:px-4 py-1.5 sm:py-2 rounded-sm transition-all duration-300 shadow-sm hover:shadow-md w-full sm:w-auto cursor-pointer"> 
         <Plus size={14} className='font-bold sm:w-4 sm:h-4' />
         Create New Item
       </button>

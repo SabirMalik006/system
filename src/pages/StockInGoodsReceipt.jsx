@@ -3,6 +3,7 @@ import GoodsReceiptHeader from '../components/stockin/GoodsReceiptHeader';
 import AnalyticsInsights from '../components/stockin/AnalyticsInsights';
 import VendorPerformanceSection from '../components/stockin/VendorPerformanceSection';
 import MasterSessionHistory from '../components/stockin/MasterSessionHistory';
+import Footer from '../components/common/fotter';
 
 export default function StockInGoodsReceipt() {
   return (
@@ -12,7 +13,9 @@ export default function StockInGoodsReceipt() {
         <AnalyticsInsights />
         <VendorPerformanceSection />
         <MasterSessionHistory />
+        
       </div>
+      <Footer />
     </div>
   );
 }
