@@ -10,6 +10,7 @@ import Entry from './pages/Entry';
 import Return from './pages/Return';
 import Store from './pages/Store';
 import Dashboard from './pages/Dashboard';
+import StockInGoodsReceipt from './pages/StockInGoodsReceipt';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
                     <Route path="/return" element={<Return />} />
                     <Route path="/store" element={<Store />} />
                     <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/stock-in" element={<StockInGoodsReceipt />} />
                 </Routes>
             </div>
         </Router>
