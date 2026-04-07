@@ -12,6 +12,7 @@ import Store from './pages/Store';
 import Dashboard from './pages/Dashboard';
 import StockInGoodsReceipt from './pages/StockInGoodsReceipt';
 import StockReturns from './pages/StockReturns';
+import ProcurementManagement from './pages/ProcurementManagement';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/stock-in" element={<StockInGoodsReceipt />} />
                     <Route path="/stock-returns" element={<StockReturns />} />
+                    <Route path="/procurement-management" element={<ProcurementManagement />} />
                 </Routes>
             </div>
         </Router>
