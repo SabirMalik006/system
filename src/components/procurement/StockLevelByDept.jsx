@@ -9,7 +9,7 @@ const stocks = [
 
 export default function StockLevelByDept() {
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 w-[918px] mb-10 absolute left-5 -bottom-320 mx-auto">
+    <div className="hidden lg:block bg-white rounded-2xl border border-gray-100 shadow-sm p-5 w-[918px] mb-10 absolute left-5 -bottom-320 mx-auto">
       <div className="flex items-center gap-3 mb-2">
         <h3 className="text-sm font-bold text-gray-900">Stock Level by Dept</h3>
         <span className="text-[10px] font-bold bg-teal-100 text-teal-700 px-2.5 py-1 rounded-full">Current</span>
