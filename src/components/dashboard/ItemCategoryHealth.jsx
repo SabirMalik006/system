@@ -25,32 +25,19 @@ function arcPath(cx, cy, r, startAngle, endAngle) {
 
 export default function ItemCategoryHealth() {
   return (
-    <div style={{
-      background: '#fff',
-      borderRadius: 16,
-      border: '1px solid #E0E8EC',
-      boxShadow: '0 1px 6px rgba(0,0,0,0.06)',
-      padding: '18px 20px',
-      marginBottom: 16,
-    }}>
+    <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 md:p-6 mb-6">
+      
       {/* Title */}
-      <div style={{
-        fontSize: 11,
-        fontWeight: 700,
-        letterSpacing: '0.10em',
-        textTransform: 'uppercase',
-        color: '#1E293B',
-        marginBottom: 13,
-      }}>
+      <div className="text-[11px] font-bold tracking-[0.10em] uppercase text-[#1E293B] mb-4">
         Item Category Health
       </div>
 
-      {/* Body: donut + 4 cards */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+      {/* Body: donut + cards */}
+      <div className="flex flex-col lg:flex-row items-start gap-6 lg:gap-8">
 
-        {/* ── Multi-ring Donut ── */}
-        <div style={{ position: 'relative', flexShrink: 0, width: 200, height: 160 }}>
-          <svg width="160" height="160" viewBox="0 0 160 160">
+        {/* ── Multi-ring Donut Chart ── */}
+        <div className="relative flex-shrink-0 mx-auto lg:mx-0" style={{ width: 200, height: 170 }}>
+          <svg width="160" height="160" viewBox="0 0 160 160" className="mx-auto lg:mx-0">
             {[
               { radius: 67, pct: 0.54, color: '#1a4fa0', label: 'Tools' },
               { radius: 56, pct: 0.60, color: '#2563eb', label: 'Electrical' },
@@ -81,24 +68,16 @@ export default function ItemCategoryHealth() {
               );
             })}
 
-            {/* Center Text with Background for Safety */}
+            {/* Center Text */}
             <g>
-              {/* Optional light background circle to prevent overlap (recommended) */}
-              <circle 
-                cx={CX} 
-                cy={CY} 
-                r="32" 
-                fill="#ffffff" 
-              />
-              
+              <circle cx={CX} cy={CY} r="32" fill="#ffffff" />
               <text 
                 x={CX} 
                 y={CY - 6} 
                 textAnchor="middle"
                 fontSize="20" 
                 fontWeight="700" 
-                fill="#0f172a" 
-                fontFamily="inherit"
+                fill="#0f172a"
               >
                 92%
               </text>
@@ -108,7 +87,6 @@ export default function ItemCategoryHealth() {
                 textAnchor="middle"
                 fontSize="8.4" 
                 fill="#64748b" 
-                fontFamily="inherit"
                 fontWeight="500"
               >
                 IMS Status
@@ -120,47 +98,26 @@ export default function ItemCategoryHealth() {
                 fontSize="8" 
                 fill="#16a34a" 
                 fontWeight="600"
-                fontFamily="inherit"
               >
                 ↓4.2% today
               </text>
             </g>
           </svg>
 
-          {/* Ring labels on the right side */}
-          <div style={{
-            position: 'absolute',
-            top: 18,
-            left: 148,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 13.5,
-          }}>
+          {/* Ring Labels - Responsive positioning */}
+          <div className="absolute top-4 right-0 lg:right-auto lg:left-[148px] flex flex-col gap-3 lg:gap-[13.5px]">
             {[
-              { radius: 67, pct: 0.54, color: '#1a4fa0', label: 'Tools' },
-              { radius: 56, pct: 0.60, color: '#2563eb', label: 'Electrical' },
-              { radius: 45, pct: 0.67, color: '#38bdf8', label: 'Sanitary' },
-              { radius: 34, pct: 0.61, color: '#2ec4b6', label: 'Paints' },
+              { color: '#1a4fa0', label: 'Tools' },
+              { color: '#2563eb', label: 'Electrical' },
+              { color: '#38bdf8', label: 'Sanitary' },
+              { color: '#2ec4b6', label: 'Paints' },
             ].map((ring, i) => (
-              <div key={i} style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 5,
-                whiteSpace: 'nowrap',
-              }}>
-                <span style={{
-                  marginLeft: 8,
-                  width: 6,
-                  height: 6,
-                  borderRadius: '50%',
-                  background: ring.color,
-                  flexShrink: 0,
-                }} />
-                <span style={{ 
-                  fontSize: 9.5, 
-                  color: '#64748b', 
-                  fontWeight: 500 
-                }}>
+              <div key={i} className="flex items-center gap-2 whitespace-nowrap">
+                <span 
+                  className="ml-2 w-[6px] h-[6px] rounded-full flex-shrink-0"
+                  style={{ background: ring.color }}
+                />
+                <span className="text-[9.5px] text-gray-500 font-medium">
                   {ring.label}
                 </span>
               </div>
@@ -168,53 +125,32 @@ export default function ItemCategoryHealth() {
           </div>
         </div>
 
-        {/* 4 Mini Category Cards */}
-        <div style={{
-          flex: 1,
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: 10,
-        }}>
-          {categories.map((cat, i) => (
-            <div key={i} style={{
-              background: '#f8fafc',
-              borderRadius: 12,
-              padding: '12px 14px 14px',
-            }}>
-              <div style={{
-                fontSize: 12,
-                color: '#64748b',
-                marginBottom: 4,
-                fontWeight: 400,
-              }}>
-                {cat.label}
+        {/* 4 Mini Category Cards - Responsive Grid */}
+        <div className="flex-1 w-full">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+            {categories.map((cat, i) => (
+              <div 
+                key={i} 
+                className="bg-slate-50 rounded-xl p-4 md:p-5"
+              >
+                <div className="text-xs text-gray-500 mb-2 font-medium">
+                  {cat.label}
+                </div>
+                <div className="text-3xl md:text-[28px] font-bold text-slate-900 mb-4 tracking-tight">
+                  {cat.value}%
+                </div>
+                <div className="h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                  <div 
+                    className="h-full rounded-full transition-all duration-700"
+                    style={{ 
+                      background: cat.color, 
+                      width: `${cat.value}%` 
+                    }}
+                  />
+                </div>
               </div>
-              <div style={{
-                fontSize: 28,
-                fontWeight: 700,
-                color: '#0f172a',
-                lineHeight: 1,
-                marginBottom: 12,
-                letterSpacing: '-0.02em',
-              }}>
-                {cat.value}%
-              </div>
-              <div style={{
-                height: 4,
-                borderRadius: 99,
-                background: '#e2e8f0',
-                overflow: 'hidden',
-              }}>
-                <div style={{
-                  height: '100%',
-                  borderRadius: 99,
-                  background: cat.color,
-                  width: `${cat.value}%`,
-                  transition: 'width 0.8s ease',
-                }} />
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
       </div>

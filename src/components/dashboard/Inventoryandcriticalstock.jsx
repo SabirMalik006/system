@@ -51,199 +51,129 @@ const inStockRates = [
 
 export default function InventoryAndCriticalStock() {
   return (
-    <div style={{
-      display: 'flex',
-      gap: 16,
-      fontFamily: "'Segoe UI', sans-serif",
-      padding: 16,
-      background: '#CBE3FA',
-      boxSizing: 'border-box',
-      width: '100%',
-    }}>
+    <div className="flex flex-col xl:flex-row gap-5 md:gap-6 p-4 md:p-6 bg-[#CBE3FA] w-full">
 
       {/* ───── LEFT PANEL: Inventory Status ───── */}
-      <div style={{
-        flex: 1,
-        background: 'white',
-        borderRadius: 16,
-        padding: '22px 24px 18px',
-        boxShadow: '0 1px 6px rgba(0,0,0,0.06)',
-        display: 'flex',
-        flexDirection: 'column',
-        minWidth: 0,
-      }}>
+      <div className="flex-1 bg-white rounded-2xl p-5 md:p-6 shadow-sm flex flex-col min-w-0">
 
         {/* Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
           <div>
-            <div style={{ fontSize: 20, fontWeight: 700, color: '#1e293b', lineHeight: 1.2 }}>Inventory Status</div>
-            <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 3 }}>In-Stock 92%</div>
+            <div className="text-[20px] font-bold text-[#1e293b] leading-tight">Inventory Status</div>
+            <div className="text-xs text-[#94a3b8] mt-1">In-Stock 92%</div>
           </div>
-          <div style={{ textAlign: 'right' }}>
-            <div style={{ fontSize: 28, fontWeight: 800, color: '#1A8FA0', lineHeight: 1 }}>92%</div>
-            <div style={{ width: 80, height: 4, background: '#1A8FA0', borderRadius: 2, marginTop: 6, marginLeft: 'auto' }} />
+          <div className="text-right">
+            <div className="text-[28px] font-extrabold text-[#1A8FA0] leading-none">92%</div>
+            <div className="w-20 h-1 bg-[#1A8FA0] rounded mt-2 ml-auto" />
           </div>
         </div>
 
         {/* Divider */}
-        <div style={{ height: 1, background: '#f1f5f9', margin: '16px 0' }} />
+        <div className="h-px bg-[#f1f5f9] my-5" />
 
         {/* Two-column layout: items list + alert card */}
-        <div style={{ display: 'flex', gap: 16, flex: 1 }}>
+        <div className="flex flex-col lg:flex-row gap-5 flex-1">
 
           {/* Items list */}
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 0 }}>
+          <div className="flex-1 flex flex-col">
             {inventoryItems.map((item, i) => (
-              <div key={i} style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                padding: '10px 0',
-                borderBottom: i < inventoryItems.length - 1 ? '1px solid #f1f5f9' : 'none',
-              }}>
-                <span style={{ fontSize: 13, color: '#374151' }}>{item.name}</span>
-                <span style={{ fontSize: 13, fontWeight: 600, color: '#1E4D7B', whiteSpace: 'nowrap', marginLeft: 12 }}>{item.units}</span>
+              <div 
+                key={i} 
+                className="flex justify-between items-center py-3 border-b border-[#f1f5f9] last:border-none"
+              >
+                <span className="text-[13px] text-[#374151] pr-3">{item.name}</span>
+                <span className="text-[13px] font-semibold text-[#1E4D7B] whitespace-nowrap">{item.units}</span>
               </div>
             ))}
           </div>
 
           {/* Alert card */}
-          <div style={{
-            width: 180,
-            flexShrink: 0,
-            background: '#fff',
-            border: '1px solid #FEE2E2',
-            borderRadius: 12,
-            padding: '14px 14px 14px',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-          }}>
-            {/* Alert header */}
+          <div className="w-full lg:w-[190px] flex-shrink-0 bg-white border border-[#FEE2E2] rounded-xl p-4 flex flex-col justify-between">
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10 }}>
+              <div className="flex items-center gap-2 mb-3">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="#EF4444">
                   <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
                   <line x1="12" y1="9" x2="12" y2="13" stroke="white" strokeWidth="2" strokeLinecap="round"/>
                   <line x1="12" y1="17" x2="12.01" y2="17" stroke="white" strokeWidth="2" strokeLinecap="round"/>
                 </svg>
-                <span style={{ fontSize: 10, fontWeight: 700, color: '#6B7280', letterSpacing: 0.5, textTransform: 'uppercase' }}>
-                  Below Threshold
-                </span>
+                <span className="text-[10px] font-bold text-[#6B7280] tracking-widest uppercase">Below Threshold</span>
               </div>
-              <div style={{ fontSize: 13, fontWeight: 700, color: '#EF4444', marginBottom: 8, lineHeight: 1.4 }}>
+
+              <div className="text-[13px] font-bold text-[#EF4444] leading-tight mb-2">
                 UPVC Pipes — 80 units left
               </div>
-              <div style={{ fontSize: 11, color: '#94a3b8', lineHeight: 1.5, marginBottom: 14 }}>
+              <div className="text-[11px] text-[#94a3b8] leading-normal mb-5">
                 Restock required immediately to avoid project delays.
               </div>
             </div>
 
-            {/* CTA Button */}
-            <button style={{
-              width: '100%',
-              padding: '9px 0',
-              background: '#1A8FA0',
-              color: 'white',
-              border: 'none',
-              borderRadius: 8,
-              fontSize: 12,
-              fontWeight: 600,
-              cursor: 'pointer',
-              letterSpacing: 0.2,
-            }}>
+            <button className="w-full py-2.5 bg-[#1A8FA0] text-white text-xs font-semibold rounded-lg hover:bg-[#157a8a] transition-colors">
               Create Purchase Order
             </button>
           </div>
         </div>
 
         {/* Footer */}
-        <div style={{ marginTop: 14, fontSize: 11, color: '#94a3b8' }}>
+        <div className="mt-6 text-[11px] text-[#94a3b8]">
           Last updated: Today, 09:42 AM
         </div>
       </div>
 
       {/* ───── RIGHT PANEL: Critical Stock Items ───── */}
-      <div style={{
-        flex: 1,
-        background: 'white',
-        borderRadius: 16,
-        padding: '22px 24px 18px',
-        boxShadow: '0 1px 6px rgba(0,0,0,0.06)',
-        display: 'flex',
-        flexDirection: 'column',
-        minWidth: 0,
-      }}>
+      <div className="flex-1 bg-white rounded-2xl p-5 md:p-6 shadow-sm flex flex-col min-w-0">
 
         {/* Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
           <div>
-            <div style={{ fontSize: 20, fontWeight: 700, color: '#1E4D7B', lineHeight: 1.2 }}>Critical Stock Items</div>
-            <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 3 }}>Forecast: Next 7 Days</div>
+            <div className="text-[20px] font-bold text-[#1E4D7B] leading-tight">Critical Stock Items</div>
+            <div className="text-xs text-[#94a3b8] mt-1">Forecast: Next 7 Days</div>
           </div>
-          <div style={{
-            background: '#e0f2fe',
-            color: '#1A8FA0',
-            fontSize: 12,
-            fontWeight: 600,
-            padding: '5px 14px',
-            borderRadius: 20,
-          }}>
+          <div className="bg-[#e0f2fe] text-[#1A8FA0] text-xs font-semibold px-4 py-1 rounded-full whitespace-nowrap self-start">
             Max 7 Days
           </div>
         </div>
 
         {/* Divider */}
-        <div style={{ height: 1, background: '#f1f5f9', margin: '16px 0 12px' }} />
+        <div className="h-px bg-[#f1f5f9] my-5" />
 
         {/* Below threshold label */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 12 }}>
-          <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#ef4444', display: 'inline-block', flexShrink: 0 }} />
-          <span style={{ fontSize: 10, fontWeight: 700, color: '#64748b', letterSpacing: 0.8, textTransform: 'uppercase' }}>
+        <div className="flex items-center gap-2 mb-4">
+          <span className="w-2 h-2 rounded-full bg-[#ef4444] flex-shrink-0" />
+          <span className="text-[10px] font-bold text-[#64748b] tracking-widest uppercase">
             Below Threshold · Action Required
           </span>
         </div>
 
         {/* Critical items */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+        <div className="flex flex-col gap-3">
           {criticalItems.map((item, i) => (
-            <div key={i} style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 14,
-              background: '#f8fafc',
-              border: '1px solid #e2e8f0',
-              borderRadius: 12,
-              padding: '12px 16px',
-            }}>
+            <div 
+              key={i} 
+              className="flex items-center gap-4 bg-[#f8fafc] border border-[#e2e8f0] rounded-xl p-4"
+            >
               {/* Icon box */}
-              <div style={{
-                width: 42, height: 42,
-                background: 'white',
-                border: '1px solid #e2e8f0',
-                borderRadius: 10,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                flexShrink: 0,
-              }}>
+              <div className="w-11 h-11 bg-white border border-[#e2e8f0] rounded-xl flex items-center justify-center flex-shrink-0">
                 {item.icon}
               </div>
 
               {/* Text */}
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 13, fontWeight: 600, color: '#1e293b', lineHeight: 1.3 }}>{item.name}</div>
-                <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 2 }}>{item.sub}</div>
+              <div className="flex-1 min-w-0">
+                <div className="text-[13px] font-semibold text-[#1e293b] leading-tight">{item.name}</div>
+                <div className="text-[11px] text-[#94a3b8] mt-1">{item.sub}</div>
               </div>
 
               {/* Days badge */}
-              <div style={{
-                display: 'flex', alignItems: 'center', gap: 5,
-                background: item.daysColor === '#ef4444' ? '#fee2e2' : '#fef3c7',
-                borderRadius: 8,
-                padding: '5px 10px',
-                flexShrink: 0,
-              }}>
+              <div 
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg flex-shrink-0"
+                style={{ 
+                  background: item.daysColor === '#ef4444' ? '#fee2e2' : '#fef3c7' 
+                }}
+              >
                 {item.daysIcon}
-                <span style={{ fontSize: 12, fontWeight: 600, color: item.daysColor, whiteSpace: 'nowrap' }}>
+                <span 
+                  className="text-xs font-semibold whitespace-nowrap"
+                  style={{ color: item.daysColor }}
+                >
                   {item.days}
                 </span>
               </div>
@@ -252,28 +182,28 @@ export default function InventoryAndCriticalStock() {
         </div>
 
         {/* Divider */}
-        <div style={{ height: 1, background: '#f1f5f9', margin: '18px 0 14px' }} />
+        <div className="h-px bg-[#f1f5f9] my-6" />
 
         {/* Category In-Stock Rate */}
-        <div style={{ fontSize: 10, fontWeight: 700, color: '#94a3b8', letterSpacing: 0.8, textTransform: 'uppercase', marginBottom: 12 }}>
+        <div className="text-[10px] font-bold text-[#94a3b8] tracking-widest uppercase mb-4">
           Category In-Stock Rate
         </div>
 
-        <div style={{ display: 'flex', gap: 24 }}>
+        <div className="flex flex-col sm:flex-row gap-6">
           {inStockRates.map((rate, i) => (
-            <div key={i} style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 6 }}>
-                <span style={{ fontSize: 12, color: '#475569', fontWeight: 500 }}>{rate.name}</span>
-                <span style={{ fontSize: 14, fontWeight: 700, color: rate.color, whiteSpace: 'nowrap' }}>{rate.pct}%</span>
+            <div key={i} className="flex-1">
+              <div className="flex items-baseline gap-2 mb-2">
+                <span className="text-xs text-[#475569] font-medium flex-1">{rate.name}</span>
+                <span className="text-sm font-bold" style={{ color: rate.color }}>{rate.pct}%</span>
               </div>
-              <div style={{ height: 4, background: '#e2e8f0', borderRadius: 4, overflow: 'hidden' }}>
-                <div style={{
-                  height: '100%',
-                  width: `${rate.pct * 3}%`,
-                  background: rate.color,
-                  borderRadius: 4,
-                  maxWidth: '100%',
-                }} />
+              <div className="h-1 bg-[#e2e8f0] rounded overflow-hidden">
+                <div 
+                  className="h-full rounded" 
+                  style={{ 
+                    background: rate.color, 
+                    width: `${rate.pct * 3}%` 
+                  }} 
+                />
               </div>
             </div>
           ))}
