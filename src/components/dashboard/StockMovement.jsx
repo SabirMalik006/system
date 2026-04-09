@@ -4,29 +4,18 @@ import InventoryStatusCard from './InventoryAndCritical';
 
 export default function StockMovementSection() {
   return (
-    <div style={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',       
-      gap: 16,
-      marginBottom: 16,
-    }}>
-      {/* Left: Bar Chart - Width thodi kam ki */}
-      <div style={{ 
-        flex: 1, 
-        minWidth: 0,
-        maxWidth: 'calc(100% - 270px)'  
-      }}>
+    <div className="flex flex-col lg:flex-row items-center lg:items-stretch justify-center gap-4 lg:gap-5 mb-4">
+      
+      {/* Left: Bar Chart - Full width on mobile, flexible on desktop */}
+      <div className="flex-1 w-full lg:min-w-0 ml-6  sm:ml-4">
         <StockMovementChart />
       </div>
 
-      {/* Right: Inventory Status Card */}
-      <div style={{ 
-        flexShrink: 0,
-        alignSelf: 'center'            
-      }}>
+      {/* Right: Inventory Status Card - Centered on mobile, normal on desktop */}
+      <div className="flex-shrink-0 mr-4">
         <InventoryStatusCard />
       </div>
+      
     </div>
   );
 }

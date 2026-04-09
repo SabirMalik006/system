@@ -45,8 +45,8 @@ const criticalItems = [
 ];
 
 const inStockRates = [
-  { name: 'Circuit Breaker 15 Amp for AC with Plug', pct: 18, color: '#2ec4b6' },
-  { name: 'Towel rail Plastic', pct: 10, color: '#2563eb' },
+  { name: 'Circuit Breaker 15 Amp for AC with Plug', pct: 18, color: '#1A8FA0' },
+  { name: 'Towel rail Plastic', pct: 10, color: '#1A8FA0' },
 ];
 
 export default function InventoryAndCriticalStock() {
@@ -59,7 +59,7 @@ export default function InventoryAndCriticalStock() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
           <div>
-            <div className="text-[20px] font-bold text-[#1e293b] leading-tight">Inventory Status</div>
+            <div className="text-[20px] font-bold text-[#1E4D7B] leading-tight">Inventory Status</div>
             <div className="text-xs text-[#94a3b8] mt-1">In-Stock 92%</div>
           </div>
           <div className="text-right">
@@ -88,7 +88,7 @@ export default function InventoryAndCriticalStock() {
           </div>
 
           {/* Alert card */}
-          <div className="w-full lg:w-[190px] flex-shrink-0 bg-white border border-[#FEE2E2] rounded-xl p-4 flex flex-col justify-between">
+          <div className="w-full lg:w-[190px] flex-shrink-0 bg-white border border-[#FEE2E2] rounded-xl p-4 flex flex-col justify-between ">
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="#EF4444">
@@ -107,7 +107,7 @@ export default function InventoryAndCriticalStock() {
               </div>
             </div>
 
-            <button className="w-full py-2.5 bg-[#1A8FA0] text-white text-xs font-semibold rounded-lg hover:bg-[#157a8a] transition-colors">
+            <button className="w-full py-2.5 bg-[#1A8FA0] text-white text-xs font-semibold rounded-sm hover:bg-[#157a8a] transition-colors">
               Create Purchase Order
             </button>
           </div>
@@ -165,9 +165,7 @@ export default function InventoryAndCriticalStock() {
               {/* Days badge */}
               <div 
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg flex-shrink-0"
-                style={{ 
-                  background: item.daysColor === '#ef4444' ? '#fee2e2' : '#fef3c7' 
-                }}
+                
               >
                 {item.daysIcon}
                 <span 

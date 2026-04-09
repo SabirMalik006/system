@@ -7,20 +7,20 @@ const depletionItems = [
 ];
 
 const issuanceItems = [
-  { rank: '01', label: 'TOOLS', pct: '45%', color: '#1a3a5c', bg: '#1a3a5c' },
-  { rank: '02', label: 'CONSUMABLE', pct: '42%', color: '#2ec4b6', bg: '#0f6e56' },
-  { rank: '03', label: 'SANITARY ITEMS', pct: '30%', color: '#4a5568', bg: '#4a5568' },
-  { rank: '04', label: 'ELECTRICAL ITEMS', pct: '39%', color: '#a0aec0', bg: '#718096' },
+  { rank: '01', label: 'TOOLS', pct: '45%', color: '#1a3a5c', bg: '#1E4D7B' },
+  { rank: '02', label: 'CONSUMABLE', pct: '42%', color: '#2ec4b6', bg: '#1A8FA0' },
+  { rank: '03', label: 'SANITARY ITEMS', pct: '30%', color: '#4a5568', bg: '#163A50' },
+  { rank: '04', label: 'ELECTRICAL ITEMS', pct: '39%', color: '#a0aec0', bg: '#dddedf' },
 ];
 
 const donutSegments = [
-  { pct: 0.55, color: '#1a3a5c', offset: 0 },
-  { pct: 0.25, color: '#2ec4b6', offset: 0.55 },
-  { pct: 0.20, color: '#e2e8f0', offset: 0.80 },
+  { pct: 0.55, color: '#1A8FA0', offset: 0 },
+  { pct: 0.25, color: '#E2E8F0', offset: 0.55 },
+  { pct: 0.20, color: '#1E4D7B', offset: 0.80 },
 ];
 
 function DonutChart() {
-  const cx = 120, cy = 120, r = 95, stroke = 28;
+  const cx = 120, cy = 120, r = 95, stroke = 40;
   const circumference = 2 * Math.PI * r;
 
   function polarToXY(angleDeg, radius) {
@@ -40,13 +40,13 @@ function DonutChart() {
   return (
     <div className="relative w-full max-w-[360px] h-[360px] mx-auto flex justify-center items-center">
       <svg width="360" height="360" viewBox="0 0 240 240" className="w-full h-full">
-        <circle cx={cx} cy={cy} r={r + stroke / 2 + 6} fill="none" stroke="#e8edf5" strokeWidth="2" />
+        <circle cx={cx} cy={cy} r={r + stroke / 2 + 7} fill="none" stroke="#e8edf5" strokeWidth="2" />
 
         {segments.map((seg, i) => (
           <circle
             key={i}
-            cx={cx} 
-            cy={cy} 
+            cx={cx}
+            cy={cy}
             r={r}
             fill="none"
             stroke={seg.color}
@@ -62,45 +62,57 @@ function DonutChart() {
           const inner = polarToXY(angle, r - stroke / 2 - 2);
           const outer = polarToXY(angle, r + stroke / 2 + 2);
           return (
-            <line 
-              key={i} 
-              x1={inner.x} y1={inner.y} 
+            <line
+              key={i}
+              x1={inner.x} y1={inner.y}
               x2={outer.x} y2={outer.y}
-              stroke="white" 
-              strokeWidth="4" 
+              stroke="white"
+              strokeWidth="4"
             />
           );
         })}
 
-        {/* Icons instead of numbers */}
+        {/* Images instead of icons */}
         {[
-          { angle: 235, color: '#1a6cb5', icon: '🔧', label: 'Tools' },
-          { angle: 320, color: '#0891B2', icon: '🧴', label: 'Consumable' },
-          { angle: 60, color: '#4a5568', icon: '🔍', label: 'Sanitary' },
-          { angle: 140, color: '#a0aec0', icon: '⚡', label: 'Electrical' },
+          { angle: 235, img: '/Overlay+Border+OverlayBlur (1).png', label: 'Tools' },
+          { angle: 320, img: '/Overlay+Border+OverlayBlur (2).png', label: 'Consumable' },
+          { angle: 60, img: '/88.png', label: 'Sanitary' },
+          { angle: 140, img: '/Overlay+Border+OverlayBlur.png', label: 'Electrical' },
         ].map((pos, i) => {
-          const pt = polarToXY(pos.angle, r + 5);
+          const pt = polarToXY(pos.angle, r + 1);
           return (
             <g key={i}>
-              <circle cx={pt.x} cy={pt.y} r="20" fill="white" style={{ filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.15))' }} />
-              <circle cx={pt.x} cy={pt.y} r="18" fill={pos.color} opacity="0.95" />
-              <text 
-                x={pt.x} 
-                y={pt.y + 6} 
-                textAnchor="middle" 
-                fontSize="16" 
-                fontWeight="600" 
-                fill="white"
-                style={{ pointerEvents: 'none' }}
-              >
-                {pos.icon}
-              </text>
+              <foreignObject x={pt.x - 13} y={pt.y - 14} width="30" height="30">
+                <img
+                  src={pos.img}
+                  alt={pos.label}
+                  className="w-full h-full object-contain"
+                />
+              </foreignObject>
             </g>
           );
         })}
 
-        <text x={cx} y={cy - 8} textAnchor="middle" fontSize="28" fontWeight="700" fill="#1a3a5c">IMS</text>
-        <text x={cx} y={cy + 16} textAnchor="middle" fontSize="13" fill="#a0aec0" fontWeight="600">System</text>
+        {/* White Circle Behind IMS Text with Shadow */}
+        <circle
+          cx={cx}
+          cy={cy}
+          r="48"
+          fill="white"
+          style={{ filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.15))' }}
+        />
+
+        <text
+          x={cx}
+          y={cy + 5}
+          textAnchor="middle"
+          fontSize="28"
+          fontWeight="700"
+          fill="#1A8FA0"
+          style={{ dominantBaseline: 'middle' }}
+        >
+          IMS
+        </text>
       </svg>
     </div>
   );
@@ -133,8 +145,8 @@ export default function StockDashboard() {
                 <span className="text-xs text-[#718096] whitespace-nowrap">{item.days}</span>
               </div>
               <div className="h-[6px] bg-[#edf2f7] rounded-full overflow-hidden">
-                <div 
-                  className="h-full rounded-full transition-all" 
+                <div
+                  className="h-full rounded-full transition-all"
                   style={{ width: `${item.pct}%`, background: item.color }}
                 />
               </div>
@@ -165,52 +177,62 @@ export default function StockDashboard() {
 
         {/* Operational Health Card */}
         <div className="bg-white rounded-2xl p-5 md:p-6 shadow-sm">
-          <div className="text-xs font-semibold text-[#a0aec0] tracking-widest uppercase mb-5">
-            Operational Health
-          </div>
+          
 
           <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8 flex-wrap">
             {/* Circular Progress */}
+            
             <div className="relative w-20 h-20 md:w-[80px] md:h-[80px] flex-shrink-0 mx-auto md:mx-0">
               <svg width="80" height="80" viewBox="0 0 80 80">
                 <circle cx="40" cy="40" r="32" fill="none" stroke="#e2e8f0" strokeWidth="8" />
-                <circle 
-                  cx="40" 
-                  cy="40" 
-                  r="32" 
-                  fill="none" 
-                  stroke="#2ec4b6" 
+                <circle
+                  cx="40"
+                  cy="40"
+                  r="32"
+                  fill="none"
+                  stroke="#1A8FA0"
                   strokeWidth="8"
                   strokeDasharray={`${2 * Math.PI * 32 * 0.94} ${2 * Math.PI * 32 * 0.06}`}
                   strokeLinecap="round"
-                  transform="rotate(-90 40 40)" 
+                  transform="rotate(-90 40 40)"
                 />
               </svg>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <div className="text-base font-bold text-[#2d3748]">94%</div>
+                {/* Light teal gradient background */}
+                <div
+                  className="absolute inset-0 rounded-full"
+                  style={{
+                    background: 'radial-gradient(circle at center, rgba(26,143,160,0.15) 0%, rgba(26,143,160,0.06) 60%, transparent 85%)',
+                  }}
+                />
+
+                <div className="text-base font-bold text-[#2d3748] relative z-10">94%</div>
                 <div className="text-[9px] text-[#a0aec0] -mt-0.5">SAFE</div>
               </div>
             </div>
 
             {/* Low Risk Text */}
             <div className="flex-1 text-center md:text-left">
+              <div className="text-md font-semibold text-[#a0aec0] tracking-widest uppercase mb-2">
+            Operational Health
+          </div>
               <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
                 <span className="text-xl font-bold text-[#2d3748]">Low Risk</span>
-                <span className="w-2 h-2 rounded-full bg-[#2ec4b6]" />
+                <span className="w-2 h-2 rounded-full bg-[#1A8FA0]" />
               </div>
-              <div className="text-sm text-[#718096]">System returns within optimal range</div>
+              <div className="text-lg text-[#64748B]">System returns within optimal range</div>
             </div>
 
             {/* Stats */}
             <div className="flex gap-6 md:gap-8 justify-center">
               {[
-                { label: 'NORMAL', val: '94%', color: '#2d3748', bar: '#2ec4b6' },
-                { label: 'RETURNED', val: '4%', color: '#2d3748', bar: '#1a6cb5' },
+                { label: 'NORMAL', val: '94%', color: '#1E4D7B', bar: '#1A8FA0' },
+                { label: 'RETURNED', val: '4%', color: '#1E4D7B', bar: '#1a6cb5' },
                 { label: 'DAMAGED', val: '2%', color: '#e53e3e', bar: '#e53e3e' },
               ].map((s, i) => (
                 <div key={i} className="text-center">
-                  <div className="text-[10px] text-[#a0aec0] tracking-widest mb-1">{s.label}</div>
-                  <div className="text-lg font-bold" style={{ color: s.color }}>{s.val}</div>
+                  <div className="text-[10px] text-[#94A3B8] tracking-widest mb-1 font-bold" >{s.label}</div>
+                  <div className="text-lg font-bold " style={{ color: s.color }}>{s.val}</div>
                   <div className="w-8 h-1 mx-auto mt-1.5" style={{ background: s.bar, borderRadius: 2 }} />
                 </div>
               ))}
@@ -223,7 +245,7 @@ export default function StockDashboard() {
           <div className="flex flex-col gap-5">
             {issuanceItems.map((item, i) => (
               <div key={i} className="flex items-center gap-4">
-                <div 
+                <div
                   className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-base flex-shrink-0"
                   style={{ background: item.bg }}
                 >
@@ -231,13 +253,13 @@ export default function StockDashboard() {
                 </div>
 
                 <div className="flex-1 min-w-0">
-                  <div className="text-xs font-semibold text-[#a0aec0] tracking-widest uppercase mb-1">
+                  <div className="text-xs font-medium text-[#1E4D7B] tracking-widest uppercase mb-1">
                     {item.label}
                   </div>
-                  <div className="text-2xl font-bold text-[#2d3748] leading-none">
+                  <div className="text-2xl font-base text-[#2d3748] leading-none">
                     {item.pct}
                   </div>
-                  <div className="text-xs text-[#2ec4b6] font-medium mt-1">
+                  <div className="text-xs text-[#163A50] font-medium mt-1">
                     Total Issuance Volume
                   </div>
                 </div>

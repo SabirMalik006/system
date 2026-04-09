@@ -31,8 +31,6 @@ const VendorTooltip = ({ active, payload, label }) => {
       background: '#fff', border: '1px solid #e2e8f0',
       borderRadius: 8, padding: '8px 12px',
       boxShadow: '0 4px 12px rgba(0,0,0,0.1)', fontSize: 12,
-
-
     }}>
       <div style={{ fontWeight: 600, marginBottom: 4 }}>{label}</div>
       {payload.map((p, i) => (
@@ -62,19 +60,14 @@ const StockTooltip = ({ active, payload, label }) => {
 
 export default function VendorAndBook() {
   return (
-    <div style={{
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gap: 16,
-      marginBottom: 16,
-    }}>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-6">
 
       {/* ── Card 1: Top Vendor Performance ── */}
       <div style={{
         background: '#fff',
         borderRadius: 16,
         border: '1px solid #e2e8f0',
-        boxShadow: '0 4px 15px rgba(0,0,0,0.08)', // Better + darker shadow
+        boxShadow: '0 4px 15px rgba(0,0,0,0.08)',
         padding: '20px 20px 16px',
       }}>
         {/* Header - Title + Subtitle on same line */}
@@ -93,7 +86,6 @@ export default function VendorAndBook() {
             }}>
               Top Vendor Performance
             </h3>
-
           </div>
 
           {/* LAST 30 DAYS badge */}
@@ -111,34 +103,35 @@ export default function VendorAndBook() {
             Last 30 Days
           </span>
         </div>
-        <div className='flex justify-between items-center' >
-          <div style={{
-          fontSize: 12,
-          color: '#94a3b8',
-          fontWeight: 500,
-          marginTop: 1
-        }}>
-          Real-time efficiency
-        </div>
 
-        {/* Legend */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-            <span style={{
-              width: 10, height: 10, borderRadius: '50%',
-              background: '#2166A0', display: 'inline-block',
-            }} />
-            <span style={{ fontSize: 12, color: '#2166A0', fontWeight: 600}}>Top Vendor Performance</span>
+        <div className="flex justify-between items-center mb-4">
+          <div style={{
+            fontSize: 12,
+            color: '#94a3b8',
+            fontWeight: 500,
+            marginTop: 1
+          }}>
+            Real-time efficiency
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-            <span style={{
-              width: 10, height: 10, borderRadius: '50%',
-              background: '#1A8FA0', display: 'inline-block',
-              border: '2px solid #1A8FA0',
-            }} />
-            <span style={{ fontSize: 12, color: '#1A8FA0', fontWeight: 600 }}>Vendor Rating</span>
+
+          {/* Legend */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+              <span style={{
+                width: 10, height: 10, borderRadius: '50%',
+                background: '#2166A0', display: 'inline-block',
+              }} />
+              <span style={{ fontSize: 12, color: '#2166A0', fontWeight: 600 }}>Top Vendor Performance</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+              <span style={{
+                width: 10, height: 10, borderRadius: '50%',
+                background: '#1A8FA0', display: 'inline-block',
+                border: '2px solid #1A8FA0',
+              }} />
+              <span style={{ fontSize: 12, color: '#1A8FA0', fontWeight: 600 }}>Vendor Rating</span>
+            </div>
           </div>
-        </div>
         </div>
 
         {/* Area Chart */}
@@ -203,8 +196,8 @@ export default function VendorAndBook() {
       <div style={{
         background: '#fff',
         borderRadius: 16,
-        border: '1px solid #e2e8f0',           // Thoda dark border
-        boxShadow: '0 4px 15px rgba(0,0,0,0.08)', // Better shadow
+        border: '1px solid #e2e8f0',
+        boxShadow: '0 4px 15px rgba(0,0,0,0.08)',
         padding: '20px 20px 16px',
       }}>
         {/* Header */}

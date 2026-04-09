@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/ims/layout/Navbar';
+import Navbar from './components/layout/Navbar';
 import Reports from './pages/ims/Reports';
 import StockOut from './pages/ims/StockOut';
 import Items from './pages/ims/Items';
@@ -15,6 +15,7 @@ import StockReturns from './pages/ims/StockReturns';
 import ProcurementManagement from './pages/ims/ProcurementManagement';
 import StockIssuance from './pages/ims/StockIssuance';
 import PersonnelProfile from './pages/hrm/PersonnelProfile';
+import Compliance from './pages/hrm/Compliance';
 
 function App() {
     return (
@@ -110,6 +111,8 @@ function App() {
 
                     {/* HRM Route - Without Navbar */}
                     <Route path="/personnel-profile" element={<PersonnelProfile />} />
+                    <Route path="/compliance" element={<Compliance />} />    
+
                 </Routes>
 
             </div>
