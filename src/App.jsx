@@ -5,7 +5,7 @@ import Reports from './pages/ims/Reports';
 import StockOut from './pages/ims/StockOut';
 import Items from './pages/ims/Items';
 import Vendors from './pages/ims/Vendors';
-import PurchaseRequest from './pages/ims/PurchaseRequest';
+// import PurchaseRequest from './pages/ims/PurchaseRequest';
 import Entry from './pages/ims/Entry';
 import Return from './pages/ims/Return';
 import Store from './pages/ims/Store';
@@ -16,6 +16,7 @@ import ProcurementManagement from './pages/ims/ProcurementManagement';
 import StockIssuance from './pages/ims/StockIssuance';
 import PersonnelProfile from './pages/hrm/PersonnelProfile';
 import Compliance from './pages/hrm/Compliance';
+import PurchaseRequest from './pages/ims/PurchaseRequest';
 
 function App() {
     return (
@@ -108,6 +109,16 @@ function App() {
                             <StockIssuance />
                         </>
                     } />
+                    <Route path="/purchase-request" element={
+                        <>
+                            <Navbar />
+                            <PurchaseRequest />
+                        </>
+                    } />
+                </Routes>
+
+                {/* HRM Routes with Navbar */}
+                <Routes>
 
                     {/* HRM Route - Without Navbar */}
                     <Route path="/personnel-profile" element={<PersonnelProfile />} />

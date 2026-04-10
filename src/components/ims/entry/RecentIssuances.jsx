@@ -1,11 +1,13 @@
 import React from 'react';
 
-const RecentIssuances = () => {
+const RecentIssuances = ({ showRecentIssuances = true }) => {
     const issuances = [
         { name: "Hammad Yousaf", item: "Selling For 56", time: "10m ago" },
         { name: "Ali Muhammad", item: "Electrical Distribution Box", time: "11 ago" },
         { name: "Umer Nawaz", item: "Water Tap (Steel)", time: "20 ago" }
     ];
+
+    if (!showRecentIssuances) return null;
 
     return (
         <div className="bg-white rounded-xl border border-gray-200 p-3 sm:p-4 w-full">

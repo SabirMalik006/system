@@ -1,8 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ShoppingCart, X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import RequestPage from '../../../pages/ims/PurchaseRequest';
 
 export default function ProcurementHeader() {
     const [showReviewModal, setShowReviewModal] = useState(false);
+    const navigate = useNavigate();
     const modalRef = useRef(null);
 
     // Close modal when clicking outside
@@ -24,6 +27,10 @@ export default function ProcurementHeader() {
         };
     }, [showReviewModal]);
 
+    const handleCreatePurchaseRequest = () => {
+        navigate('/purchase-request');
+    };
+
     return (
         <>
             <div className="px-4 sm:px-6 pt-4 sm:pt-6 pb-3 sm:pb-4 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 bg-[#E8F4FF]">
@@ -36,7 +43,7 @@ export default function ProcurementHeader() {
                     </p>
                 </div>
                 <button 
-                    onClick={() => setShowReviewModal(true)}
+                    onClick={handleCreatePurchaseRequest}
                     className="flex items-center justify-center gap-1.5 sm:gap-2 bg-gradient-to-r from-[#3B82F6] to-[#1E4D7B] hover:from-[#2563EB] hover:to-[#1A3A6B] text-white text-xs sm:text-sm font-semibold px-3 sm:px-4 py-3 sm:py-2 md:py-3 rounded-xl transition-all duration-300 shadow-sm hover:shadow-md text-center leading-tight whitespace-nowrap cursor-pointer"
                 >
                     <ShoppingCart size={14} className="sm:w-4 sm:h-4" />
@@ -69,17 +76,14 @@ export default function ProcurementHeader() {
                         {/* Modal Body */}
                         <div className="p-4 space-y-4 ">
                             {/* Total Items and Requested Total */}
-                            <div className="grid grid-cols-2 gap-3 bg-[#1152D41A]  rounded-lg px-3 py-2">
-                                <div className=" rounded-lg p-2.5 text-center">
+                            <div className="grid grid-cols-2 gap-3 bg-[#1152D41A] rounded-lg px-3 py-2">
+                                <div className="rounded-lg p-2.5 text-center">
                                     <div className="text-[11px] text-[#64748B] font-medium mt-0.5">TOTAL ITEMS</div>
                                     <div className="text-xl font-bold text-gray-900">5 Products</div>
-                                    
                                 </div>
-                                <div className=" rounded-lg p-2.5 text-center">
-                                    
+                                <div className="rounded-lg p-2.5 text-center">
                                     <div className="text-[11px] text-[#64748B] font-medium mt-0.5">REQUESTED TOTAL</div>
                                     <div className="text-xl font-bold text-[#1152D4]">$1,200.00</div>
-                                   
                                 </div>
                             </div>
 
@@ -133,7 +137,7 @@ export default function ProcurementHeader() {
                         <div className="sticky bottom-0 bg-gray-50 flex gap-2 px-4 py-3 border-t border-gray-100">
                             <button 
                                 onClick={() => setShowReviewModal(false)}
-                                className="flex-1 py-2 px-3 text-[#475569] rounded-md font-bold  transition-colors text-xs"
+                                className="flex-1 py-2 px-3 text-[#475569] rounded-md font-bold transition-colors text-xs"
                             >
                                 Reject Request
                             </button>

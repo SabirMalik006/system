@@ -1,6 +1,13 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 
 export default function Topbar() {
+    const navigate = useNavigate();
+
+    const handleStockOutEntry = () => {
+        navigate('/entry');
+    };
+
     return (
         <div className="mb-6">
             {/* Title - Top line */}
@@ -31,7 +38,10 @@ export default function Topbar() {
                     </p>
                 </div>
 
-                <button className="flex items-center justify-center gap-1.5 sm:gap-2 bg-gradient-to-r from-[#3B82F6] to-[#1E4D7B] hover:from-[#2563EB] hover:to-[#1A3A6B] text-white text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2 sm:py-2.5 md:py-3 rounded-xl transition-all duration-300 shadow-sm hover:shadow-md text-center leading-tight whitespace-nowrap">
+                <button 
+                    onClick={handleStockOutEntry}
+                    className="flex items-center justify-center gap-1.5 sm:gap-2 bg-gradient-to-r from-[#3B82F6] to-[#1E4D7B] hover:from-[#2563EB] hover:to-[#1A3A6B] text-white text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2 sm:py-2.5 md:py-3 rounded-xl transition-all duration-300 shadow-sm hover:shadow-md text-center leading-tight whitespace-nowrap cursor-pointer"
+                >
                     <img src="/a.png" alt="" className="filter brightness-0 invert w-3 h-3 sm:w-4 sm:h-4" />
                     Stock Out Entry
                 </button>

@@ -1,10 +1,9 @@
 import React from 'react';
 
-const VendorTable = ({ vendors }) => {
+const VendorTable = ({ vendors, onVendorClick }) => {
     const headers = ["NAME", "VENDOR ID", "SHIPPING ITEMS", "TOTAL ORDERS", "ON-TIME %", "RATING", "STATUS", "ACTIONS"];
 
     const getStatusBadge = (vendorName) => {
-        // Sample logic - you can customize based on your data
         const blacklistedVendors = ["Private Supplies Ltd.", "Nordic Builders"];
         const isBlacklisted = blacklistedVendors.includes(vendorName);
         
@@ -16,10 +15,16 @@ const VendorTable = ({ vendors }) => {
             );
         }
         return (
-            <span className="inline-flex px-3 py-1 text-xs font-medium rounded-full bg-[#1A8FA0] text-[white]">
+            <span className="inline-flex px-3 py-1 text-xs font-medium rounded-full bg-[#1A8FA0] text-white">
                 Active
             </span>
         );
+    };
+
+    const handleVendorNameClick = (vendor) => {
+        if (onVendorClick) {
+            onVendorClick(vendor);
+        }
     };
 
     return (
@@ -37,7 +42,12 @@ const VendorTable = ({ vendors }) => {
                 <tbody>
                     {vendors.map((vendor, idx) => (
                         <tr key={idx} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                            <td className="px-4 py-3 text-sm font-medium text-gray-900">{vendor.name}</td>
+                            <td 
+                                className="px-4 py-3 text-sm font-medium text-gray-600 hover:text-gray-800 cursor-pointer hover:underline"
+                                onClick={() => handleVendorNameClick(vendor)}
+                            >
+                                {vendor.name}
+                            </td>
                             <td className="px-4 py-3 text-sm text-gray-600">{vendor.id}</td>
                             <td className="px-4 py-3 text-sm text-gray-600">{vendor.shippingItems}</td>
                             <td className="px-4 py-3 text-sm text-gray-600">{vendor.totalOrders}</td>
@@ -45,7 +55,6 @@ const VendorTable = ({ vendors }) => {
                             <td className="px-4 py-3">
                                 <div className="flex items-center gap-1">
                                     <span className="text-yellow-500">★★★★☆</span>
-                                <span/>
                                 </div>
                             </td>
                             <td className="px-4 py-3">

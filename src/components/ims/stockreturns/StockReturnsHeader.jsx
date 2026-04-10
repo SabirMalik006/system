@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Download, Plus, X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export default function StockReturnsHeader() {
     const [showCreateModal, setShowCreateModal] = useState(false);
     const modalRef = useRef(null);
+        const navigate = useNavigate();
 
     // Close modal when clicking outside
     useEffect(() => {
@@ -41,13 +43,13 @@ export default function StockReturnsHeader() {
                         <Download size={14} />
                         EXPORT
                     </button>
-                    <button 
-                        onClick={() => setShowCreateModal(true)}
-                        className="flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-semibold px-3 sm:px-4 py-1.5 sm:py-2 rounded-sm cursor-pointer transition-colors shadow-md"
-                    >
-                        <Plus size={14} />
-                        NEW RETURN
-                    </button>
+                   <button 
+    onClick={() => navigate('/return')}
+    className="flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-[#3B82F6] to-[#1E4D7B] hover:from-[#2563EB] hover:to-[#1A3A6B] text-white text-sm font-semibold rounded-lg transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
+>
+    <Plus size={16} />
+    New Return
+</button>
                 </div>
             </div>
 

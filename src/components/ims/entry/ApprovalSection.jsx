@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 
-const ApprovalSection = () => {
+const ApprovalSection = ({ onConfirm }) => {
     const [approvingAuthority, setApprovingAuthority] = useState('');
     const [confirmPolicy, setConfirmPolicy] = useState(false);
 
     const handleReset = () => {
         setApprovingAuthority('');
         setConfirmPolicy(false);
+    };
+
+    const handleConfirm = () => {
+        if (onConfirm) {
+            onConfirm();
+        }
     };
 
     return (
@@ -52,7 +58,6 @@ const ApprovalSection = () => {
                 <label htmlFor="policyCheck" className="text-sm text-gray-600">I confirm that this issuance complies with company policy.</label>
             </div>
 
-            {/* Buttons - Right aligned */}
             <div className="flex items-center justify-end gap-3 mt-6">
                 <button
                     onClick={handleReset}
@@ -60,7 +65,10 @@ const ApprovalSection = () => {
                 >
                     Reset Form
                 </button>
-                <button className="px-4 py-2 text-sm text-white bg-gradient-to-r from-[#2563EB] to-[#2196F3] rounded-lg hover:from-[#1D4ED8] hover:to-[#1976D2] transition-all duration-300 shadow-sm hover:shadow-md flex items-center gap-1">
+                <button 
+                    onClick={handleConfirm}
+                    className="px-4 py-2 text-sm text-white bg-gradient-to-r from-[#2563EB] to-[#2196F3] rounded-lg hover:from-[#1D4ED8] hover:to-[#1976D2] transition-all duration-300 shadow-sm hover:shadow-md flex items-center gap-1"
+                >
                     <img src="pp.png" alt="" />
                     Confirm Issuance
                 </button>

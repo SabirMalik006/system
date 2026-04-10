@@ -37,7 +37,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 
 export default function MonthlyTrendChart() {
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 sm:p-5 overflow-x-auto">
+    <div className="bg-white mx-0 sm:mx-23  rounded-2xl border border-gray-100 shadow-sm p-4 sm:p-5 overflow-x-auto">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
         <h3 className="text-xs sm:text-sm font-semibold text-[#0F172A] tracking-wide uppercase">
           Monthly Return Volume Trend

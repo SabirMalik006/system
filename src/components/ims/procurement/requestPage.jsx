@@ -44,20 +44,20 @@ export default function CreatePurchaseRequest() {
   const workflowSteps = ['Drafting', 'Review', 'Approval', 'Processing'];
 
   return (
-    <div className="min-h-screen bg-[#E8F4ff] font-sans px-6 py-6">
+    <div className="min-h-screen bg-[#0b1120] font-sans px-6 py-6">
       <div className="max-w-[1100px] mx-auto">
 
         {/* ── Breadcrumb ── */}
         <div className="flex items-center gap-1.5 text-xs mb-4">
           <span className="text-gray-400">Procurement</span>
           <span className="text-gray-600">›</span>
-          <span className="text-gray-700 font-medium">New Purchase Request</span>
+          <span className="text-blue-400 font-medium">New Purchase Request</span>
         </div>
 
         {/* ── Page Header ── */}
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
           <div>
-            <h1 className="text-2xl font-black text-black tracking-tight uppercase mb-2">
+            <h1 className="text-2xl font-black text-white tracking-tight uppercase mb-2">
               Create Purchase Request
             </h1>
             <div className="flex items-center gap-2.5">
@@ -335,7 +335,7 @@ export default function CreatePurchaseRequest() {
             </div>
 
             {/* Approval Workflow Card */}
-            <div className="bg-[#1A8FA04D] rounded-2xl border border-[#1e3a6e] p-5">
+            <div className="bg-[#1a2e52] rounded-2xl border border-[#1e3a6e] p-5">
               <div className="text-[10px] font-bold text-blue-400 tracking-widest uppercase mb-4">
                 Approval Workflow
               </div>

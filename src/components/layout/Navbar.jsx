@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Search, ChevronDown, Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -6,6 +6,8 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isInventoryOpen, setIsInventoryOpen] = useState(false);
   const location = useLocation();
+  const dropdownTimeoutRef = useRef(null);
+  const dropdownRef = useRef(null);
   
   const menuItems = [
     { name: 'Dashboard', path: '/dashboard' },
@@ -16,9 +18,9 @@ const Navbar = () => {
   ];
 
   const inventoryDropdownItems = [
-    { name: 'Stock In', path: '/entry' },
-    { name: 'Stock Out', path: '/stock-out' },
-    { name: 'Stock Return', path: '/stock-returns' },
+    { name: 'Stock In', path: '/stock-in', icon: '/Text (1).png' },
+    { name: 'Stock Out', path: '/stock-issuance', icon: '/Text (2).png' },
+    { name: 'Stock Return', path: '/stock-returns', icon: '/Text (3).png' },
   ];
 
   const isActive = (path) => {
@@ -26,8 +28,33 @@ const Navbar = () => {
   };
 
   const isInventoryActive = () => {
-    return inventoryDropdownItems.some(item => location.pathname === item.path) || location.pathname === '/items';
+    return inventoryDropdownItems.some(item => location.pathname === item.path);
   };
+
+  // Handle mouse enter on dropdown trigger
+  const handleMouseEnter = () => {
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current);
+      dropdownTimeoutRef.current = null;
+    }
+    setIsInventoryOpen(true);
+  };
+
+  // Handle mouse leave on dropdown trigger and dropdown menu
+  const handleMouseLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setIsInventoryOpen(false);
+    }, 150); // 150ms delay to prevent accidental closing
+  };
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (dropdownTimeoutRef.current) {
+        clearTimeout(dropdownTimeoutRef.current);
+      }
+    };
+  }, []);
 
   return (
     <nav className="bg-[#1E4D7B] border-b border-gray-200 text-white sticky top-0 z-50">
@@ -47,32 +74,41 @@ const Navbar = () => {
                 <div key={item.name} className="relative">
                   {item.hasDropdown ? (
                     <div
-                      onMouseEnter={() => setIsInventoryOpen(true)}
-                      onMouseLeave={() => setIsInventoryOpen(false)}
+                      ref={dropdownRef}
+                      onMouseEnter={handleMouseEnter}
+                      onMouseLeave={handleMouseLeave}
+                      className="relative"
                     >
-                      <button
+                      {/* Inventory Button - Click directly to /items */}
+                      <Link
+                        to={item.path}
                         className={`flex items-center gap-1 text-xs lg:text-sm font-base text-white transition-all duration-150 rounded-xl px-3 lg:px-6 py-1 hover:bg-[#2166A0] hover:text-white whitespace-nowrap ${
-                          isInventoryActive() ? 'bg-[#2166A0]' : ''
+                          isActive(item.path) ? 'bg-[#2166A0]' : ''
                         }`}
                       >
                         {item.name}
                         <ChevronDown size={14} className={`transition-transform duration-200 ${isInventoryOpen ? 'rotate-180' : ''}`} />
-                      </button>
+                      </Link>
                       
-                      {/* Dropdown Menu */}
+                      {/* Dropdown Menu with Images */}
                       {isInventoryOpen && (
-                        <div className="absolute top-full left-0 mt-1 w-40 bg-white rounded-lg shadow-lg py-1 z-50">
+                        <div 
+                          className="absolute top-full left-0 mt-1 w-48 bg-white rounded-lg shadow-lg py-1 z-50"
+                          onMouseEnter={handleMouseEnter}
+                          onMouseLeave={handleMouseLeave}
+                        >
                           {inventoryDropdownItems.map((dropdownItem) => (
                             <Link
                               key={dropdownItem.name}
                               to={dropdownItem.path}
-                              className={`block px-4 py-2 text-sm ${
+                              className={`flex items-center gap-3 px-4 py-2 text-sm ${
                                 location.pathname === dropdownItem.path
-                                  ? 'bg-[#1A8FA0] text-white'
-                                  : 'text-gray-700 hover:bg-gray-100'
+                                  ? ' text-black'
+                                  : 'text-gray-700'
                               }`}
                             >
-                              {dropdownItem.name}
+                              <img src={dropdownItem.icon} alt="" className="" />
+                              <span>{dropdownItem.name}</span>
                             </Link>
                           ))}
                         </div>
@@ -161,21 +197,22 @@ const Navbar = () => {
                         <ChevronDown size={14} className={`transition-transform duration-200 ${isInventoryOpen ? 'rotate-180' : ''}`} />
                       </button>
                       
-                      {/* Mobile Dropdown Items */}
+                      {/* Mobile Dropdown Items with Images */}
                       {isInventoryOpen && (
                         <div className="ml-4 mt-1 space-y-1">
                           {inventoryDropdownItems.map((dropdownItem) => (
                             <Link
                               key={dropdownItem.name}
                               to={dropdownItem.path}
-                              className={`block px-3 py-2 text-sm rounded-lg ${
+                              className={`flex items-center gap-3 px-3 py-2 text-sm rounded-lg ${
                                 location.pathname === dropdownItem.path
                                   ? 'bg-[#1A8FA0] text-white'
                                   : 'text-white/80 hover:bg-[#2166A0]'
                               }`}
                               onClick={() => setIsMenuOpen(false)}
                             >
-                              {dropdownItem.name}
+                              <img src={dropdownItem.icon} alt="" className="w-5 h-5" />
+                              <span>{dropdownItem.name}</span>
                             </Link>
                           ))}
                         </div>

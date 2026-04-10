@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const RequestInfo = () => {
-    const [quantity, setQuantity] = useState(500);
-    const [selectedPurpose, setSelectedPurpose] = useState('');
-    const [selectedUnit, setSelectedUnit] = useState('Main Warehouse');
+const RequestInfo = ({ quantity, setQuantity, availableStock = 450 }) => {
+    const isExceeding = quantity > availableStock;
+    const stockAfterIssue = availableStock - quantity;
 
     const handleQuantityChange = (type) => {
         if (type === 'increment') {
@@ -22,7 +21,7 @@ const RequestInfo = () => {
             </div>
 
             {/* Item Issued and Quantity - Side by Side */}
-            <div className="grid grid-cols-2 gap-6 mb-5 ">
+            <div className="grid grid-cols-2 gap-6 mb-5">
                 {/* Item Issued */}
                 <div>
                     <label className="text-sm font-medium text-[#64748B] mb-2 block">ITEM ISSUED *</label>
@@ -38,28 +37,43 @@ const RequestInfo = () => {
 
                 {/* Quantity */}
                 <div>
-    <label className="text-sm font-medium text-[#64748B] mb-2 block">QUANTITY *</label>
-    <div className="flex items-center">
-        <button 
-            onClick={() => handleQuantityChange('decrement')}
-            className="w-14 h-12 flex items-center justify-center border border-gray-300 rounded-l-lg text-gray-600 bg-[#F1F5F9] text-xl"
-        >
-            -
-        </button>
-        <input
-            type="text"
-            value={quantity}
-            className="w-full px-4 py-3 text-base text-center border-t border-b border-gray-300 focus:outline-none focus:border-[#1A8FA0] bg-white font-medium "
-            readOnly
-        />
-        <button 
-            onClick={() => handleQuantityChange('increment')}
-            className="w-14 h-12 flex items-center justify-center border border-gray-300 rounded-r-lg text-gray-600 bg-[#F1F5F9] text-xl"
-        >
-            +
-        </button>
-    </div>
-</div>
+                    <div className="flex items-center justify-between mb-2">
+                        <label className="text-sm font-medium text-[#64748B] block">QUANTITY *</label>
+                        {isExceeding && (
+                            <span className="text-xs text-red-500">
+                                Stock after issue: <span className="font-medium">{stockAfterIssue}</span>
+                            </span>
+                        )}
+                    </div>
+                    <div className="flex items-center">
+                        <button 
+                            onClick={() => handleQuantityChange('decrement')}
+                            className="w-14 h-12 flex items-center justify-center border border-gray-300 rounded-l-lg text-gray-600 bg-[#F1F5F9] text-xl hover:bg-gray-200 transition-colors"
+                        >
+                            -
+                        </button>
+                        <input
+                            type="text"
+                            value={quantity}
+                            className={`w-full px-4 py-3 text-base text-center border-t border-b border-gray-300 focus:outline-none focus:border-[#1A8FA0] bg-white font-medium ${
+                                isExceeding ? 'border-red-500' : ''
+                            }`}
+                            readOnly
+                        />
+                        <button 
+                            onClick={() => handleQuantityChange('increment')}
+                            className="w-14 h-12 flex items-center justify-center border border-gray-300 rounded-r-lg text-gray-600 bg-[#F1F5F9] text-xl hover:bg-gray-200 transition-colors"
+                        >
+                            +
+                        </button>
+                    </div>
+                    {/* Error Message - Only show when exceeding */}
+                    {isExceeding && (
+                        <div className="mt-2 text-xs text-red-500">
+                            Requested quantity exceeds available stock. Available stock: {availableStock}
+                        </div>
+                    )}
+                </div>
             </div>
 
             {/* Purpose of Issuance and Issuing Unit - Side by Side */}
@@ -67,8 +81,6 @@ const RequestInfo = () => {
                 <div>
                     <label className="text-sm font-medium text-[#64748B] mb-2 block">PURPOSE OF ISSUANCE *</label>
                     <select 
-                        value={selectedPurpose}
-                        onChange={(e) => setSelectedPurpose(e.target.value)}
                         className="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:border-[#1A8FA0] bg-white text-[#64748B]"
                     >
                         <option value="">Select purpose</option>
@@ -80,8 +92,6 @@ const RequestInfo = () => {
                 <div>
                     <label className="text-sm font-medium text-[#64748B] mb-2 block">ISSUING UNIT/DEPARTMENT *</label>
                     <select 
-                        value={selectedUnit}
-                        onChange={(e) => setSelectedUnit(e.target.value)}
                         className="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:border-[#1A8FA0] bg-white text-[#64748B]"
                     >
                         <option>Main Warehouse</option>
