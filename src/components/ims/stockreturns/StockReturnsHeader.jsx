@@ -194,7 +194,7 @@ export default function StockReturnsHeader() {
                         </div>
 
                         {/* Modal Footer */}
-                        <div className="bg-gray-50 flex gap-2 px-4 py-2.5 border-t">
+                        <div className="bg-gray-50 flex  gap-2 px-4 py-2.5 border-t" >
                             <button
                                 onClick={() => setShowCreateModal(false)}
                                 className="flex-1 py-1.5 border border-gray-300 rounded-sm text-gray-700 font-medium hover:bg-gray-100 transition-colors text-xs"

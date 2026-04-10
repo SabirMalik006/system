@@ -16,7 +16,7 @@ const Navbar = () => {
   ];
 
   const inventoryDropdownItems = [
-    { name: 'Stock In', path: '/stock-in' },
+    { name: 'Stock In', path: '/entry' },
     { name: 'Stock Out', path: '/stock-out' },
     { name: 'Stock Return', path: '/stock-returns' },
   ];
