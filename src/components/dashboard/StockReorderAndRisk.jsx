@@ -14,9 +14,10 @@ const issuanceItems = [
 ];
 
 const donutSegments = [
-  { pct: 0.55, color: '#1A8FA0', offset: 0 },
-  { pct: 0.25, color: '#E2E8F0', offset: 0.55 },
-  { pct: 0.20, color: '#1E4D7B', offset: 0.80 },
+  { pct: 0.35, color: '#1A8FA0', offset: 0 },
+  { pct: 0.25, color: '#E2E8F0', offset: 0.35 },
+  { pct: 0.20, color: '#1E4D7B', offset: 0.60 },
+  { pct: 0.20, color: '#163A50', offset: 0.80 },
 ];
 
 function DonutChart() {
@@ -37,11 +38,18 @@ function DonutChart() {
     return { ...seg, dash, gap, rotation };
   });
 
+  // Calculate positions for dividers (4 segments = 4 dividers)
+  const dividerPositions = [];
+  let cumulative = 0;
+  for (let i = 0; i < donutSegments.length; i++) {
+    cumulative += donutSegments[i].pct;
+    dividerPositions.push(cumulative);
+  }
+
   return (
     <div className="relative w-full max-w-[360px] h-[360px] mx-auto flex justify-center items-center">
       <svg width="360" height="360" viewBox="0 0 240 240" className="w-full h-full">
-        <circle cx={cx} cy={cy} r={r + stroke / 2 + 7} fill="none" stroke="#e8edf5" strokeWidth="2" />
-
+        
         {segments.map((seg, i) => (
           <circle
             key={i}
@@ -57,20 +65,23 @@ function DonutChart() {
           />
         ))}
 
-        {[0, 0.55, 0.80].map((pct, i) => {
+        {/* Dividers between segments */}
+        {/* {dividerPositions.map((pct, i) => {
           const angle = pct * 360 - 90;
           const inner = polarToXY(angle, r - stroke / 2 - 2);
           const outer = polarToXY(angle, r + stroke / 2 + 2);
           return (
             <line
               key={i}
-              x1={inner.x} y1={inner.y}
-              x2={outer.x} y2={outer.y}
+              x1={inner.x}
+              y1={inner.y}
+              x2={outer.x}
+              y2={outer.y}
               stroke="white"
               strokeWidth="4"
             />
           );
-        })}
+        })} */}
 
         {/* Images instead of icons */}
         {[
@@ -106,8 +117,8 @@ function DonutChart() {
           x={cx}
           y={cy + 5}
           textAnchor="middle"
-          fontSize="28"
-          fontWeight="700"
+          fontSize="22"
+          fontWeight="500"
           fill="#1A8FA0"
           style={{ dominantBaseline: 'middle' }}
         >
@@ -178,7 +189,6 @@ export default function StockDashboard() {
         {/* Operational Health Card */}
         <div className="bg-white rounded-2xl p-5 md:p-6 shadow-sm">
           
-
           <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8 flex-wrap">
             {/* Circular Progress */}
             
@@ -198,7 +208,6 @@ export default function StockDashboard() {
                 />
               </svg>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                {/* Light teal gradient background */}
                 <div
                   className="absolute inset-0 rounded-full"
                   style={{
@@ -214,8 +223,8 @@ export default function StockDashboard() {
             {/* Low Risk Text */}
             <div className="flex-1 text-center md:text-left">
               <div className="text-md font-semibold text-[#a0aec0] tracking-widest uppercase mb-2">
-            Operational Health
-          </div>
+                Operational Health
+              </div>
               <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
                 <span className="text-xl font-bold text-[#2d3748]">Low Risk</span>
                 <span className="w-2 h-2 rounded-full bg-[#1A8FA0]" />
@@ -231,8 +240,8 @@ export default function StockDashboard() {
                 { label: 'DAMAGED', val: '2%', color: '#e53e3e', bar: '#e53e3e' },
               ].map((s, i) => (
                 <div key={i} className="text-center">
-                  <div className="text-[10px] text-[#94A3B8] tracking-widest mb-1 font-bold" >{s.label}</div>
-                  <div className="text-lg font-bold " style={{ color: s.color }}>{s.val}</div>
+                  <div className="text-[10px] text-[#94A3B8] tracking-widest mb-1 font-bold">{s.label}</div>
+                  <div className="text-lg font-bold" style={{ color: s.color }}>{s.val}</div>
                   <div className="w-8 h-1 mx-auto mt-1.5" style={{ background: s.bar, borderRadius: 2 }} />
                 </div>
               ))}

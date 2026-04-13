@@ -1,7 +1,7 @@
 import React from 'react';
 
 const RADIUS_OUTER = 72;
-const RADIUS_MID   = 58;
+const RADIUS_MID = 58;
 const RADIUS_INNER = 44;
 const CX = 90, CY = 90;
 
@@ -20,9 +20,9 @@ function arcPath(cx, cy, r, startAngle, endAngle) {
 // Data: IN STOCK 92%, CRITICAL 5%, SHORTFALL 3%
 // We draw 3 concentric arcs, each ring = one metric
 const rings = [
-  { pct: 0.92, color: '#2ec4b6', radius: RADIUS_OUTER, label: 'IN STOCK',  value: '92%' },
-  { pct: 0.35, color: '#1a4fa0', radius: RADIUS_MID,   label: 'CRITICAL',  value: '5%'  },
-  { pct: 0.28, color: '#3D82CC', radius: RADIUS_INNER, label: 'SHORTFALL', value: '3%'  },
+  { pct: 0.92, color: '#2ec4b6', radius: RADIUS_OUTER, label: 'IN STOCK', value: '92%' },
+  { pct: 0.35, color: '#1a4fa0', radius: RADIUS_MID, label: 'CRITICAL', value: '5%' },
+  { pct: 0.28, color: '#3D82CC', radius: RADIUS_INNER, label: 'SHORTFALL', value: '3%' },
 ];
 
 export default function InventoryStatusCard() {
@@ -39,14 +39,14 @@ export default function InventoryStatusCard() {
       {/* Header */}
       <div style={{
         display: 'flex', alignItems: 'center',
-        justifyContent: 'space-between', marginBottom: 12 , borderBottom: '0.5px solid #eeeff2', paddingBottom: 8,
+        justifyContent: 'space-between', marginBottom: 12, borderBottom: '0.5px solid #eeeff2', paddingBottom: 8,
       }}>
         <span style={{
           fontSize: 10, fontWeight: 700, letterSpacing: '0.08em',
           color: '#476686', textTransform: 'uppercase',
         }}>Inventory Status</span>
         <div style={{ display: 'flex', gap: 3 }}>
-          {[0,1,2].map(i => (
+          {[0, 1, 2].map(i => (
             <span key={i} style={{
               width: 4, height: 4, borderRadius: '50%',
               background: '#cbd5e1', display: 'inline-block',
@@ -113,17 +113,15 @@ export default function InventoryStatusCard() {
         {rings.map((ring, i) => (
           <div key={i} style={{ textAlign: 'center' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4, marginBottom: 3 }}>
-              <span style={{
-                width: 7, height: 7, borderRadius: '50%',
-                background: ring.color, display: 'inline-block',
-              }} />
-              <span style={{
-                fontSize: 9, color: '#94a3b8',
-                fontWeight: 600, letterSpacing: '0.06em',
-                textTransform: 'uppercase',
-              }}>{ring.label}</span>
+              <span
+                className="w-[6px] h-[6px] md:w-[7px] md:h-[7px] rounded-full inline-block"
+                style={{ background: ring.color }}
+              />
+              <span className="text-[7px] md:text-[9px] text-[#94a3b8] font-semibold tracking-[0.06em] uppercase">
+                {ring.label}
+              </span>
             </div>
-            <div style={{ fontSize: 13, fontWeight: 700, color: '#0f172a' }}>
+            <div className="text-[11px] md:text-[12px] font-bold text-[#0f172a]">
               {ring.value}
             </div>
           </div>

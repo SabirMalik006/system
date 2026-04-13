@@ -1,12 +1,12 @@
 import React from 'react';
-import { Package, DollarSign, AlertTriangle, ShoppingCart, TrendingUp, TrendingDown, Zap } from 'lucide-react';
+import { TrendingUp, TrendingDown } from 'lucide-react';
 
 const stats = [
-  { label: 'Total Items', value: '289', sub: 'Active SKUs', icon: Package, color: '#1a6cb5', bg: '#dbeafe', trend: '+12', up: true },
-  { label: 'Stock Value', value: '849,687', prefix: '₨', sub: 'Total Inventory Value', icon: DollarSign, color: '#0891b2', bg: '#cffafe', trend: '+5.2%', up: true },
-  { label: 'Low Stock Items', value: '42', sub: 'Needs Reorder', icon: AlertTriangle, color: '#d97706', bg: '#fef3c7', trend: '-3', up: false },
-  { label: 'Pending Orders', value: '5', sub: 'Awaiting Approval', icon: ShoppingCart, color: '#7c3aed', bg: '#ede9fe', trend: '+2', up: false },
-  { label: 'New Vendor Registration', value: 'LOW', sub: 'IMS Transfer Carry', icon: Zap, color: '#059669', bg: '#d1fae5', isStatus: true },
+  { label: 'Total Items', value: '289', sub: 'Active SKUs', image: '/Background (6).svg', bg: '#dbeafe', trend: '+12', up: true },
+  { label: 'Stock Value', value: '849,687', sub: 'Total Inventory Value', image: '/Background (7).svg', bg: '#cffafe', trend: '+5.2%', up: true },
+  { label: 'Low Stock Items', value: '42', sub: 'Needs Reorder', image: '/Background (8).svg', bg: '#fef3c7', trend: '-3', up: false },
+  { label: 'Pending Orders', value: '5', sub: 'Awaiting Approval', image: '/Background (9).svg', bg: '#ede9fe', trend: '+2', up: false },
+  { label: 'New Vendor Registration', value: 'LOW', sub: 'IMS Transfer Carry', image: '/Overlay+OverlayBlur.svg', bg: '#d1fae5', isStatus: true },
 ];
 
 export default function KPIStats() {
@@ -18,15 +18,17 @@ export default function KPIStats() {
 }
 
 function StatCard({ stat, i }) {
-  const Icon = stat.icon;
+  // Apply #163A50 color to 2nd card (index 1) and 4th card (index 3)
+  const cardBgColor = (i === 1 || i === 3) ? '#163A50' : '#1E4D7B';
+  
   return (
-    <div className="bg-[#1E4D7B] rounded-lg shadow-sm border border-gray-100 p-3.5 ">
+    <div className="rounded-lg shadow-sm border border-gray-100 p-3.5" style={{ backgroundColor: cardBgColor }}>
       <div className="flex items-start justify-between ">
-        <div className="text-xs text-gray-400">{stat.label}</div>
+        <div className="text-sm text-gray-400">{stat.label}</div>
         <div className="flex flex-col items-end gap-1">
           
-          <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center" style={{ background: stat.bg }}>
-            <Icon size={15} color={stat.color} strokeWidth={2} className="sm:w-[17px] sm:h-[17px]" />
+          <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-md flex items-center justify-center  " >
+            <img src={stat.image} alt={stat.label} className="w-5 h-5 sm:w-[35px] sm:h-[35px] object-contain" />
           </div>
         </div>
       </div>
@@ -49,11 +51,11 @@ function StatCard({ stat, i }) {
             </span>
           )}
       <div className={stat.isStatus ? 'mt-4' : 'mt-3'}>
-        <div className="h-1 rounded-full bg-gray-700 overflow-hidden">
+        <div className="h-1 rounded-full bg-[#E2E8F0] overflow-hidden">
           <div
             className="h-full rounded-full"
             style={{
-              background: stat.isStatus ? '#ffffff' : stat.color,
+              background: stat.isStatus ? '#ffffff' : '#1A8FA0',
               width: stat.isStatus ? '60%' : `${30 + (i * 15)}%`,
             }}
           />

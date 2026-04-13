@@ -20,8 +20,8 @@ const data = [
 const CustomTooltip = ({ active, payload, label }) => {
   if (!active || !payload?.length) return null;
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-3 shadow-lg text-xs ">
-      <div className="font-bold mb-1.5 text-gray-700 ">{label}</div>
+    <div className="bg-white border border-gray-200 rounded-xl p-3 shadow-lg text-xs">
+      <div className="font-bold mb-1.5 text-gray-700">{label}</div>
       {payload.map((p, i) => (
         <div key={i} className="flex items-center gap-1.5 mb-0.5">
           <span className="w-2 h-2 rounded-full inline-block" style={{ background: p.color }} />
@@ -35,7 +35,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 
 export default function StockLevelTrend() {
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5  w-[24rem] h-[20rem] hidden sm:block lg:w-[37.5rem] lg:h-[23.5rem] absolute left-6  top-147">     
+    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 sm:p-5 w-full">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
         <h3 className="text-xs font-medium text-gray-700 tracking-widest uppercase">
@@ -57,7 +57,7 @@ export default function StockLevelTrend() {
         </div>
       </div>
 
-      <div className="h-[260px]">
+      <div className="h-[220px] sm:h-[240px] md:h-[260px]">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
@@ -78,10 +78,10 @@ export default function StockLevelTrend() {
       {/* Footer */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mt-3 pt-3 border-t border-gray-100">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="bg-blue-100 text-blue-700 text-[10px] font-bold px-3 py-1 rounded-full">
+          <span className="bg-blue-100 text-[#1D4ED8] text-[10px] font-normal px-3 py-1 rounded-full">
             Avg: 312 Units
           </span>
-          <span className="bg-teal-100 text-teal-700 text-[10px] font-bold px-3 py-1 rounded-full">
+          <span className="bg-[#6DB8E880] text-[#1D4ED8] text-[10px] font-normal px-3 py-1 rounded-full">
             Avg: 145 Issued
           </span>
         </div>

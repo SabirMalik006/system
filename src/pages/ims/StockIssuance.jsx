@@ -11,30 +11,31 @@ import Topbar from '../../components/ims/issuance/Topbar';
 export default function StockIssuance() {
     return (
         <div className="min-h-screen bg-gray-50 font-sans">
-
             <div className="max-w-[1400px] mx-auto px-4 sm:px-6 py-6 flex flex-col gap-5">
                 <Topbar />
-                {/* Row 1: Pending vs Approved + Issuance by Unit */}
+                
+                {/* Row 1: Pending vs Approved + Issuance by Unit + StockLevelTrend */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                    <PendingVsApproved />
-                    <IssuanceByUnit />
-                    <StockLevelTrend />
+                    {/* Left Column */}
+                    <div className="flex flex-col gap-5">
+                        <PendingVsApproved />
+                        <StockLevelTrend />
+                    </div>
+                    
+                    {/* Right Column */}
+                    <div>
+                        <IssuanceByUnit />
+                    </div>
                 </div>
 
-                {/* Row 2: Stock Level vs Issue Trend - Full width, fits perfectly below PendingVsApproved */}
-                <div >
-
-                </div>
-
-                {/* Row 3: Issuance Workflow Status */}
+                {/* Row 2: Issuance Workflow Status */}
                 <IssuanceWorkflowStatus />
 
-                {/* Row 4: Low Stock Monitoring */}
+                {/* Row 3: Low Stock Monitoring */}
                 <LowStockMonitoring />
 
-                {/* Row 5: Recent Issuance History */}
+                {/* Row 4: Recent Issuance History */}
                 <RecentIssuanceHistory />
-
             </div>
             <Footer />
         </div>

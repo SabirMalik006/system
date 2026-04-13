@@ -17,12 +17,15 @@ import StockIssuance from './pages/ims/StockIssuance';
 import PersonnelProfile from './pages/hrm/PersonnelProfile';
 import Compliance from './pages/hrm/Compliance';
 import PurchaseRequest from './pages/ims/PurchaseRequest';
+import LeaveManagement from './pages/hrm/LeaveManagement';
+import InterUnitTransfer from './pages/hrm/InterUnitTransfer';
+import TrainingManagement from './pages/hrm/TrainingManagement';
 
 function App() {
     return (
         <Router>
             <div className="min-h-screen bg-[#F9FAFB]">
-                
+
                 {/* IMS Routes with Navbar */}
                 <Routes>
                     <Route path="/" element={
@@ -118,11 +121,15 @@ function App() {
                 </Routes>
 
                 {/* HRM Routes with Navbar */}
+
                 <Routes>
 
                     {/* HRM Route - Without Navbar */}
                     <Route path="/personnel-profile" element={<PersonnelProfile />} />
-                    <Route path="/compliance" element={<Compliance />} />    
+                    <Route path="/compliance" element={<Compliance />} />
+                    <Route path="/leave-management" element={<LeaveManagement />} />
+                    <Route path="/inter-unit-transfer" element={<InterUnitTransfer />} />
+                    <Route path="/training-management" element={<TrainingManagement />} />
 
                 </Routes>
 

@@ -8,7 +8,7 @@ const alerts = [
 
 export default function AlertCenter() {
   return (
-    <div className="bg-white rounded-lg shadow-lg border border-gray-100 p-3 sm:p-3.5 mb-4 relative overflow-hidden">
+    <div className="bg-white rounded-lg shadow-lg border border-[#E0E8EC] p-3 sm:p-3.5 mb-4 relative overflow-hidden">
       
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
         <div className="flex items-center justify-between sm:justify-start gap-2">

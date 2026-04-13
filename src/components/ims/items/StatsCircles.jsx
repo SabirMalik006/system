@@ -7,22 +7,20 @@ const StatsCircles = () => {
       value: "24",
       subtext: "ACTIVE",
       trend: "+2 THIS MONTH",
-      icon: "📊",
-      bgColor: "bg-blue-50",
-      textColor: "text-blue-600",
-      trendColor: "text-green-600",
-      borderColor: "#1A8FA0",     // first
+      image: "/Background (4).svg",
+      textColor: "text-[#0F172A]",
+      trendColor: "text-[#94A3B8]",
+      borderColor: "#1A8FA0",     
     },
     {
       label: "LOW STOCK",
       value: "18",
       subtext: "ITEMS",
       trend: "ACTION REQUIRED",
-      icon: "⚠️",
-      bgColor: "bg-yellow-50",
-      textColor: "text-yellow-600",
+      image: "/Background (3).svg",
+      textColor: "text-[#0F172A]",
       trendColor: "text-red-600",
-      borderColor: "#640404",     // second
+      borderColor: "#640404",     
     },
     {
       label: "SYSTEM HEALTH",
@@ -30,21 +28,20 @@ const StatsCircles = () => {
       subtext: "Last Sync",
       trend: "4 MINS AGO",
       status: "HEALTHY STATUS",
-      icon: "🔄",
-      bgColor: "bg-green-50",
-      textColor: "text-green-600",
-      trendColor: "text-green-600",
-      borderColor: "#1E4D7B",     // third
+      image: "/Background (5).svg",
+      textColor: "text-[#0F172A]",
+      trendColor: "text-[#06B6D4]",
+      borderColor: "#1E4D7B",     
     },
   ];
 
   return (
-    <div className="flex flex-wrap gap-15 justify-center md:justify-center my-10 ">
+    <div className="flex flex-wrap gap-35 justify-center md:justify-center my-10 ">
       {stats.map((stat, index) => (
         <div
           key={index}
           className={`
-            w-70 h-70
+            w-60 h-60
             rounded-full
             bg-white
             shadow-md
@@ -67,22 +64,18 @@ const StatsCircles = () => {
           />
 
           {/* Content layer */}
-          <div className="relative z-10 flex flex-col items-center">
-            {/* Icon */}
-            <div
-              className={`
-                w-16 h-16 sm:w-20 sm:h-20 
-                rounded-full ${stat.bgColor} 
-                flex items-center justify-center 
-                text-3xl sm:text-4xl mb-4
-                border border-white/70 shadow-sm
-              `}
-            >
-              {stat.icon}
-            </div>
+          <div className="relative z-1 flex flex-col items-center">
+            {/* Image */}
+           
+              <img 
+                src={stat.image} 
+                alt={stat.label} 
+                className="w-10 h-10 sm:w-18 sm:h-18 absolute -top-14 object-contain z-10 "
+              />
+           
 
             {/* Label */}
-            <div className="text-xs sm:text-lg font-medium text-gray-800 tracking-wide uppercase mb-1">
+            <div className="text-xs sm:text-md font-medium text-[#94A3B8] tracking-wide uppercase mb-1 ">
               {stat.label}
             </div>
 
@@ -98,15 +91,27 @@ const StatsCircles = () => {
             )}
 
             {/* Bottom row */}
-            <div className="mt-3 flex flex-col items-center gap-0.5">
+            <div className="mt-3 flex flex-col items-center gap-3">
               {stat.value && (
                 <div className="text-sm text-gray-600 font-medium">
                   {stat.subtext}
                 </div>
               )}
-              <div className={`text-xs font-medium ${stat.trendColor}`}>
-                {stat.trend || stat.status}
-              </div>
+              {/* Show both trend and status in separate lines for third card */}
+              {stat.status ? (
+                <div className="flex flex-col items-center gap-0.5">
+                  <div className={`text-xs font-medium ${stat.trendColor}`}>
+                    {stat.trend}
+                  </div>
+                  <div className={`text-xs font-medium  ${stat.trendColor}`}>
+                    {stat.status}
+                  </div>
+                </div>
+              ) : (
+                <div className={`text-xs font-medium ${stat.trendColor}`}>
+                  {stat.trend}
+                </div>
+              )}
             </div>
           </div>
         </div>

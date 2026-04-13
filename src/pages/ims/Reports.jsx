@@ -55,7 +55,7 @@ const Reports = () => {
         },
         {
             id: 5,
-            timestamp: 'Oct 24, 2023 - 12:55:40',
+            timestamp: 'Oct 24, 2023  - 12:55:40',
             user: 'John Doe',
             action: 'READ',
             module: 'System',
@@ -153,7 +153,7 @@ const Reports = () => {
                 {/* Actions Table - Desktop design exactly same rakha hai */}
                 <div className="flex-1 bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
                     <div className="overflow-x-auto">
-                        <table className="w-full min-w-[950px]">   {/* min-w same rakha hai desktop ke liye */}
+                        <table className="w-full min-w-[950px]">
                             <thead>
                                 <tr className="bg-gray-50 border-b border-gray-200">
                                     <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">TIMESTAMP</th>
@@ -168,15 +168,24 @@ const Reports = () => {
                             <tbody>
                                 {auditLogs.map((log) => (
                                     <tr key={log.id} className="border-b border-gray-200 hover:bg-gray-50">
-                                        <td className="px-4 py-7 text-sm text-gray-900">{log.timestamp}</td>
-
-                                        <td className="px-4 py-3">
-                                            <div className="flex items-center gap-2 text-sm text-gray-900 font-bold">
-                                                <img src="/piccc.png" alt="user avatar" className="w-5 h-5 rounded-full" />
-                                                <span>{log.user}</span>
+                                        <td className="px-4 py-7 text-sm text-gray-900 leading-tight">
+                                            <div>{log.timestamp.split(' - ')[0]}</div>
+                                            <div className="text-sm text-gray-900 mt-1">
+                                                {log.timestamp.split(' - ')[1]}
                                             </div>
                                         </td>
 
+                                        <td className="px-1 py-3">
+                                            <div className="flex items-center gap-3">
+                                                <img src="/piccc.png" alt="user avatar" className="w-5 h-5 rounded-full" />
+                                                <div className="flex flex-col">
+                                                    <span className="text-sm text-gray-900 font-bold">{log.user.split(' ')[0]}</span>
+                                                    <span className="text-sm font-bold text-gray-800">
+                                                        {log.user.split(' ').slice(1).join(' ')}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </td>
                                         <td className="px-4 py-3">
                                             <span className={`px-2 py-1 text-xs font-medium rounded ${getActionBadgeColor(log.action)}`}>
                                                 {log.action}

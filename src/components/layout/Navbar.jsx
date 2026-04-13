@@ -148,7 +148,7 @@ const Navbar = () => {
                 <p className="h-2 w-2 absolute bg-red-500 rounded-full -top-1 -right-1"></p>
               </div>
               <div className="w-7 h-7 sm:w-8 sm:h-8 bg-white/20 rounded-full flex items-center justify-center">
-                <img src="/Border.png" alt="Border" className="w-5 h-5 sm:w-6 sm:h-6" />
+                <img src="/b.svg" alt="Border" className="w-5 h-5 sm:w-8 sm:h-8" />
               </div>
               <div className="hidden sm:block">
                 <p className="text-[10px] sm:text-xs font-medium text-white leading-tight">

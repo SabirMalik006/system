@@ -6,6 +6,12 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        '1440px': '1440px',      // Custom breakpoint for 1440px
+        '1366px': '1366px',      // Custom breakpoint for 1366px
+        '1280px': '1280px',      // Custom breakpoint for 1280px
+        '1024px': '1024px',      // Custom breakpoint for 1024px
+      },
       colors: {
         // Exact colors from your screenshot
         gray: {

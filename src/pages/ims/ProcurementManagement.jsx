@@ -8,7 +8,6 @@ import ProcurementRequestsTable from '../../components/ims/procurement/Procureme
 import StockLevelByDept from '../../components/ims/procurement/StockLevelByDept';
 import Footer from '../../components/common/fotter';
 
-
 export default function ProcurementManagement() {
   return (
     <div className="min-h-screen bg-[#E8F4FF] font-sans">
@@ -20,7 +19,6 @@ export default function ProcurementManagement() {
         <SpendApprovalUnit />
         <ProcurementRequestsTable />
         <StockLevelByDept />
-        {/* helo */}
       </div>
       <Footer />
     </div>
