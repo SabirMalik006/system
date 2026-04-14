@@ -139,7 +139,7 @@ const ItemMasterList = () => {
 
     return (
         <div className="bg-[#E8F4FF] min-h-screen">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
+            <div className="max-w-[2560px] mx-auto px-4 sm:px-6 py-4 sm:py-6">
                 {/* Header with New Item Button - Responsive */}
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
                     <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Item Master List</h1>

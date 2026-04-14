@@ -81,7 +81,7 @@ const Reports = () => {
     };
 
     return (
-        <div className="max-w-7xl mx-auto bg-[#C1DDF8] min-h-screen">
+        <div className="max-w-[2560px] mx-auto bg-[#C1DDF8] min-h-screen">
 
             {/* Stats Grid - Responsive */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-6 p-4 md:p-6">

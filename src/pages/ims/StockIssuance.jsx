@@ -11,7 +11,7 @@ import Topbar from '../../components/ims/issuance/Topbar';
 export default function StockIssuance() {
     return (
         <div className="min-h-screen bg-gray-50 font-sans">
-            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 py-6 flex flex-col gap-5">
+            <div className="max-w-[2560px] mx-auto px-4 sm:px-6 py-6 flex flex-col gap-5">
                 <Topbar />
                 
                 {/* Row 1: Pending vs Approved + Issuance by Unit + StockLevelTrend */}

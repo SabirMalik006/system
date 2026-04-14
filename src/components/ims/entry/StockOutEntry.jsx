@@ -42,7 +42,7 @@ const StockOutEntry = () => {
     };
 
     return (
-        <div className="max-w-7xl mx-auto bg-[#E8F4FF] min-h-screen">
+        <div className="max-w-[2560px] mx-auto bg-[#E8F4FF] min-h-screen">
             <div className="p-4 sm:p-6">
                 {/* Header */}
                 <div className="mb-6">

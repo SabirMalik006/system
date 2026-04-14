@@ -20,6 +20,8 @@ import PurchaseRequest from './pages/ims/PurchaseRequest';
 import LeaveManagement from './pages/hrm/LeaveManagement';
 import InterUnitTransfer from './pages/hrm/InterUnitTransfer';
 import TrainingManagement from './pages/hrm/TrainingManagement';
+import PerformanceEvaluation from './pages/hrm/PerformanceEvaluation';
+import AttendancePage from './pages/hrm/AttendancePage';
 
 function App() {
     return (
@@ -130,6 +132,8 @@ function App() {
                     <Route path="/leave-management" element={<LeaveManagement />} />
                     <Route path="/inter-unit-transfer" element={<InterUnitTransfer />} />
                     <Route path="/training-management" element={<TrainingManagement />} />
+                    <Route path="/performance-evaluation" element={<PerformanceEvaluation />} />
+                    <Route path="/attendance" element={<AttendancePage />} />
 
                 </Routes>
 

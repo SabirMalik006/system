@@ -8,7 +8,7 @@ import StockReturnsTable from '../../components/ims/stockreturns/StockReturnsTab
 
 export default function StockReturns() {
   return (
-    <div className="min-h-screen bg-[#e8f0f7] font-sans">
+    <div className="min-h-[2560px] bg-[#e8f0f7] font-sans">
       <StockReturnsHeader />
       <div className="px-4 sm:px-5 py-4 flex flex-col gap-4  ">
         <StockReturnsKPIs />

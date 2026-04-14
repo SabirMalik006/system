@@ -3,7 +3,7 @@ import Footer from '../../common/fotter';
 
 const StockOutEntry = () => {
     return (
-        <div className=" max-w-7xl mx-auto bg-[#E8F4FF]">
+        <div className=" max-w-[2560px] mx-auto bg-[#E8F4FF]">
             {/* Header */}
             <div className="pt-6 px-6">
                 <h1 className="text-2xl font-bold text-gray-900 mb-1">Stock Out Entry <span className="text-lg font-normal text-[#94A3B8]">(Item Issuance)</span></h1>

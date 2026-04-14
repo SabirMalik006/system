@@ -18,7 +18,7 @@ export default function ProcurementManagement() {
         <ProcurementCharts />
         <SpendApprovalUnit />
         <ProcurementRequestsTable />
-        <StockLevelByDept />
+        {/* <StockLevelByDept /> */}
       </div>
       <Footer />
     </div>
