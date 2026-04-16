@@ -11,24 +11,24 @@ const reasonData = [
 ];
 
 const conditionData = [
-  { month: 'Jan', Serviceable: 12, Repairable: 6,  Unserviceable: 4,  Disposal: 2  },
-  { month: 'Feb', Serviceable: 10, Repairable: 5,  Unserviceable: 3,  Disposal: 2  },
-  { month: 'Mar', Serviceable: 14, Repairable: 7,  Unserviceable: 5,  Disposal: 3  },
-  { month: 'Apr', Serviceable: 11, Repairable: 6,  Unserviceable: 4,  Disposal: 2  },
-  { month: 'May', Serviceable: 16, Repairable: 8,  Unserviceable: 5,  Disposal: 3  },
-  { month: 'Jun', Serviceable: 13, Repairable: 7,  Unserviceable: 4,  Disposal: 2  },
-  { month: 'Jul', Serviceable: 15, Repairable: 8,  Unserviceable: 6,  Disposal: 3  },
-  { month: 'Aug', Serviceable: 14, Repairable: 6,  Unserviceable: 5,  Disposal: 2  },
-  { month: 'Sep', Serviceable: 12, Repairable: 5,  Unserviceable: 4,  Disposal: 2  },
-  { month: 'Oct', Serviceable: 13, Repairable: 7,  Unserviceable: 4,  Disposal: 3  },
-  { month: 'Nov', Serviceable: 17, Repairable: 9,  Unserviceable: 6,  Disposal: 3  },
+  { month: 'Jan', Serviceable: 12, Repairable: 6,  Unserviceable: 4,  Consumables: 2  },
+  { month: 'Feb', Serviceable: 10, Repairable: 5,  Unserviceable: 3,  Consumables: 2  },
+  { month: 'Mar', Serviceable: 14, Repairable: 7,  Unserviceable: 5,  Consumables: 3  },
+  { month: 'Apr', Serviceable: 11, Repairable: 6,  Unserviceable: 4,  Consumables: 2  },
+  { month: 'May', Serviceable: 16, Repairable: 8,  Unserviceable: 5,  Consumables: 3  },
+  { month: 'Jun', Serviceable: 13, Repairable: 7,  Unserviceable: 4,  Consumables: 2  },
+  { month: 'Jul', Serviceable: 15, Repairable: 8,  Unserviceable: 6,  Consumables: 3  },
+  { month: 'Aug', Serviceable: 14, Repairable: 6,  Unserviceable: 5,  Consumables: 2  },
+  { month: 'Sep', Serviceable: 12, Repairable: 5,  Unserviceable: 4,  Consumables: 2  },
+  { month: 'Oct', Serviceable: 13, Repairable: 7,  Unserviceable: 4,  Consumables: 3  },
+  { month: 'Nov', Serviceable: 17, Repairable: 9,  Unserviceable: 6,  Consumables: 3  },
 ];
 
 const condColors = {
   Serviceable:   '#102964',
   Repairable:    '#1A8FA0',
   Unserviceable: '#1E60AF',
-  Disposal:      '#1E4D7B',
+  Consumables:      '#1E4D7B',
 };
 
 const CustomLegend = () => (
@@ -89,7 +89,7 @@ export default function ReturnsByReasonAndCondition() {
       {/* Condition on Return — Stacked */}
       <div className="bg-white rounded-2xl border-2 border-[#1E60AF] shadow-sm p-3 sm:p-4 lg:col-span-2">
         <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-          <h3 className="text-xs sm:text-sm font-medium text-gray-900">Condition on Return — Stacked</h3>
+          <h3 className="text-xs sm:text-sm font-medium text-gray-900">Condition on Return</h3>
           <span className="text-[10px] sm:text-xs text-gray-400">By month</span>
         </div>
 
@@ -101,7 +101,7 @@ export default function ReturnsByReasonAndCondition() {
               <YAxis tick={{ fontSize: 9, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ borderRadius: 8, border: '1px solid #e2e8f0', fontSize: 10 }} />
               {Object.entries(condColors).map(([key, color]) => (
-                <Bar key={key} dataKey={key} stackId="a" fill={color} radius={key === 'Disposal' ? [3, 3, 0, 0] : [0,0,0,0]} />
+                <Bar key={key} dataKey={key} stackId="a" fill={color} radius={key === 'Consumables' ? [3, 3, 0, 0] : [0,0,0,0]} />
               ))}
             </BarChart>
           </ResponsiveContainer>

@@ -44,7 +44,7 @@ const Navbar = () => {
   const handleMouseLeave = () => {
     dropdownTimeoutRef.current = setTimeout(() => {
       setIsInventoryOpen(false);
-    }, 150); // 150ms delay to prevent accidental closing
+    }, 150);
   };
 
   // Cleanup timeout on unmount
@@ -68,8 +68,8 @@ const Navbar = () => {
               <span className="text-lg sm:text-xl font-bold text-white">IMS</span>
             </Link>
 
-            {/* Desktop Menu Items - Hidden on mobile */}
-            <div className="hidden md:flex items-center space-x-2 lg:space-x-4">
+            {/* Desktop Menu Items - Hidden below 1024px */}
+            <div className="hidden lg:flex items-center space-x-2 lg:space-x-4">
               {menuItems.map((item) => (
                 <div key={item.name} className="relative">
                   {item.hasDropdown ? (
@@ -79,7 +79,6 @@ const Navbar = () => {
                       onMouseLeave={handleMouseLeave}
                       className="relative"
                     >
-                      {/* Inventory Button - Click directly to /items */}
                       <Link
                         to={item.path}
                         className={`flex items-center gap-1 text-xs lg:text-sm font-base text-white transition-all duration-150 rounded-xl px-3 lg:px-6 py-1 hover:bg-[#2166A0] hover:text-white whitespace-nowrap ${
@@ -90,7 +89,6 @@ const Navbar = () => {
                         <ChevronDown size={14} className={`transition-transform duration-200 ${isInventoryOpen ? 'rotate-180' : ''}`} />
                       </Link>
                       
-                      {/* Dropdown Menu with Images */}
                       {isInventoryOpen && (
                         <div 
                           className="absolute top-full left-0 mt-1 w-48 bg-white rounded-lg shadow-lg py-1 z-50"
@@ -131,8 +129,8 @@ const Navbar = () => {
 
           {/* Right side - Search and Profile */}
           <div className="flex items-center gap-3 sm:gap-4">
-            {/* Search Bar - Hidden on mobile, visible on tablet+ */}
-            <div className="hidden sm:block relative">
+            {/* Search Bar - Hidden below 1024px */}
+            <div className="hidden lg:block relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/70" size={16} />
               <input
                 type="text"
@@ -158,19 +156,19 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button - Visible below 1024px */}
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-1 text-white hover:bg-[#2166A0] rounded-lg transition-colors"
+              className="lg:hidden p-1 text-white hover:bg-[#2166A0] rounded-lg transition-colors"
             >
               {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu Dropdown */}
+        {/* Mobile Menu Dropdown - Visible below 1024px */}
         {isMenuOpen && (
-          <div className="md:hidden mt-3 pb-3 border-t border-white/20 pt-3">
+          <div className="lg:hidden mt-3 pb-3 border-t border-white/20 pt-3">
             {/* Mobile Search Bar */}
             <div className="relative mb-3">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/70" size={16} />
@@ -197,7 +195,6 @@ const Navbar = () => {
                         <ChevronDown size={14} className={`transition-transform duration-200 ${isInventoryOpen ? 'rotate-180' : ''}`} />
                       </button>
                       
-                      {/* Mobile Dropdown Items with Images */}
                       {isInventoryOpen && (
                         <div className="ml-4 mt-1 space-y-1">
                           {inventoryDropdownItems.map((dropdownItem) => (

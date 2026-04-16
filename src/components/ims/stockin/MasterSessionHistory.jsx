@@ -4,10 +4,10 @@ import { History, Filter, Download, ChevronDown, ChevronLeft, ChevronRight, Arro
 const sessions = [
   {
     id: 'STK-0441',
-    itemName: 'Distribution Board',
+    itemName: 'Polyvinyl Distemper',
     sku: 'SKU-9920-HD',
     qty: '15 pcs',
-    vendor: 'Fasten-It Ltd',
+    vendor: 'M/s Berger Paint',
     po: 'PO-88291',
     batch: 'B-2023-OCT-01',
     warehouse: 'Warehouse A',
@@ -16,10 +16,10 @@ const sessions = [
   },
   {
     id: 'STK-0440',
-    itemName: 'Towel Rack',
+    itemName: 'Strip Light 4ft LED Complete Standard',
     sku: 'SKU-2021-SAF',
     qty: '50 units',
-    vendor: 'Industrial Tools Corp',
+    vendor: 'M/s Fast Cables',
     po: 'PO-88290',
     batch: 'B-2023-SEP-12',
     warehouse: 'Warehouse A',
@@ -28,10 +28,10 @@ const sessions = [
   },
   {
     id: 'STK-0439',
-    itemName: 'Conduit Pipe',
+    itemName: 'Circuit Breaker 15 Amp for AC with Plug',
     sku: 'SKU-3310-FST',
     qty: '20 packs',
-    vendor: 'Global Logistics Sparx',
+    vendor: 'M/s Sh Wilayat Ahmed & Sons',
     po: 'PO-88285',
     batch: 'B-2023-OCT-05',
     warehouse: 'Regional Hub',

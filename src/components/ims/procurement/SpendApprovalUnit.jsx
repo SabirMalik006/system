@@ -23,13 +23,12 @@ const approvalData = [
 ];
 
 const unitData = [
-    { unit: 'ISB-01', value: 64, color: '#2563EB' },
-    { unit: 'LHR-01', value: 48, color: '#3B82F6' },
-    { unit: 'KHI-01', value: 42, color: '#60A5FA' },
-    { unit: 'KHI-02', value: 36, color: '#0891B2' },
-    { unit: 'PEW-01', value: 32, color: '#1D4ED8' },
-    { unit: 'MUL-01', value: 26, color: '#1E60AF' },
-    { unit: 'QTA-01', value: 20, color: '#0EA5E9' },
+    { unit: 'CMES ISLB/LHR', value: 64, color: '#2563EB' },
+    { unit: 'CMES COMPAK', value: 48, color: '#3B82F6' },
+    { unit: 'CMES ORMARA', value: 42, color: '#60A5FA' },
+    { unit: 'CMES COMLOG', value: 36, color: '#0891B2' },
+    { unit: 'CMES COMCOAST', value: 32, color: '#1D4ED8' },
+    { unit: 'CMES COMKAR', value: 26, color: '#1E60AF' },
 ];
 
 const deptColors = {
@@ -114,14 +113,14 @@ export default function SpendApprovalUnit() {
             {/* Requests by Unit */}
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
                 <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-sm font-semibold text-[#1A3A5C]">Requests by Unit</h3>
+                    <h3 className="text-sm font-semibold text-[#1A3A5C]">Requests by CMES</h3>
                     <button className="text-[10px] font-bold px-2.5 py-0.5 rounded-md bg-blue-100 text-[#0E7490]">Top Units</button>
                 </div>
                 <div className="flex flex-col gap-2.5">
                     {unitData.map((u, i) => (
                         <div key={i} className="flex items-center gap-3">
-                            <span className="text-xs text-[#000000] font-base w-12 flex-shrink-0">{u.unit}</span>
-                            <div className="flex-1 h-5 bg-gray-100 rounded-sm overflow-hidden">
+                            <span className="text-xs text-[#000000] font-base w-15 flex-shrink-0">{u.unit}</span>
+                            <div className="flex-1 h-5 bg-white rounded-sm overflow-hidden">
                                 <div
                                     className="h-full rounded-sm"
                                     style={{ width: `${(u.value / 70) * 100}%`, background: u.color }}

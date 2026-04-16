@@ -53,14 +53,14 @@ const VendorManagement = () => {
     }, [showProfilePanel]);
 
     const vendorsData = [
-        { name: "Gridel Logistics Co.", id: "VND-0120-A", shippingItems: "SUPPORTING", totalOrders: "482", onTime: "100%", rating: "4.8" },
-        { name: "Apex Solutions", id: "VND-0120-B", shippingItems: "SUPPLIES", totalOrders: "30", onTime: "100%", rating: "4.5" },
-        { name: "Private Supplies Ltd.", id: "VND-0120-C", shippingItems: "CONTRACTS", totalOrders: "56", onTime: "100%", rating: "4.2" },
-        { name: "TwiCarevent Intl.", id: "VND-0120-D", shippingItems: "SOFTWARE", totalOrders: "322", onTime: "100%", rating: "4.9" },
-        { name: "Nordic Builders", id: "VND-0120-E", shippingItems: "SUPPORTING", totalOrders: "56", onTime: "100%", rating: "4.3" },
-        { name: "Qasee Sourcing", id: "VND-0120-F", shippingItems: "SUPPORTING", totalOrders: "1,432", onTime: "100%", rating: "4.7" },
-        { name: "Vantage Retail", id: "VND-0120-G", shippingItems: "INVENTORY", totalOrders: "124", onTime: "100%", rating: "4.4" },
-        { name: "Elite Logistics", id: "VND-0120-H", shippingItems: "MANUFACTURING", totalOrders: "107", onTime: "100%", rating: "4.6" }
+        { name: "M/s Berger Paint", id: "VND-0120-A", shippingItems: "SUPPORTING", totalOrders: "482", onTime: "100%", rating: "4.8" },
+        { name: "M/s Fast Cables", id: "VND-0120-B", shippingItems: "SUPPLIES", totalOrders: "30", onTime: "100%", rating: "4.5" },
+        { name: "M/s Sh Wilayat Ahmed & Sons", id: "VND-0120-C", shippingItems: "CONTRACTS", totalOrders: "56", onTime: "100%", rating: "4.2" },
+        { name: "M/s Three Star Ceramic", id: "VND-0120-D", shippingItems: "SOFTWARE", totalOrders: "322", onTime: "100%", rating: "4.9" },
+        { name: "M/s SZ Developers", id: "VND-0120-E", shippingItems: "SUPPORTING", totalOrders: "56", onTime: "100%", rating: "4.3" },
+        { name: "M/s Faisal Industries", id: "VND-0120-F", shippingItems: "SUPPORTING", totalOrders: "1,432", onTime: "100%", rating: "4.7" },
+        { name: "M/s Plasco (PVC) Pipes Industries", id: "VND-0120-G", shippingItems: "INVENTORY", totalOrders: "124", onTime: "100%", rating: "4.4" },
+        { name: "M/s Plasco (PVC)", id: "VND-0120-H", shippingItems: "MANUFACTURING", totalOrders: "107", onTime: "100%", rating: "4.6" }
     ];
 
     const filteredVendors = vendorsData.filter(vendor =>

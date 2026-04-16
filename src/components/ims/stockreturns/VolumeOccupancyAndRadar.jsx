@@ -110,8 +110,8 @@ export default function VolumeOccupancyAndRadar() {
       <div className="bg-gradient-to-b from-[#1E60AF] to-[#0D2849] rounded-2xl border border-[#1e3a5f] shadow-sm overflow-hidden">
         <div className="bg-white rounded-t-2xl px-3 sm:px-4 py-2 sm:py-3">
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <h3 className="text-xs sm:text-sm font-bold text-[#0F172A]">Returns Volume vs Occupancy</h3>
-            <span className="text-[9px] sm:text-[10px] text-gray-400 font-medium">Dual-axis comparison</span>
+            <h3 className="text-xs sm:text-sm font-bold text-[#0F172A]">Returns Volume vs Total Stock</h3>
+           
           </div>
         </div>
 
@@ -160,7 +160,7 @@ export default function VolumeOccupancyAndRadar() {
         <div className="bg-gradient-to-r from-[#1E60AF] to-[#0D2849] px-3 sm:px-4 py-2 sm:py-3">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <h3 className="text-xs sm:text-sm font-medium text-white leading-wide">Unit Return Activity — Radar</h3>
-            <span className="text-[9px] sm:text-[10px] text-slate-200 font-light">Multi-axis comparison</span>
+           
           </div>
         </div>
 

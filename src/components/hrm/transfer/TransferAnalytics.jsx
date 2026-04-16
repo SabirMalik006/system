@@ -5,18 +5,18 @@ import {
 } from 'recharts';
 
 const unitData = [
-  { unit: 'Headquarters',   transfers: 346, pct: 100 },
-  { unit: 'North Regional', transfers: 112, pct: 32  },
-  { unit: 'South Regional', transfers: 98,  pct: 28  },
-  { unit: 'West Hub',       transfers: 196, pct: 57  },
+  { unit: 'Headquarters',   transfers: 245, pct: 100 },
+  { unit: 'North Regional', transfers: 112, pct: 45  },
+  { unit: 'South Regional', transfers: 98,  pct: 40  },
+  { unit: 'West Hub',       transfers: 156, pct: 63  },
 ];
 
 const inOutData = [
-  { unit: 'HQ',    incoming: 60, outgoing: 40 },
-  { unit: 'North', incoming: 45, outgoing: 55 },
-  { unit: 'South', incoming: 30, outgoing: 50 },
-  { unit: 'East',  incoming: 50, outgoing: 30 },
-  { unit: 'West',  incoming: 40, outgoing: 60 },
+  { unit: 'HQ',    incoming: 60, outgoing: 60 },
+  { unit: 'North', incoming: 70, outgoing: 70 },
+  { unit: 'South', incoming: 46, outgoing: 46 },
+  { unit: 'East',  incoming: 78, outgoing: 78 },
+  { unit: 'West',  incoming: 65, outgoing: 65 },
 ];
 
 const CustomTooltip = ({ active, payload, label }) => {
@@ -40,18 +40,18 @@ export default function TransferAnalytics() {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
 
       {/* Transfer Timeline by Unit */}
-      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-        <h3 className="text-sm font-bold text-gray-800 mb-4">Transfer Timeline by Unit</h3>
-        <div className="flex flex-col gap-3.5">
+      <div className="bg-white rounded-xl shadow-sm p-6">
+        <h3 className="text-base font-bold text-gray-900 mb-8 mt-2">Transfer Timeline by Unit</h3>
+        <div className="flex flex-col gap-6">
           {unitData.map((u, i) => (
             <div key={i}>
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="text-xs font-semibold text-gray-700">{u.unit}</span>
-                <span className="text-xs text-gray-500 font-medium">{u.transfers} Transfers</span>
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-bold text-gray-900">{u.unit}</span>
+                <span className="text-xs text-[#274c77] font-bold">{u.transfers} Transfers</span>
               </div>
-              <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+              <div className="h-3.5 bg-[#0f172a] rounded-full overflow-hidden flex">
                 <div
-                  className="h-full rounded-full bg-[#1a3a8f] transition-all duration-700"
+                  className={`h-full rounded-full transition-all duration-700 ${i === 3 || i === 1 ? 'bg-[#1a73e8]' : 'bg-[#274c77]'}`}
                   style={{ width: `${u.pct}%` }}
                 />
               </div>
@@ -61,37 +61,35 @@ export default function TransferAnalytics() {
       </div>
 
       {/* Unit-wise In vs Out Summary */}
-      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-sm font-bold text-gray-800">Unit-wise In vs Out Summary</h3>
-          <div className="flex items-center gap-3">
+      <div className="bg-[#f8fafc] rounded-xl shadow-sm p-6">
+        <div className="flex items-center justify-between mb-8 mt-2">
+          <h3 className="text-base font-bold text-gray-900">Unit-wise In vs Out Summary</h3>
+          <div className="flex items-center gap-4">
             {[
-              { color: '#1a3a8f', label: 'Incoming' },
-              { color: '#60a5fa', label: 'Outgoing' },
+              { color: '#274c77', label: 'Incoming' },
+              { color: '#1a73e8', label: 'Outgoing' },
             ].map(l => (
-              <div key={l.label} className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ background: l.color }} />
-                <span className="text-[10px] text-gray-500">{l.label}</span>
+              <div key={l.label} className="flex items-center gap-2">
+                <span className="w-3 h-3 rounded-sm inline-block" style={{ background: l.color }} />
+                <span className="text-xs font-bold text-gray-800">{l.label}</span>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="h-[180px]">
+        <div className="h-[220px]">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={inOutData}
-              barSize={14}
-              barGap={3}
-              barCategoryGap="30%"
+              barSize={12}
+              barGap={4}
               margin={{ top: 0, right: 0, left: -25, bottom: 0 }}
             >
-              <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
-              <XAxis dataKey="unit" tick={{ fontSize: 10, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
-              <YAxis tick={{ fontSize: 10, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
-              <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(0,0,0,0.03)' }} />
-              <Bar dataKey="incoming" name="Incoming" fill="#1a3a8f" radius={[3, 3, 0, 0]} />
-              <Bar dataKey="outgoing" name="Outgoing" fill="#60a5fa" radius={[3, 3, 0, 0]} />
+              <XAxis dataKey="unit" tick={{ fontSize: 10, fill: '#64748b' }} axisLine={{stroke: '#cbd5e1'}} tickLine={false} tickMargin={10} />
+              
+              <Tooltip content={<CustomTooltip />} cursor={{ fill: 'transparent' }} />
+              <Bar dataKey="incoming" name="Incoming" fill="#274c77" />
+              <Bar dataKey="outgoing" name="Outgoing" fill="#1a73e8" />
             </BarChart>
           </ResponsiveContainer>
         </div>

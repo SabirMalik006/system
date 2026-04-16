@@ -107,10 +107,10 @@ export default function ItemCategoryHealth() {
           {/* Ring Labels - Responsive positioning */}
           <div className="absolute top-4 right-0 lg:right-auto lg:left-[148px] flex flex-col gap-3 lg:gap-[13.5px]">
             {[
-              { color: '#1a4fa0', label: 'Tools' },
-              { color: '#2563eb', label: 'Electrical' },
-              { color: '#38bdf8', label: 'Sanitary' },
-              { color: '#2ec4b6', label: 'Paints' },
+              { color: '#1a4fa0', label: 'Tools 96%' },
+              { color: '#2563eb', label: 'Electrical 90%' },
+              { color: '#38bdf8', label: 'Sanitary 87%' },
+              { color: '#2ec4b6', label: 'Paints 98%' },
             ].map((ring, i) => (
               <div key={i} className="flex items-center gap-2 whitespace-nowrap">
                 <span 

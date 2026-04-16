@@ -20,13 +20,13 @@ function VendorDonut() {
   const rings = [
     { r: 150, w: 20, trackColor: '#E9F4FE', pct: 0.85 },
     { r: 120, w: 20, trackColor: '#38BDF8', pct: 0.90 },
-    { r: 90,  w: 20, trackColor: '#E9F4FE', pct: pct  },
+    { r: 90, w: 20, trackColor: '#E9F4FE', pct: pct },
   ];
 
   return (
     <svg width="320" height="320" viewBox="0 0 320 320">
       {/* Decorative outer glow ring */}
-     
+
 
       {rings.map((ring, i) => {
         const trackEnd = 359;
@@ -40,29 +40,35 @@ function VendorDonut() {
       })}
 
       {/* Center */}
-      <text x={CX} y={CY - 16} textAnchor="middle" fontSize="10" fill="#94a3b8" fontFamily="inherit" letterSpacing="0.08em">SYSTEM AGGREGATE</text>
-      <text x={CX} y={CY + 20} textAnchor="middle" fontSize="36" fontWeight="700" fill="#0f172a" fontFamily="inherit">92.4%</text>
-      <text x={CX} y={CY + 40} textAnchor="middle" fontSize="12" fill="#16a34a" fontFamily="inherit" fontWeight="600">↗+4.2%</text>
+      <text x={CX} y={CY - 18} textAnchor="middle" fontSize="10" fill="#94a3b8" fontFamily="inherit" letterSpacing="0.08em">
+        <tspan x={CX} dy="0">VENDOR PERFORMANCE</tspan>
+        <tspan x={CX} dy="12">AGGREGATE</tspan>
+      </text>
+      <text x={CX} y={CY + 23} textAnchor="middle" fontSize="28" fontWeight="700" fill="#0f172a" fontFamily="inherit" >92.4%</text>
+     <g transform={`translate(${CX - 22}, ${CY + 36})`}>
+  <TrendingUp size={14} color="#16a34a" />
+  <text x={16} y={10} fontSize="12" fill="#16a34a" fontFamily="inherit" fontWeight="600">+4.2%</text>
+</g>
     </svg>
   );
 }
 
 const efficiencyRanking = [
-  { rank: 1, name: 'Global Log',   pct: 98, color: '#06B6D4' },
-  { rank: 2, name: 'SafetyFirst',  pct: 92, color: '#0F5FB5' },
+  { rank: 1, name: 'Global Log', pct: 98, color: '#06B6D4' },
+  { rank: 2, name: 'SafetyFirst', pct: 92, color: '#0F5FB5' },
   { rank: 3, name: 'Industrial T.', pct: 84, color: '#06B6D4' },
 ];
 
 const vendorCategories = [
-  { name: 'Logistics',   pct: 35, color: '#2ec4b6' },
-  { name: 'Hardware',    pct: 25, color: '#1a4fa0' },
-  { name: 'Consulting',  pct: 20, color: '#0f172a' },
-  { name: 'Other',       pct: 20, color: '#94a3b8' },
+  { name: 'Logistics', pct: 35, color: '#2ec4b6' },
+  { name: 'Hardware', pct: 25, color: '#1a4fa0' },
+  { name: 'Consulting', pct: 20, color: '#0f172a' },
+  { name: 'Other', pct: 20, color: '#94a3b8' },
 ];
 
 // Mini sparkline SVG
 function Sparkline({ color = '#2563eb' }) {
-  const pts = [0,8,3,12,7,5,14,10,6,16].map((y, x) => `${x * 12},${20 - y}`).join(' ');
+  const pts = [0, 8, 3, 12, 7, 5, 14, 10, 6, 16].map((y, x) => `${x * 12},${20 - y}`).join(' ');
   return (
     <svg width="100" height="22" viewBox="0 0 108 22">
       <polyline points={pts} fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />

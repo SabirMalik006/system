@@ -9,7 +9,6 @@ const navLinks = [
   { label: 'Leave', path: '/leave-management', hasDropdown: false },
   { label: 'Development', path: null, hasDropdown: true },
   { label: 'Compliance', path: '/compliance', hasDropdown: false },
-  { label: 'Reports', path: '/reports', hasDropdown: false },
 ];
 
 const developmentDropdownItems = [
@@ -78,8 +77,8 @@ export default function HrmNavbar() {
         <span className="text-white font-bold text-base tracking-wide">HRMS</span>
       </div>
 
-      {/* Desktop Nav links */}
-      <div className="hidden md:flex items-center gap-0.5">
+      {/* Desktop Nav links - Hidden below 1024px */}
+      <div className="hidden lg:flex items-center gap-0.5">
         {navLinks.map((link) => {
           const active = link.path ? isActive(link.path) : isDevelopmentActive();
           
@@ -149,10 +148,10 @@ export default function HrmNavbar() {
         })}
       </div>
 
-      <div className="flex-1 hidden md:block" />
+      <div className="flex-1 hidden lg:block" />
 
-      {/* Search - Desktop */}
-      <div className="hidden md:flex items-center gap-2 bg-[#F8FAFC] border border-white/20 rounded-lg px-3 py-1.5 w-52">
+      {/* Search - Desktop (Hidden below 1024px) */}
+      <div className="hidden lg:flex items-center gap-2 bg-[#F8FAFC] border border-white/20 rounded-lg px-3 py-1.5 w-52">
         <Search size={13} className="text-[#64748B] flex-shrink-0" />
         <input
           placeholder="Search employees, reports..."
@@ -160,16 +159,16 @@ export default function HrmNavbar() {
         />
       </div>
 
-      {/* Bell */}
-      <button className="relative p-2 ml-1 cursor-pointer hidden md:block">
+      {/* Bell - Desktop (Hidden below 1024px) */}
+      <button className="relative p-2 ml-1 cursor-pointer hidden lg:block">
         <Bell size={17} className="text-blue-200" />
         <span className="absolute top-1 right-1 w-2 h-2 bg-[#EF4444] rounded-full border border-[#0B4E89]" />
       </button>
 
-      {/* User - Desktop */}
+      {/* User - Desktop (Hidden below 1024px) */}
       <div 
         onClick={() => handleNavigation('/personnel-profile')}
-        className="hidden md:flex items-center gap-2 ml-1 cursor-pointer"
+        className="hidden lg:flex items-center gap-2 ml-1 cursor-pointer"
       >
         <div className="text-right">
           <div className="text-white text-xs font-bold leading-none">DW &amp; CE</div>
@@ -181,17 +180,17 @@ export default function HrmNavbar() {
         </div>
       </div>
 
-      {/* Mobile Menu Button */}
+      {/* Mobile Menu Button - Visible below 1024px */}
       <button 
         onClick={() => setIsMenuOpen(!isMenuOpen)}
-        className="md:hidden p-1 text-white hover:bg-white/10 rounded-lg transition-colors"
+        className="lg:hidden p-1 text-white hover:bg-white/10 rounded-lg transition-colors"
       >
         {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
       </button>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Menu Dropdown - Visible below 1024px */}
       {isMenuOpen && (
-        <div className="absolute top-[52px] left-0 right-0 bg-[#0B4E89] z-50 shadow-lg md:hidden">
+        <div className="absolute top-[52px] left-0 right-0 bg-[#0B4E89] z-50 shadow-lg lg:hidden">
           <div className="flex flex-col p-4 gap-2">
             {/* Mobile Search */}
             <div className="flex items-center gap-2 bg-[#F8FAFC] border border-white/20 rounded-lg px-3 py-2 mb-2">

@@ -5,7 +5,7 @@ const tableData = [
   {
     id: 'IMS-RTN-5092',
     date: '2025-01-24 10:22',
-    item: 'INDUSTRIAL DRILL KIT (HEAVY DUTY)',
+    item: 'Polyvinyl Distemper',
     qty: 2,
     reason: 'PROJECT END',
     reasonStyle: 'bg-[#1A8FA033] text-[#1A8FA0]',
@@ -19,7 +19,7 @@ const tableData = [
   {
     id: 'IMS-RTN-5091',
     date: '2025-01-24 09:15',
-    item: 'SAFETY HELMET (TYPE II)',
+    item: 'Strip Light 4ft LED Complete Standard',
     qty: 15,
     reason: 'INVENTORY ROTATION',
     reasonStyle: 'bg-[#DBEAFE] text-[#1D4ED8]',
@@ -33,7 +33,7 @@ const tableData = [
   {
     id: 'IMS-RTN-5090',
     date: '2025-01-23 16:40',
-    item: 'CONDUIT PIPE (PVC 2")',
+    item: 'Circuit Breaker 15 Amp for AC with Plug',
     qty: 40,
     reason: 'SURPLUS',
     reasonStyle: 'text-gray-600',
@@ -47,7 +47,7 @@ const tableData = [
   {
     id: 'IMS-RTN-5089',
     date: '2025-01-23 11:10',
-    item: 'TOWEL RACK',
+    item: 'Wash Hand Basin (WHB) Standard Quality',
     qty: 1,
     reason: 'FAULTY',
     reasonStyle: 'bg-red-100 text-red-600',

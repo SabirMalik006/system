@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const depletionItems = [
   { name: 'Circuit Breaker 15 Amp for AC with Plug', tag: 'CMES COMPAK', days: '4 Days', pct: 72, color: '#1a6cb5' },
@@ -14,13 +15,14 @@ const issuanceItems = [
 ];
 
 const donutSegments = [
-  { pct: 0.35, color: '#1A8FA0', offset: 0 },
-  { pct: 0.25, color: '#E2E8F0', offset: 0.35 },
-  { pct: 0.20, color: '#1E4D7B', offset: 0.60 },
-  { pct: 0.20, color: '#163A50', offset: 0.80 },
+  { pct: 0.35, color: '#1A8FA0', offset: 0, path: '/items' },
+  { pct: 0.25, color: '#E2E8F0', offset: 0.35, path: '/procurement-management' },
+  { pct: 0.20, color: '#1E4D7B', offset: 0.60, path: '/reports' },
+  { pct: 0.20, color: '#163A50', offset: 0.80, path: '/stock-returns' },
 ];
 
 function DonutChart() {
+  const navigate = useNavigate();
   const cx = 120, cy = 120, r = 95, stroke = 40;
   const circumference = 2 * Math.PI * r;
 
@@ -35,16 +37,34 @@ function DonutChart() {
     const gap = circumference - dash;
     const rotation = cumulativePct * 360 - 90;
     cumulativePct += seg.pct;
-    return { ...seg, dash, gap, rotation };
+    return { ...seg, dash, gap, rotation, path: seg.path };
   });
 
-  // Calculate positions for dividers (4 segments = 4 dividers)
-  const dividerPositions = [];
-  let cumulative = 0;
-  for (let i = 0; i < donutSegments.length; i++) {
-    cumulative += donutSegments[i].pct;
-    dividerPositions.push(cumulative);
-  }
+  const handleCenterClick = () => {
+    // Smooth scroll to top first, then navigate
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => {
+      navigate('/dashboard');
+    }, 300);
+  };
+
+  const handleSegmentClick = (path) => {
+    navigate(path);
+  };
+
+  // Images click handlers mapping
+  const imageClickHandlers = {
+    '/Overlay+Border+OverlayBlur (1).png': () => navigate('/stock-returns'),
+    '/Overlay+Border+OverlayBlur (2).png': () => navigate('/reports'),
+    '/88.png': () => navigate('/procurement-management'),
+    '/Overlay+Border+OverlayBlur.png': () => navigate('/items'),
+  };
+
+  const handleImageClick = (imgPath) => {
+    if (imageClickHandlers[imgPath]) {
+      imageClickHandlers[imgPath]();
+    }
+  };
 
   return (
     <div className="relative w-full max-w-[360px] h-[360px] mx-auto flex justify-center items-center">
@@ -62,38 +82,26 @@ function DonutChart() {
             strokeDasharray={`${seg.dash} ${seg.gap}`}
             strokeLinecap="butt"
             transform={`rotate(${seg.rotation} ${cx} ${cy})`}
+            className="cursor-pointer hover:opacity-80 transition-opacity"
+            onClick={() => handleSegmentClick(seg.path)}
           />
         ))}
 
-        {/* Dividers between segments */}
-        {/* {dividerPositions.map((pct, i) => {
-          const angle = pct * 360 - 90;
-          const inner = polarToXY(angle, r - stroke / 2 - 2);
-          const outer = polarToXY(angle, r + stroke / 2 + 2);
-          return (
-            <line
-              key={i}
-              x1={inner.x}
-              y1={inner.y}
-              x2={outer.x}
-              y2={outer.y}
-              stroke="white"
-              strokeWidth="4"
-            />
-          );
-        })} */}
-
-        {/* Images instead of icons */}
+        {/* Images - Clickable */}
         {[
-          { angle: 235, img: '/Overlay+Border+OverlayBlur (1).png', label: 'Tools' },
-          { angle: 320, img: '/Overlay+Border+OverlayBlur (2).png', label: 'Consumable' },
-          { angle: 60, img: '/88.png', label: 'Sanitary' },
-          { angle: 140, img: '/Overlay+Border+OverlayBlur.png', label: 'Electrical' },
+          { angle: 235, img: '/Overlay+Border+OverlayBlur (1).png', label: 'Tools', path: '/stock-returns' },
+          { angle: 330, img: '/Overlay+Border+OverlayBlur (2).png', label: 'Consumable', path: '/reports' },
+          { angle: 60, img: '/88.png', label: 'Sanitary', path: '/procurement-management' },
+          { angle: 150, img: '/Overlay+Border+OverlayBlur.png', label: 'Electrical', path: '/items' },
         ].map((pos, i) => {
           const pt = polarToXY(pos.angle, r + 1);
           return (
-            <g key={i}>
-              <foreignObject x={pt.x - 13} y={pt.y - 14} width="30" height="30">
+            <g 
+              key={i} 
+              className="cursor-pointer hover:opacity-80 transition-opacity"
+              onClick={() => handleImageClick(pos.img)}
+            >
+              <foreignObject x={pt.x - 13} y={pt.y - 14} width="30" height="35">
                 <img
                   src={pos.img}
                   alt={pos.label}
@@ -104,13 +112,15 @@ function DonutChart() {
           );
         })}
 
-        {/* White Circle Behind IMS Text with Shadow */}
+        {/* White Circle Behind IMS Text with Shadow - Clickable */}
         <circle
           cx={cx}
           cy={cy}
           r="48"
           fill="white"
-          style={{ filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.15))' }}
+          style={{ filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.15))', cursor: 'pointer' }}
+          onClick={handleCenterClick}
+          className="hover:opacity-80 transition-opacity"
         />
 
         <text
@@ -120,7 +130,9 @@ function DonutChart() {
           fontSize="22"
           fontWeight="500"
           fill="#1A8FA0"
-          style={{ dominantBaseline: 'middle' }}
+          style={{ dominantBaseline: 'middle', cursor: 'pointer' }}
+          onClick={handleCenterClick}
+          className="hover:opacity-80 transition-opacity"
         >
           IMS
         </text>
@@ -151,7 +163,7 @@ export default function StockDashboard() {
               <div className="flex justify-between items-baseline mb-2">
                 <div>
                   <span className="text-[13px] font-semibold text-[#1E293B]">{item.name}</span>
-                  <span className="text-[10px] text-[#a0aec0] ml-1.5">{item.tag}</span>
+                  <span className="text-[10px] font-semibold text-[#8D8E90] ml-1.5">{item.tag}</span>
                 </div>
                 <span className="text-xs text-[#718096] whitespace-nowrap">{item.days}</span>
               </div>
@@ -176,12 +188,12 @@ export default function StockDashboard() {
         {/* Top Two Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="bg-[#1a3a5c] rounded-xl p-5 md:p-6 text-white">
-            <div className="text-xs text-[#90cdf4] mb-2 font-medium">Database Load</div>
+            <div className="text-md text-[#fff] mb-2 font-light">Database Load</div>
             <div className="text-3xl font-bold">12.4%</div>
           </div>
 
           <div className="bg-[#2ec4b6] rounded-xl p-5 md:p-6 text-white">
-            <div className="text-xs text-white/80 mb-2 font-medium">Sync Status</div>
+            <div className="text-md text-white mb-2 font-light">Sync Status</div>
             <div className="text-3xl font-bold">Healthy</div>
           </div>
         </div>
@@ -226,7 +238,7 @@ export default function StockDashboard() {
                 Operational Health
               </div>
               <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
-                <span className="text-xl font-bold text-[#2d3748]">Low Risk</span>
+                <span className="text-lg md:text-2xl font-bold text-[#2d3748]">Low Risk</span>
                 <span className="w-2 h-2 rounded-full bg-[#1A8FA0]" />
               </div>
               <div className="text-lg text-[#64748B]">System returns within optimal range</div>

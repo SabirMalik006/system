@@ -2,11 +2,11 @@ import React from 'react';
 import { TrendingUp, TrendingDown } from 'lucide-react';
 
 const stats = [
-  { label: 'Total Items', value: '289', sub: 'Active SKUs', image: '/Background (6).svg', bg: '#dbeafe', trend: '+12', up: true },
-  { label: 'Stock Value', value: '849,687', sub: 'Total Inventory Value', image: '/Background (7).svg', bg: '#cffafe', trend: '+5.2%', up: true },
-  { label: 'Low Stock Items', value: '42', sub: 'Needs Reorder', image: '/Background (8).svg', bg: '#fef3c7', trend: '-3', up: false },
-  { label: 'Pending Orders', value: '5', sub: 'Awaiting Approval', image: '/Background (9).svg', bg: '#ede9fe', trend: '+2', up: false },
-  { label: 'New Vendor Registration', value: 'LOW', sub: 'IMS Transfer Carry', image: '/Overlay+OverlayBlur.svg', bg: '#d1fae5', isStatus: true },
+  { label: 'Total Items', value: '289', image: '/Background (6).svg', bg: '#dbeafe', trend: '+12', up: true },
+  { label: 'Stock Value', value: '849,687', sub: 'Stable', image: '/Background (7).svg', bg: '#cffafe', trend: '+5.2%', up: true },
+  { label: 'Low Stock Items', value: '42', image: '/Background (8).svg', bg: '#fef3c7', trend: '-3', up: false },
+  { label: 'Pending Orders', value: '5', sub: 'Average 4h Delay', image: '/Background (9).svg', bg: '#ede9fe', trend: '+2', up: false },
+  { label: 'New Vendor Registration', value: 'LOW', sub: 'Stable', image: '/Overlay+OverlayBlur.svg', bg: '#d1fae5', isStatus: true },
 ];
 
 export default function KPIStats() {
@@ -20,6 +20,9 @@ export default function KPIStats() {
 function StatCard({ stat, i }) {
   // Apply #163A50 color to 2nd card (index 1) and 4th card (index 3)
   const cardBgColor = (i === 1 || i === 3) ? '#163A50' : '#1E4D7B';
+  
+  // Check if card should have extra margin for the bar (index 0, 2, 4)
+  const hasExtraMargin = (i === 0 || i === 2 || i === 4);
   
   return (
     <div className="rounded-lg shadow-sm border border-gray-100 p-3.5" style={{ backgroundColor: cardBgColor }}>
@@ -50,7 +53,7 @@ function StatCard({ stat, i }) {
               {stat.up ? <TrendingUp size={11} /> : <TrendingDown size={11} />}{stat.trend}
             </span>
           )}
-      <div className={stat.isStatus ? 'mt-4' : 'mt-3'}>
+      <div className={hasExtraMargin ? 'mt-6' : (stat.isStatus ? 'mt-4' : 'mt-3')}>
         <div className="h-1 rounded-full bg-[#E2E8F0] overflow-hidden">
           <div
             className="h-full rounded-full"

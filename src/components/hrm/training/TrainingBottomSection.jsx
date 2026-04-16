@@ -20,11 +20,11 @@ const upcomingSchedule = [
 ];
 
 const achievements = [
-  { name: 'Hamza Hamid Tariq',      score: '96%',  color: 'bg-blue-600'   },
-  { name: 'Eng. Hamid Ali',         score: '94%',  color: 'bg-blue-500'   },
+  { name: 'Eng. Hassan Tariq',      score: '96%',  color: 'bg-blue-600'   },
+  { name: 'Eng. Khalid Mir',         score: '94%',  color: 'bg-blue-500'   },
   { name: 'Eng. Tariq Mehmood',     score: '89%',  color: 'bg-green-500'  },
-  { name: 'Qn. Zubair Rafi',        score: '86%',  color: 'bg-blue-700'   },
-  { name: 'Qn. Rasheed Ali',        score: '82%',  color: 'bg-blue-400'   },
+  { name: 'Dr. Salman Butt',        score: '86%',  color: 'bg-blue-700'   },
+  { name: 'Dr. Rukhsana Ali',        score: '82%',  color: 'bg-blue-400'   },
 ];
 
 export default function TrainingBottomSection() {
@@ -77,7 +77,7 @@ export default function TrainingBottomSection() {
         <h3 className="text-xs font-bold text-gray-800 mb-3">Upcoming Schedule</h3>
         <div className="flex flex-col gap-2.5">
           {upcomingSchedule.map((s, i) => (
-            <div key={i} className="flex items-start gap-3 p-3 border border-gray-100 rounded-xl hover:border-blue-200 transition-colors">
+            <div key={i} className="flex items-start gap-3 p-3 border border-gray-700 rounded-xl hover:border-blue-200 transition-colors">
               <div className={`w-2.5 h-2.5 rounded-full ${s.color} flex-shrink-0 mt-1`} />
               <div>
                 <div className="text-xs font-semibold text-gray-800 leading-tight">{s.title}</div>
@@ -90,7 +90,7 @@ export default function TrainingBottomSection() {
 
       {/* Achievements / Top Performers */}
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
-        <h3 className="text-xs font-bold text-gray-800 mb-3">Achievements</h3>
+        <h3 className="text-xs font-bold text-gray-800 mb-3">Active Instructors</h3>
         <div className="flex flex-col gap-2.5">
           {achievements.map((a, i) => (
             <div key={i} className="flex items-center justify-between">

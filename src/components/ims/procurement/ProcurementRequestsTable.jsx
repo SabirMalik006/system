@@ -4,25 +4,25 @@ import { Search, Eye, Edit, Trash2, ChevronLeft, ChevronRight, CheckCircle } fro
 const tabs = ['All', 'Pending', 'Approved', 'Rejected', 'Plumbing', 'Electrical', 'Painting', 'Carpentry'];
 
 const tableData = [
-  { id: 'PRQ-2025-042', dept: 'Plumbing',   unit: 'ISB-01', by: 'Tariq Mehmood', items: 4,  status: 'Approved',  vendor: 'AquaFix Supplies',   po: 'PO-2025-00198', amount: '$677', date: '14 Jun 2025' },
+  { id: 'PRQ-2025-042', dept: 'Plumbing',   unit: 'ISB-01', by: 'Tariq Mehmood', items: 4,  status: 'Approved',  vendor: 'AquaFix Supplies',   po: 'PO-2025-00198', amount: 'RS 677', date: '14 Jun 2025' },
   { id: 'PRQ-2025-041', dept: 'Electrical', unit: 'LHR-01', by: 'Asif Nawaz',    items: 2,  status: 'Pending',   vendor: '—',                  po: '—',             amount: '—',   date: '13 Jun 2025' },
-  { id: 'PRQ-2025-040', dept: 'Painting',   unit: 'KHI-01', by: 'Sana Gill',     items: 6,  status: 'Approved',  vendor: 'PaintCraft Co.',     po: 'PO-2025-00197', amount: '$789', date: '12 Jun 2025' },
+  { id: 'PRQ-2025-040', dept: 'Painting',   unit: 'KHI-01', by: 'Sana Gill',     items: 6,  status: 'Approved',  vendor: 'PaintCraft Co.',     po: 'PO-2025-00197', amount: 'Rs 789', date: '12 Jun 2025' },
   { id: 'PRQ-2025-039', dept: 'Carpentry',  unit: 'PEW-01', by: 'Bilal Akhtar',  items: 3,  status: 'Rejected',  vendor: '—',                  po: '—',             amount: '—',   date: '11 Jun 2025' },
-  { id: 'PRQ-2025-038', dept: 'Electrical', unit: 'MUL-01', by: 'Rashid Ali',    items: 5,  status: 'Approved',  vendor: 'Volt Electrics',     po: 'PO-2025-00196', amount: '$890', date: '10 Jun 2025' },
+  { id: 'PRQ-2025-038', dept: 'Electrical', unit: 'MUL-01', by: 'Rashid Ali',    items: 5,  status: 'Approved',  vendor: 'Volt Electrics',     po: 'PO-2025-00196', amount: 'Rs 890', date: '10 Jun 2025' },
   { id: 'PRQ-2025-037', dept: 'Plumbing',   unit: 'ISB-01', by: 'Tariq Mehmood', items: 2,  status: 'Pending',   vendor: '—',                  po: '—',             amount: '—',   date: '09 Jun 2025' },
 ];
 
 const statusStyles = {
-  Approved: 'bg-green-100 text-green-700',
-  Pending:  'bg-[#FEF3C7] text-[#92400E]',
-  Rejected: 'bg-red-100 text-red-700',
+  Approved: ' text-[#1A3A5C]',
+  Pending:  'bg-[#FEF3C7] text-[#4A6FA5]',
+  Rejected: 'text-[#640404]',
 };
 
 const deptColors = {
-  Plumbing:   'text-blue-600',
-  Electrical: 'text-teal-600',
-  Painting:   'text-purple-600',
-  Carpentry:  'text-orange-600',
+  Plumbing:   'text-[#0891B2]',
+  Electrical: 'text-[#1E60AF]',
+  Painting:   'text-[#072E54]',
+  Carpentry:  'text-[#196EE6]',
 };
 
 const detailData = {
@@ -34,7 +34,7 @@ const detailData = {
   date: '14 Jun 2025',
   vendor: 'AquaFix Supplies',
   po: 'PO-2025-00198',
-  amount: '$789',
+  amount: 'Rs 789',
   lineItems: [
     { item: 'PVC Pipe 2-inch',   qty: 50 },
     { item: "Ball Valve ½\"",    qty: 20 },
@@ -162,8 +162,8 @@ export default function ProcurementRequestsTable() {
                       </span>
                     </td>
                     <td className="py-3 px-2 text-gray-600 whitespace-nowrap">{row.vendor}</td>
-                    <td className="py-3 px-2 text-blue-500 font-medium whitespace-nowrap">{row.po}</td>
-                    <td className="py-3 px-2 text-gray-900 font-semibold whitespace-nowrap">{row.amount}</td>
+                    <td className="py-3 px-2 text-[#0891B2] font-light whitespace-nowrap">{row.po}</td>
+                    <td className="py-3 px-2 text-[#196EE6] font-semibold whitespace-nowrap">{row.amount}</td>
                     <td className="py-3 px-2 text-gray-400 whitespace-nowrap">{row.date}</td>
                     <td className="py-3 px-2">
                       <div className="flex items-center gap-1.5">

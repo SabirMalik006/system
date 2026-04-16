@@ -46,13 +46,12 @@ export default function TrainingKPICards() {
       {cards.map((card, i) => (
         <div
           key={i}
-          className={`bg-white rounded-md border border-gray-100 shadow-sm p-5 border-l-8 ${
-            card.badge?.style?.includes('2563EB')
+          className={`bg-white rounded-md border border-gray-100 shadow-sm p-5 border-l-8 ${card.badge?.style?.includes('2563EB')
               ? 'border-l-[#2563EB]'
               : card.badge?.style?.includes('red')
-              ? 'border-l-[#0EA5E9]'
+                ? 'border-l-[#0EA5E9]'
                 : 'border-l-[#2563EB]'
-          }`}
+            }`}
         >
           {/* Label */}
           <div className="text-[11px] font-semibold text-gray-400 uppercase tracking-wide mb-3">

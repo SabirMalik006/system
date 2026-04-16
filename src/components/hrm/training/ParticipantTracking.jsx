@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Download, UserPlus, Search } from 'lucide-react';
 
 const participants = [
-  { name: 'Subhan Mehmood', empId: 'EMP-001',  dept: 'Plumbing',   program: 'Plumbing',    startDate: '1-04-2022',  endDate: '11.04.2022', score: 60,  result: 'Promoted', resultStyle: 'bg-purple-100 text-purple-700', progress: 80 },
-  { name: 'Umer Nawaz',     empId: 'EMP-002',  dept: 'Electrical', program: 'Electrical',  startDate: '1-04-2022',  endDate: '17.04.2022', score: 70,  result: 'Completed', resultStyle: 'bg-green-100 text-green-700',  progress: 100 },
-  { name: 'Hamood Iqbal',   empId: 'EMP-003',  dept: 'Plumbing',   program: 'Plumbing',    startDate: 'June 2022',  endDate: '11.04.2022', score: 40,  result: null, resultStyle: '', progress: 40 },
-  { name: 'Ahmad Saad',     empId: 'EMP-004',  dept: 'Electrical', program: 'Electrical',  startDate: '1-04-2022',  endDate: '17.04.2022', score: null, result: 'Completed', resultStyle: 'bg-green-100 text-green-700', progress: 100 },
+  { name: 'Subhan Mehmood', empId: 'EMP-001',  dept: 'Plumbing',   program: 'Plumber',    startDate: '1-04-2022',  endDate: '11.04.2022', score: 60,  result: 'Promoted', resultStyle: 'bg-purple-100 text-purple-700', progress: 80 },
+  { name: 'Sabir Khan',     empId: 'EMP-002',  dept: 'Electrical', program: 'Sr Electrician',  startDate: '1-04-2022',  endDate: '17.04.2022', score: 70,  result: 'Completed', resultStyle: 'bg-green-100 text-green-700',  progress: 100 },
+  { name: 'Shahzad Sajid',   empId: 'EMP-003',  dept: 'Plumbing',   program: 'Painter',    startDate: 'June 2022',  endDate: '11.04.2022', score: 40,  result: null, resultStyle: '', progress: 40 },
+  { name: 'Ahmad Faris',     empId: 'EMP-004',  dept: 'Electrical', program: 'Welder',  startDate: '1-04-2022',  endDate: '17.04.2022', score: null, result: 'Completed', resultStyle: 'bg-green-100 text-green-700', progress: 100 },
 ];
 
 export default function ParticipantTracking() {
@@ -13,7 +13,7 @@ export default function ParticipantTracking() {
   const filters = ['All Participants', 'Completed', 'In Progress', 'Not Started'];
 
   return (
-    <div className="bg-[#1a3a8f] rounded-2xl overflow-hidden shadow-sm">
+    <div className="bg-[#1a3a8f]  overflow-hidden shadow-sm">
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-4">
         <div>
@@ -45,7 +45,7 @@ export default function ParticipantTracking() {
         {filters.map(f => (
           <button key={f} onClick={() => setActiveFilter(f)}
             className={`text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors ${
-              activeFilter === f ? 'bg-white text-blue-700' : 'bg-white/10 text-blue-200 hover:bg-white/20'
+              activeFilter === f ? 'bg-white text-blue-700' : 'bg-white text-blue-700 hover:bg-white/20'
             }`}>
             {f}
           </button>

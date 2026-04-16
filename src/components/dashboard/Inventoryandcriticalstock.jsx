@@ -45,7 +45,7 @@ const criticalItems = [
 ];
 
 const inStockRates = [
-  { name: 'Circuit Breaker 15 Amp for AC with Plug', pct: 18, color: '#1A8FA0' },
+  { name: 'Circuit Breaker 15 Amp for AC with Plug', pct:18, color: '#1A8FA0' },
   { name: 'Towel rail Plastic', pct: 10, color: '#1A8FA0' },
 ];
 
@@ -128,7 +128,7 @@ export default function InventoryAndCriticalStock() {
             <div className="text-[20px] font-bold text-[#1E4D7B] leading-tight">Critical Stock Items</div>
             <div className="text-xs text-[#94a3b8] mt-1">Forecast: Next 7 Days</div>
           </div>
-          <div className="bg-[#e0f2fe] text-[#1A8FA0] text-xs font-semibold px-4 py-1 rounded-full whitespace-nowrap self-start">
+          <div className="bg-[#e0f2fe] text-[#1A8FA0] text-xs font-semibold px-4 py-1 border border-[#D1E9EC] rounded-full whitespace-nowrap self-start">
             Max 7 Days
           </div>
         </div>
@@ -139,7 +139,7 @@ export default function InventoryAndCriticalStock() {
         {/* Below threshold label */}
         <div className="flex items-center gap-2 mb-4">
           <span className="w-2 h-2 rounded-full bg-[#ef4444] flex-shrink-0" />
-          <span className="text-[10px] font-bold text-[#64748b] tracking-widest uppercase">
+          <span className="text-[10px] font-bold text-[#94A3B8] tracking-widest uppercase">
             Below Threshold · Action Required
           </span>
         </div>
@@ -159,7 +159,7 @@ export default function InventoryAndCriticalStock() {
               {/* Text */}
               <div className="flex-1 min-w-0">
                 <div className="text-[13px] font-semibold text-[#1e293b] leading-tight">{item.name}</div>
-                <div className="text-[11px] text-[#94a3b8] mt-1">{item.sub}</div>
+                <div className="text-[12px] font-semibold text-[#94a3b8] mt-1">{item.sub}</div>
               </div>
 
               {/* Days badge */}

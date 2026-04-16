@@ -16,7 +16,7 @@ const Reports = () => {
         {
             id: 1,
             timestamp: 'Oct 24, 2023 - 14:32:01',
-            user: 'Sarah Jenkins',
+            user: 'Mustafa',
             action: 'CREATE',
             module: 'Inventory',
             resource: 'Product SKU PROD-9921',
@@ -26,7 +26,7 @@ const Reports = () => {
         {
             id: 2,
             timestamp: 'Oct 24, 2023 - 14:15:22',
-            user: 'Tom Bradley',
+            user: 'Ahmed',
             action: 'UPDATE',
             module: 'Sales',
             resource: 'Order ORD-5542',
@@ -36,7 +36,7 @@ const Reports = () => {
         {
             id: 3,
             timestamp: 'Oct 24, 2023 - 13:58:05',
-            user: 'Tom Bradley',
+            user: 'Hassan',
             action: 'DELETE',
             module: 'Vendors',
             resource: 'Contract CNT-102',
@@ -46,7 +46,7 @@ const Reports = () => {
         {
             id: 4,
             timestamp: 'Oct 24, 2023 - 13:40:11',
-            user: 'Tom Bradley',
+            user: 'Ameer',
             action: 'REJECT',
             module: 'Approvals',
             resource: 'Purchase Req PROD-501',
@@ -56,7 +56,7 @@ const Reports = () => {
         {
             id: 5,
             timestamp: 'Oct 24, 2023  - 12:55:40',
-            user: 'John Doe',
+            user: 'Usman',
             action: 'READ',
             module: 'System',
             resource: 'Report View REP AUDIT-24',
