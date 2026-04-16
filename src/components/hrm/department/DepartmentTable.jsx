@@ -2,41 +2,41 @@ import React, { useState } from 'react';
 
 const employees = [
   {
-    name: 'Balduse Ahromed', email: 'balduse.ahromed@email.com',
-    id: 'EMP-4542', designation: 'Plumber', department: 'Maintenance',
-    unit: 'CMPE Complex', type: 'Full-time', status: 'Active',
-    joined: '12 Jan 2025', avatar: 'BA', avatarColor: 'bg-blue-100 text-blue-700',
+    name: 'Subhan Mehmood', email: 'subhan.m@hrms.com',
+    id: 'EMP-0142', designation: 'Plumber', department: 'Maintenance',
+    unit: 'CMES CamKar', type: 'Full-time', status: 'Active',
+    joined: '12 Jan 2025', avatar: 'https://ui-avatars.com/api/?name=Subhan+Mehmood&background=random',
   },
   {
-    name: 'Khalid Azhar', email: 'khalid.azhar@email.com',
+    name: 'Khalid Azhar', email: 'khalid.a@hrms.com',
     id: 'EMP-0145', designation: 'Electrician', department: 'Maintenance',
-    unit: 'CMGL Complex', type: 'Full-time', status: 'Active',
-    joined: '24 Mar 2025', avatar: 'KA', avatarColor: 'bg-green-100 text-green-700',
+    unit: 'CMES CamKar', type: 'Full-time', status: 'Active',
+    joined: '24 Mar 2025', avatar: 'https://ui-avatars.com/api/?name=Khalid+Azhar&background=random',
   },
   {
-    name: 'Sabir Khan', email: 'sabir.khan@email.com',
-    id: 'EMP-9832', designation: 'Senior Electrician', department: 'Operations',
-    unit: 'CMGL Complex', type: 'Full-time', status: 'On Leave',
-    joined: '10 Oct 2025', avatar: 'SK', avatarColor: 'bg-orange-100 text-orange-700',
+    name: 'Salar Khan', email: 'salar.k@hrms.com',
+    id: 'EMP-9842', designation: 'Senior Electrician', department: 'Operations',
+    unit: 'CMES CamKar', type: 'Full-time', status: 'On Leave',
+    joined: '10 Oct 2023', avatar: 'https://ui-avatars.com/api/?name=Salar+Khan&background=random',
   },
   {
-    name: 'Adnan Bashir', email: 'adnan.bashir@email.com',
-    id: 'EMP-0533', designation: 'Carpenter', department: 'CMBL & Distr.',
-    unit: '', type: 'Contract', status: 'Active',
-    joined: '05 Feb 2025', avatar: 'AB', avatarColor: 'bg-purple-100 text-purple-700',
+    name: 'Adnan Bashir', email: 'adnan.b@hrms.com',
+    id: 'EMP-0155', designation: 'Carpenter', department: 'Maintenance',
+    unit: 'CMES Dinar', type: 'Contract', status: 'Active',
+    joined: '05 Feb 2023', avatar: 'https://ui-avatars.com/api/?name=Adnan+Bashir&background=random',
   },
   {
-    name: 'Shakeel Sajid', email: 'shakeel.sajid@email.com',
-    id: 'EMP-0557', designation: 'Painter', department: 'CMBL & Distr.',
-    unit: '', type: 'Full-time', status: 'Active',
-    joined: '30 May 2025', avatar: 'SS', avatarColor: 'bg-teal-100 text-teal-700',
+    name: 'Shakeel Sajid', email: 'shakeel.s@hrms.com',
+    id: 'EMP-0162', designation: 'Painter', department: 'Maintenance',
+    unit: 'CMES CamKar', type: 'Full-time', status: 'Active',
+    joined: '18 May 2023', avatar: 'https://ui-avatars.com/api/?name=Shakeel+Sajid&background=random',
   },
 ];
 
 const statusStyle = {
-  Active: 'bg-green-100 text-green-700',
-  'On Leave': 'bg-orange-100 text-orange-700',
-  Suspended: 'bg-red-100 text-red-700',
+  Active: 'bg-[#3b82f6] text-white',
+  'On Leave': 'bg-[#06b6d4] text-white',
+  Suspended: 'bg-red-500 text-white',
 };
 
 export default function DepartmentTable() {
@@ -58,62 +58,75 @@ export default function DepartmentTable() {
   });
 
   return (
-    <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
-      <div className="flex flex-wrap items-center gap-2 p-4 border-b border-gray-100">
-        <div className="relative flex-1 min-w-[200px]">
+    <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 flex flex-col mt-2">
+      <div className="flex flex-wrap items-center gap-3 p-4 bg-white border-b border-gray-100/50">
+        <div className="relative flex-1 min-w-[300px]">
           <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
-          <input type="text" placeholder="Search employee, ID, designation..."
+          <input type="text" placeholder="Search employee ID, name, designation..."
             value={search} onChange={e => setSearch(e.target.value)}
-            className="w-full pl-9 pr-3 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-blue-400" />
+            className="w-full pl-9 pr-3 py-2 text-[13px] border border-gray-200 rounded-lg bg-[#fafafa] placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-400 focus:border-blue-400 transition-colors" />
         </div>
-        {[
-          { val: deptFilter, set: setDeptFilter, opts: ['All Departments', 'Maintenance', 'Operations', 'CMBL & Distr.'] },
-          { val: statusFilter, set: setStatusFilter, opts: ['All Status', 'Active', 'On Leave', 'Suspended'] },
-          { val: unitFilter, set: setUnitFilter, opts: ['All Units', 'CMPE Complex', 'CMGL Complex'] },
-          { val: typeFilter, set: setTypeFilter, opts: ['All Type', 'Full-time', 'Contract', 'Temporary'] },
-        ].map((f, i) => (
-          <select key={i} value={f.val} onChange={e => f.set(e.target.value)}
-            className="text-sm border border-gray-200 rounded-lg px-3 py-2 bg-gray-50 text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-200 cursor-pointer">
-            {f.opts.map(o => <option key={o}>{o}</option>)}
-          </select>
-        ))}
+        <div className="flex items-center gap-3 flex-wrap">
+          {[
+            { val: deptFilter, set: setDeptFilter, opts: ['All Departments', 'Maintenance', 'Operations', 'CMBL & Distr.'] },
+            { val: statusFilter, set: setStatusFilter, opts: ['All Status', 'Active', 'On Leave', 'Suspended'] },
+            { val: unitFilter, set: setUnitFilter, opts: ['All Units', 'CMES CamKar', 'CMES Dinar'] },
+            { val: typeFilter, set: setTypeFilter, opts: ['All Type', 'Full-time', 'Contract', 'Temporary'] },
+          ].map((f, i) => (
+            <select key={i} value={f.val} onChange={e => f.set(e.target.value)}
+              className="text-[13px] border border-gray-200 rounded-lg px-4 py-2 bg-white text-gray-600 focus:outline-none focus:border-blue-400 cursor-pointer min-w-[140px] appearance-none" style={{ backgroundImage: 'url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%239ca3af%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 0.7rem top 50%', backgroundSize: '0.65rem auto' }}>
+              {f.opts.map(o => <option key={o}>{o}</option>)}
+            </select>
+          ))}
+        </div>
       </div>
-      <div className="overflow-x-auto">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="bg-[#f0f7ff] text-left">
-              {['Employee','Employee ID','Designation','Department','Unit','Type','Status','Joined','Actions'].map(h => (
-                <th key={h} className="px-4 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wide whitespace-nowrap">{h}</th>
+      
+      <div className="overflow-x-auto w-full">
+        <table className="w-full text-sm text-left">
+          <thead className="bg-[#1e6fbe] text-white">
+            <tr>
+              {['Employee','Employee ID','Designation','Department','Unit','Type','Status','Joined','Actions'].map((h, i) => (
+                <th key={h} className={`px-4 py-3.5 text-[10px] font-bold uppercase tracking-wider whitespace-nowrap ${i === 8 ? 'text-center' : ''}`}>
+                  {h}
+                </th>
               ))}
             </tr>
           </thead>
-          <tbody>
+          <tbody className="divide-y divide-gray-100 bg-white">
             {filtered.map((emp, i) => (
-              <tr key={i} className="border-t border-gray-50 hover:bg-blue-50/30 transition-colors">
-                <td className="px-4 py-3">
-                  <div className="flex items-center gap-2.5">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold flex-shrink-0 ${emp.avatarColor}`}>{emp.avatar}</div>
+              <tr key={i} className="hover:bg-blue-50/20 transition-colors">
+                <td className="px-4 py-3.5">
+                  <div className="flex items-center gap-3">
+                    <img src={emp.avatar} alt={emp.name} className="w-9 h-9 rounded-full object-cover border border-gray-100" />
                     <div>
-                      <p className="font-medium text-gray-800 text-xs">{emp.name}</p>
-                      <p className="text-gray-400 text-xs">{emp.email}</p>
+                      <p className="font-bold text-gray-800 text-[13px]">{emp.name}</p>
+                      <p className="text-gray-400 text-[11px] mt-0.5">{emp.email}</p>
                     </div>
                   </div>
                 </td>
-                <td className="px-4 py-3 text-xs text-gray-500 whitespace-nowrap">{emp.id}</td>
-                <td className="px-4 py-3 text-xs text-gray-700 whitespace-nowrap">{emp.designation}</td>
-                <td className="px-4 py-3 text-xs text-gray-700 whitespace-nowrap">{emp.department}</td>
-                <td className="px-4 py-3 text-xs text-gray-500 whitespace-nowrap">{emp.unit || '—'}</td>
-                <td className="px-4 py-3 text-xs text-gray-500 whitespace-nowrap">{emp.type}</td>
-                <td className="px-4 py-3">
-                  <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${statusStyle[emp.status] || 'bg-gray-100 text-gray-500'}`}>{emp.status}</span>
+                <td className="px-4 py-3.5 text-[13px] text-gray-500 whitespace-nowrap font-medium">{emp.id}</td>
+                <td className="px-4 py-3.5 text-[13px] text-gray-800 whitespace-nowrap font-bold">{emp.designation}</td>
+                <td className="px-4 py-3.5 text-[13px] text-gray-500 whitespace-nowrap font-medium">{emp.department}</td>
+                <td className="px-4 py-3.5 text-[13px] text-gray-500 whitespace-nowrap leading-snug w-24">
+                  {emp.unit.split(' ').map((u, idx) => <React.Fragment key={idx}>{u}<br/></React.Fragment>)}
                 </td>
-                <td className="px-4 py-3 text-xs text-gray-500 whitespace-nowrap">{emp.joined}</td>
-                <td className="px-4 py-3">
-                  <button className="text-gray-400 hover:text-blue-600 transition-colors">
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 5a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm0 7a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm0 7a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" />
+                <td className="px-4 py-3.5 text-[13px] text-gray-500 whitespace-nowrap leading-snug w-24">
+                  {emp.type.split('-').map((t, idx) => <React.Fragment key={idx}>{t}{idx===0&&'-'}<br/></React.Fragment>)}
+                </td>
+                <td className="px-4 py-3.5">
+                  <span className={`text-[11px] font-medium px-3.5 py-1.5 rounded-full whitespace-nowrap shadow-sm ${statusStyle[emp.status] || 'bg-gray-100 text-gray-500'}`}>
+                    {emp.status}
+                  </span>
+                </td>
+                <td className="px-4 py-3.5 text-[13px] text-gray-500 whitespace-nowrap font-medium">{emp.joined}</td>
+                <td className="px-4 py-3.5 text-center">
+                  <button className="text-gray-300 hover:text-blue-600 transition-colors">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <line x1="12" y1="12" x2="12" y2="12" strokeWidth="2" strokeLinecap="round" className="text-gray-400" />
+                      <line x1="12" y1="6" x2="12" y2="6" strokeWidth="2" strokeLinecap="round" className="text-gray-400" />
+                      <line x1="12" y1="18" x2="12" y2="18" strokeWidth="2" strokeLinecap="round" className="text-gray-400" />
                     </svg>
                   </button>
                 </td>
@@ -122,14 +135,14 @@ export default function DepartmentTable() {
           </tbody>
         </table>
       </div>
-      <div className="flex items-center justify-between px-4 py-3 border-t border-gray-100">
-        <p className="text-xs text-gray-400">Showing 1 to {filtered.length} of {employees.length} employees</p>
-        <div className="flex items-center gap-1">
-          <button className="px-3 py-1.5 text-xs text-gray-500 hover:bg-gray-100 rounded-lg transition-colors">Previous</button>
+      <div className="flex items-center justify-between px-6 py-4 bg-[#fafbfc] border-t border-gray-100 rounded-b-xl">
+        <p className="text-[12px] text-gray-500 font-medium">Showing 1 to {filtered.length} of 274 employees</p>
+        <div className="flex items-center gap-1.5">
+          <button className="px-3 py-1 text-[12px] font-medium text-gray-500 hover:text-gray-700 transition-colors">Previous</button>
           {[1, 2, 3].map(p => (
-            <button key={p} className={`w-7 h-7 text-xs rounded-lg transition-colors ${p === 1 ? 'bg-blue-600 text-white' : 'text-gray-500 hover:bg-gray-100'}`}>{p}</button>
+            <button key={p} className={`w-7 h-7 text-[12px] font-bold rounded-md flex items-center justify-center transition-colors ${p === 1 ? 'bg-[#1e6fbe] text-white shadow-sm' : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'}`}>{p}</button>
           ))}
-          <button className="px-3 py-1.5 text-xs text-gray-500 hover:bg-gray-100 rounded-lg transition-colors">Next</button>
+          <button className="px-3 py-1 text-[12px] font-medium text-gray-700 hover:text-gray-900 transition-colors">Next</button>
         </div>
       </div>
     </div>

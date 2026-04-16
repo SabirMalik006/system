@@ -7,7 +7,7 @@ export default function ProfileMetaBar() {
       <div className="flex items-center gap-1.5 text-gray-500">
         <User size={12} className="text-gray-400" />
         <span>Created by:</span>
-        <span className="font-semibold text-[#1A6FC4]">Admin - Rehana Aslam</span>
+        <span className="font-semibold text-[#1A6FC4]">Admin - Rehan Aslam</span>
       </div>
       <div className="flex items-center gap-1.5 text-gray-500">
         <Calendar size={12} className="text-gray-400" />

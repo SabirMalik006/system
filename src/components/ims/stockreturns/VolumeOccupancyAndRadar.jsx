@@ -20,7 +20,7 @@ const volumeData = [
 ];
 
 // Radar chart drawn with SVG
-const radarAxes = ['Volume', 'Proc. Speed', 'Serviceability', 'Compliance', 'Data Acc.'];
+const radarAxes = ['Stock in', 'Stock Out', 'Returns', 'Current Stock', 'Alerts'];
 const unitA = [0.85, 0.75, 0.80, 0.70, 0.90];
 const unitB = [0.60, 0.65, 0.55, 0.75, 0.65];
 
@@ -62,7 +62,7 @@ function RadarChart() {
   });
 
   const labelPositions = radarAxes.map((label, i) => {
-    const p = getRadarPoint(CX, CY, R + 20, i, total, 1.0);
+    const p = getRadarPoint(CX, CY, R + 22, i, total, 1.0);
     return { label, x: p.x, y: p.y };
   });
 
@@ -93,10 +93,22 @@ function RadarChart() {
       />
       {/* Labels */}
       {labelPositions.map((lp, i) => (
-        <text key={i} x={lp.x} y={lp.y}
-          textAnchor="middle" dominantBaseline="middle"
-          fontSize="11" fill="#334155" fontFamily="inherit">
-          {lp.label}
+        <text 
+          key={i} 
+          x={lp.x} 
+          y={lp.y}
+          textAnchor="middle" 
+          dominantBaseline="middle"
+          fontSize="9" 
+          fill="#334155" 
+          fontFamily="inherit"
+          fontWeight="500"
+        >
+          {lp.label.split(' ').map((word, idx) => (
+            <tspan key={idx} x={lp.x} dy={idx === 0 ? 0 : 10}>
+              {word}
+            </tspan>
+          ))}
         </text>
       ))}
     </svg>
@@ -111,7 +123,6 @@ export default function VolumeOccupancyAndRadar() {
         <div className="bg-white rounded-t-2xl px-3 sm:px-4 py-2 sm:py-3">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <h3 className="text-xs sm:text-sm font-bold text-[#0F172A]">Returns Volume vs Total Stock</h3>
-           
           </div>
         </div>
 
@@ -160,7 +171,6 @@ export default function VolumeOccupancyAndRadar() {
         <div className="bg-gradient-to-r from-[#1E60AF] to-[#0D2849] px-3 sm:px-4 py-2 sm:py-3">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <h3 className="text-xs sm:text-sm font-medium text-white leading-wide">Unit Return Activity — Radar</h3>
-           
           </div>
         </div>
 

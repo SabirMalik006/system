@@ -81,24 +81,40 @@ function TrendChart({ data, width = 420, height = 140 }) {
 
 function SkillBars({ data }) {
   const maxVal = Math.max(...data.map(d => d.expert + d.advanced + d.intermediate + d.beginner));
-  const barW = 18; const gap = 10; const chartH = 90;
-  const colors = { expert: '#1d4ed8', advanced: '#60a5fa', intermediate: '#bfdbfe', beginner: '#e0edff' };
+  const barW = 10; const gap = 4; const groupGap = 20; const chartH = 130;
+  const colors = { expert: '#1d4ed8', advanced: '#60a5fa', intermediate: '#bfdbfe', beginner: '#87cefa' };
   return (
-    <div className="overflow-x-auto">
-      <svg width={data.length * (barW + gap) + 20} height={chartH + 40} style={{ minWidth: '100%' }}>
-        {data.map((d, i) => {
-          const x = 10 + i * (barW + gap);
-          const keys = ['expert', 'advanced', 'intermediate', 'beginner'];
-          let yOffset = chartH;
+    <div className="overflow-x-auto w-full flex justify-center">
+      <svg width={data.length * (4 * barW + 3 * gap + groupGap)} height={chartH + 60}>
+        {/* Y Axis Guides */}
+        {[0, 20, 40, 60, 80, 100, 120].map((v, i) => {
+          const y = chartH - (v / 120) * chartH;
           return (
             <g key={i}>
-              {keys.map(k => {
-                const h = (d[k] / maxVal) * chartH;
-                yOffset -= h;
-                return <rect key={k} x={x} y={yOffset} width={barW} height={h} fill={colors[k]} rx="2" />;
+              <line x1="20" y1={y} x2="100%" y2={y} stroke="#f1f5f9" strokeWidth="1" strokeDasharray="2 2" />
+            </g>
+          )
+        })}
+        {[0, 20, 40, 60, 80, 100, 120].map((v, i) => {
+          const y = chartH - (v / 120) * chartH;
+          return (
+            <text key={'t' + i} x="10" y={y + 3} textAnchor="end" fontSize="8" fill="#94a3b8">{v}</text>
+          )
+        })}
+
+        {data.map((d, i) => {
+          const groupW = 4 * barW + 3 * gap;
+          const x = 30 + i * (groupW + groupGap);
+          const keys = ['expert', 'advanced', 'intermediate', 'beginner'];
+          return (
+            <g key={i}>
+              {keys.map((k, j) => {
+                const h = (d[k] / 120) * chartH; // normalize somehow, 120 max
+                const barX = x + j * (barW + gap);
+                return <rect key={k} x={barX} y={chartH - h} width={barW} height={h} fill={colors[k]} rx="1" />;
               })}
-              <text x={x + barW / 2} y={chartH + 14} textAnchor="middle" fontSize="7" fill="#94a3b8"
-                transform={`rotate(-35, ${x + barW / 2}, ${chartH + 14})`}>{d.label}</text>
+              <text x={x + groupW / 2} y={chartH + 18} textAnchor="middle" fontSize="8" fill="#64748b" fontWeight="500"
+                transform={`rotate(-40, ${x + groupW / 2}, ${chartH + 18})`}>{d.label}</text>
             </g>
           );
         })}
@@ -108,9 +124,9 @@ function SkillBars({ data }) {
 }
 
 const employmentSegments = [
-  { value: 65, color: '#1d4ed8', label: 'Permanent' },
-  { value: 25, color: '#60a5fa', label: 'Contract' },
-  { value: 10, color: '#bfdbfe', label: 'Temporary' },
+  { value: 40, color: '#1d4ed8', label: 'Permanent' },
+  { value: 40, color: '#60a5fa', label: 'Contract' },
+  { value: 20, color: '#87cefa', label: 'Temporary' },
 ];
 const genderSegments = [
   { value: 58, color: '#1d4ed8', label: 'Male' },
@@ -133,59 +149,71 @@ const skillData = [
 
 export default function DepartmentCharts() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm">
-        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Employment Type</p>
-        <div className="flex items-center gap-4">
-          <DonutChart segments={employmentSegments} size={100} thickness={18} />
-          <div className="flex flex-col gap-2">
-            {employmentSegments.map((s, i) => (
-              <div key={i} className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: s.color }} />
-                <span className="text-xs text-gray-600">{s.label}</span>
-                <span className="text-xs font-semibold text-gray-800 ml-auto">{s.value}%</span>
-              </div>
-            ))}
+    <div className="flex flex-col lg:flex-row gap-4 items-stretch">
+      {/* Left Side: Donuts and Skill Bars */}
+      <div className="flex flex-col gap-4 w-full lg:w-5/12">
+        {/* Top Row: Donuts */}
+        <div className="grid grid-cols-2 gap-4">
+          <div className="bg-white rounded-xl p-4 border border-[#bfdbfe] shadow-sm flex flex-col items-center">
+            <p className="text-[11px] font-bold text-gray-800 uppercase tracking-wide mb-4 w-full text-left">Employment Type</p>
+            <DonutChart segments={employmentSegments} size={130} thickness={25} centerLabel="3" centerSub="Total" />
+            <div className="flex items-center justify-center gap-3 mt-6 flex-wrap">
+              {employmentSegments.map((s, i) => (
+                <div key={i} className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: s.color }} />
+                  <span className="text-[10px] text-gray-500 font-medium">{s.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="bg-white rounded-xl p-4 border border-[#bfdbfe] shadow-sm flex flex-col items-center">
+            <p className="text-[11px] font-bold text-gray-800 tracking-wide mb-4 w-full text-left">Gender Distribution</p>
+            <DonutChart segments={genderSegments} size={130} thickness={25} centerLabel="58%" centerSub="Male" />
+            <div className="flex items-center justify-center gap-5 mt-6">
+              {genderSegments.map((s, i) => (
+                <div key={i} className="flex flex-col items-center gap-1.5">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-sm flex-shrink-0" style={{ background: s.color }} />
+                    <span className="text-[10px] text-gray-500 font-medium">{s.label}</span>
+                  </div>
+                  <span className="text-[10px] text-gray-400 font-medium">{s.value === 58 ? 719 : 521}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-      <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm">
-        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Gender Distribution</p>
-        <div className="flex items-center gap-4">
-          <DonutChart segments={genderSegments} size={100} thickness={18} centerLabel="58%" centerSub="Male" />
-          <div className="flex flex-col gap-2">
-            {genderSegments.map((s, i) => (
-              <div key={i} className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: s.color }} />
-                <span className="text-xs text-gray-600">{s.label}</span>
-                <span className="text-xs font-semibold text-gray-800 ml-auto">{s.value}%</span>
-              </div>
-            ))}
+
+        {/* Bottom Row: Skill Bars */}
+        <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm flex-1 flex flex-col">
+          <div className="flex items-center justify-between mb-2">
+            <p className="text-xs font-bold text-gray-800 tracking-wide">Skill Proficiency Distribution</p>
           </div>
-        </div>
-      </div>
-      <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm">
-        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Employee Joining Trend</p>
-        <TrendChart data={trendData} width={340} height={120} />
-      </div>
-      <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm md:col-span-3">
-        <div className="flex items-center justify-between mb-3">
-          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Skill Proficiency Distribution</p>
-          <div className="flex items-center gap-3">
+          <div className="flex-1 flex flex-col mt-4">
+            <SkillBars data={skillData} />
+          </div>
+
+          <div className="flex items-center justify-center gap-4 mt-4">
             {[
               { color: '#1d4ed8', label: 'Expert' },
               { color: '#60a5fa', label: 'Advanced' },
               { color: '#bfdbfe', label: 'Intermediate' },
-              { color: '#e0edff', label: 'Beginner' },
+              { color: '#87cefa', label: 'Beginner' },
             ].map((l, i) => (
               <div key={i} className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-sm" style={{ background: l.color }} />
-                <span className="text-xs text-gray-500">{l.label}</span>
+                <span className="w-2 h-2 rounded-sm" style={{ background: l.color }} />
+                <span className="text-[10px] text-gray-500 font-medium">{l.label}</span>
               </div>
             ))}
           </div>
         </div>
-        <SkillBars data={skillData} />
+      </div>
+
+      {/* Right Side: Joining Trend */}
+      <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm w-full lg:w-7/12 flex flex-col">
+        <p className="text-xs font-bold text-gray-800 uppercase tracking-wide mb-6">EMPLOYEE JOINING TREND</p>
+        <div className="flex-1 w-full flex items-center justify-center min-h-[340px]">
+          <TrendChart data={trendData} width={600} height={360} />
+        </div>
       </div>
     </div>
   );

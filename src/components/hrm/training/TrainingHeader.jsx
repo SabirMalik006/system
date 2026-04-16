@@ -1,7 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Upload, Calendar, Plus } from 'lucide-react';
 
 export default function TrainingHeader() {
+  const navigate = useNavigate();
+
+  const handleNewProgram = () => {
+    navigate('/inter-unit-transfer');
+  };
+
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm px-6 py-4 flex items-center justify-between">
 
@@ -30,7 +37,10 @@ export default function TrainingHeader() {
         </button>
 
         {/* New Program */}
-        <button className="flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors shadow-sm">
+        <button 
+          onClick={handleNewProgram}
+          className="flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors shadow-sm cursor-pointer"
+        >
           <Plus size={14} />
           New Program
         </button>

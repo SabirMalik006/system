@@ -10,7 +10,7 @@ export default function LeaveManagement() {
   return (
     <div className="min-h-screen bg-[#dce9f7] font-sans">
       <HrmNavbar activePage="Leave" />
-      <div className="max-w-[1280px] mx-auto px-5 py-5 flex flex-col gap-4">
+      <div className="w-full max-w-[2560px] mx-auto px-3 sm:px-4 md:px-5 py-4 sm:py-5 flex flex-col gap-3 sm:gap-4">
         <LeaveHeader />
         <LeaveKPICards />
         <LeaveApprovalQueue />

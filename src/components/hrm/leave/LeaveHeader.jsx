@@ -43,7 +43,7 @@ export default function LeaveHeader() {
 
           {/* Export Report → opens modal */}
           <button
-            onClick={() => setShowModal(true)}
+            onClick={() => setShowModal(false)}
             className="flex items-center gap-1.5 bg-[#1a3a8f] hover:bg-blue-900 text-white text-xs font-bold px-3 py-2 rounded-lg transition-colors"
           >
             <Download size={13} />
