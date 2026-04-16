@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Anchor, ChevronDown, Bell, Search } from 'lucide-react';
+import { Anchor, ChevronDown, Bell, Search, Menu, X } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const navLinks = [
@@ -21,6 +21,8 @@ export default function HrmNavbar() {
   const location = useLocation();
   const navigate = useNavigate();
   const [isDevelopmentOpen, setIsDevelopmentOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobileDevelopmentOpen, setIsMobileDevelopmentOpen] = useState(false);
   const dropdownTimeoutRef = useRef(null);
   const dropdownRef = useRef(null);
 
@@ -34,6 +36,8 @@ export default function HrmNavbar() {
 
   const handleNavigation = (path) => {
     navigate(path);
+    setIsMenuOpen(false);
+    setIsMobileDevelopmentOpen(false);
   };
 
   // Handle mouse enter on dropdown trigger
@@ -62,11 +66,11 @@ export default function HrmNavbar() {
   }, []);
 
   return (
-    <nav className="bg-gradient-to-r from-[#0B4E89] to-[#0F5D98] px-5 py-0 flex items-center gap-2 h-[52px] shadow-md">
+    <nav className="bg-gradient-to-r from-[#0B4E89] to-[#0F5D98] px-4 sm:px-5 py-0 flex items-center justify-between h-[52px] shadow-md">
       {/* Logo */}
       <div 
         onClick={() => handleNavigation('/hrm-dashboard')}
-        className="flex items-center gap-2 mr-4 flex-shrink-0 cursor-pointer"
+        className="flex items-center gap-2 flex-shrink-0 cursor-pointer"
       >
         <div className="w-8 h-8 bg-blue-400 rounded-md flex items-center justify-center">
           <Anchor size={16} className="text-white" />
@@ -74,7 +78,7 @@ export default function HrmNavbar() {
         <span className="text-white font-bold text-base tracking-wide">HRMS</span>
       </div>
 
-      {/* Nav links */}
+      {/* Desktop Nav links */}
       <div className="hidden md:flex items-center gap-0.5">
         {navLinks.map((link) => {
           const active = link.path ? isActive(link.path) : isDevelopmentActive();
@@ -99,7 +103,7 @@ export default function HrmNavbar() {
                   <ChevronDown size={10} className={`mt-1 transition-transform duration-200 ${isDevelopmentOpen ? 'rotate-180' : ''}`} />
                 </div>
 
-                {/* Dropdown Menu - No Background Color */}
+                {/* Dropdown Menu */}
                 {isDevelopmentOpen && (
                   <div 
                     className="absolute top-full left-0 mt-1 w-48 bg-white rounded-lg shadow-lg py-1 z-50"
@@ -145,10 +149,10 @@ export default function HrmNavbar() {
         })}
       </div>
 
-      <div className="flex-1" />
+      <div className="flex-1 hidden md:block" />
 
-      {/* Search */}
-      <div className="hidden sm:flex items-center gap-2 bg-[#F8FAFC] border border-white/20 rounded-lg px-3 py-1.5 w-52">
+      {/* Search - Desktop */}
+      <div className="hidden md:flex items-center gap-2 bg-[#F8FAFC] border border-white/20 rounded-lg px-3 py-1.5 w-52">
         <Search size={13} className="text-[#64748B] flex-shrink-0" />
         <input
           placeholder="Search employees, reports..."
@@ -157,17 +161,17 @@ export default function HrmNavbar() {
       </div>
 
       {/* Bell */}
-      <button className="relative p-2 ml-1 cursor-pointer">
+      <button className="relative p-2 ml-1 cursor-pointer hidden md:block">
         <Bell size={17} className="text-blue-200" />
         <span className="absolute top-1 right-1 w-2 h-2 bg-[#EF4444] rounded-full border border-[#0B4E89]" />
       </button>
 
-      {/* User */}
+      {/* User - Desktop */}
       <div 
         onClick={() => handleNavigation('/personnel-profile')}
-        className="flex items-center gap-2 ml-1 cursor-pointer"
+        className="hidden md:flex items-center gap-2 ml-1 cursor-pointer"
       >
-        <div className="text-right hidden sm:block">
+        <div className="text-right">
           <div className="text-white text-xs font-bold leading-none">DW &amp; CE</div>
           <div className="text-blue-200 text-[14px]">Director</div>
         </div>
@@ -176,6 +180,107 @@ export default function HrmNavbar() {
           <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-400 rounded-full border border-[#0B4E89]" />
         </div>
       </div>
+
+      {/* Mobile Menu Button */}
+      <button 
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        className="md:hidden p-1 text-white hover:bg-white/10 rounded-lg transition-colors"
+      >
+        {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+      </button>
+
+      {/* Mobile Menu Dropdown */}
+      {isMenuOpen && (
+        <div className="absolute top-[52px] left-0 right-0 bg-[#0B4E89] z-50 shadow-lg md:hidden">
+          <div className="flex flex-col p-4 gap-2">
+            {/* Mobile Search */}
+            <div className="flex items-center gap-2 bg-[#F8FAFC] border border-white/20 rounded-lg px-3 py-2 mb-2">
+              <Search size={13} className="text-[#64748B] flex-shrink-0" />
+              <input
+                placeholder="Search employees, reports..."
+                className="bg-transparent text-xs text-white outline-none w-full placeholder-[#64748B]"
+              />
+            </div>
+
+            {navLinks.map((link) => {
+              const active = link.path ? isActive(link.path) : isDevelopmentActive();
+              
+              if (link.hasDropdown) {
+                return (
+                  <div key={link.label}>
+                    <div
+                      onClick={() => setIsMobileDevelopmentOpen(!isMobileDevelopmentOpen)}
+                      className={`flex items-center justify-between px-3 py-2 text-sm rounded-lg cursor-pointer ${
+                        active
+                          ? 'text-[#3B82F6] font-semibold bg-white/10'
+                          : 'text-white hover:bg-white/10'
+                      }`}
+                    >
+                      <span>{link.label}</span>
+                      <ChevronDown size={14} className={`transition-transform duration-200 ${isMobileDevelopmentOpen ? 'rotate-180' : ''}`} />
+                    </div>
+                    
+                    {isMobileDevelopmentOpen && (
+                      <div className="ml-4 mt-1 space-y-1">
+                        {developmentDropdownItems.map((item) => (
+                          <div
+                            key={item.name}
+                            onClick={() => handleNavigation(item.path)}
+                            className={`px-3 py-2 text-sm rounded-lg cursor-pointer ${
+                              location.pathname === item.path
+                                ? 'text-[#3B82F6] font-semibold bg-white/10'
+                                : 'text-white/80 hover:bg-white/10'
+                            }`}
+                          >
+                            {item.name}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+              
+              return (
+                <div
+                  key={link.label}
+                  onClick={() => handleNavigation(link.path)}
+                  className={`px-3 py-2 text-sm rounded-lg cursor-pointer ${
+                    active
+                      ? 'text-[#3B82F6] font-semibold bg-white/10'
+                      : 'text-white hover:bg-white/10'
+                  }`}
+                >
+                  {link.label}
+                </div>
+              );
+            })}
+
+            {/* Mobile User Info */}
+            <div className="mt-3 pt-3 border-t border-white/20">
+              <div 
+                onClick={() => handleNavigation('/personnel-profile')}
+                className="flex items-center gap-3 px-3 py-2 cursor-pointer hover:bg-white/10 rounded-lg"
+              >
+                <div className="w-8 h-8 rounded-full bg-blue-300 flex items-center justify-center text-xs font-bold text-blue-900">
+                  DW
+                </div>
+                <div>
+                  <div className="text-white text-xs font-bold">DW &amp; CE</div>
+                  <div className="text-blue-200 text-xs">Director</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile Bell */}
+            <div className="flex items-center gap-2 px-3 py-2">
+              <Bell size={17} className="text-blue-200" />
+              <span className="text-white text-sm">Notifications</span>
+              <span className="ml-auto w-2 h-2 bg-[#EF4444] rounded-full" />
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
