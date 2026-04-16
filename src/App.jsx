@@ -22,6 +22,9 @@ import InterUnitTransfer from './pages/hrm/InterUnitTransfer';
 import TrainingManagement from './pages/hrm/TrainingManagement';
 import PerformanceEvaluation from './pages/hrm/PerformanceEvaluation';
 import AttendancePage from './pages/hrm/AttendancePage';
+import HrmDashboard from './pages/hrm/HrmDashboard';
+import Department from './pages/hrm/Department';
+import EmployeeProfile from './pages/hrm/EmployeeProfile';
 
 function App() {
     return (
@@ -134,6 +137,10 @@ function App() {
                     <Route path="/training-management" element={<TrainingManagement />} />
                     <Route path="/performance-evaluation" element={<PerformanceEvaluation />} />
                     <Route path="/attendance" element={<AttendancePage />} />
+                    <Route path="/hrm-dashboard" element={<HrmDashboard />} />
+                    <Route path="/department" element={<Department />} />
+                    <Route path="/employee-profile" element={<EmployeeProfile />} />
+
 
                 </Routes>
 
