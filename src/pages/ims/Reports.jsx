@@ -9,7 +9,7 @@ const Reports = () => {
         { label: 'ACTIONS TODAY', value: '482', trend: '● Active now' },
         { label: 'CRITICAL ACTIONS', value: '14', trend: '⚠ Needs review' },
         { label: 'MOST ACTIVE MODULE', value: 'Stock In', trend: 'INVENTORY DEPT.' },
-        { label: 'MOST ACTIVE USER', value: 'Alex Sterling', trend: 'SYSTEM ADMIN' },
+        { label: 'MOST ACTIVE USER', value: 'Ahmed Riaz', trend: 'SYSTEM ADMIN' },
     ];
 
     const auditLogs = [

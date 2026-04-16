@@ -5,26 +5,26 @@ import {
 } from 'lucide-react';
 
 const initialItems = [
-  { id: 1, sku: 'SKU-49201', name: 'Steel Reinforced Pipes 12"', category: 'Construction', qty: 50,  unitPrice: 120.00 },
-  { id: 2, sku: 'SKU-22093', name: 'Industrial Adhesive Grade A',  category: 'Chemicals',     qty: 10,  unitPrice: 45.50  },
-  { id: 3, sku: 'SKU-88120', name: 'Safety Helmets - Blue',        category: 'PPE',            qty: 100, unitPrice: 25.00  },
+  { id: 1, sku: 'SKU-49201', name: 'Steel Reinforced Pipes 12"', category: 'Construction', qty: 50, unitPrice: 120.00 },
+  { id: 2, sku: 'SKU-22093', name: 'Industrial Adhesive Grade A', category: 'Chemicals', qty: 10, unitPrice: 45.50 },
+  { id: 3, sku: 'SKU-88120', name: 'Safety Helmets - Blue', category: 'PPE', qty: 100, unitPrice: 25.00 },
 ];
 
 const categoryColors = {
   Construction: 'bg-blue-100 text-blue-700',
-  Chemicals:    'bg-purple-100 text-purple-700',
-  PPE:          'bg-green-100 text-green-700',
+  Chemicals: 'bg-purple-100 text-purple-700',
+  PPE: 'bg-green-100 text-green-700',
 };
 
-const inputCls  = 'w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg bg-white text-gray-700 placeholder-gray-400 outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-100 transition-colors';
+const inputCls = 'w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg bg-white text-gray-700 placeholder-gray-400 outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-100 transition-colors';
 const selectCls = `${inputCls} appearance-none pr-8 cursor-pointer`;
-const labelCls  = 'block text-xs font-semibold text-gray-600 mb-1.5';
+const labelCls = 'block text-xs font-semibold text-gray-600 mb-1.5';
 
 export default function CreatePurchaseRequest() {
-  const [items, setItems]       = useState(initialItems);
+  const [items, setItems] = useState(initialItems);
   const [priority, setPriority] = useState('Medium');
-  const [remarks, setRemarks]   = useState('');
-  const [reason, setReason]     = useState('');
+  const [remarks, setRemarks] = useState('');
+  const [reason, setReason] = useState('');
 
   const updateQty = (id, qty) =>
     setItems(prev => prev.map(i => i.id === id ? { ...i, qty: Number(qty) || 0 } : i));
@@ -37,30 +37,30 @@ export default function CreatePurchaseRequest() {
     }]);
 
   const subtotal = items.reduce((s, i) => s + i.qty * i.unitPrice, 0);
-  const shipping  = 125;
-  const taxes     = 0;
-  const total     = subtotal + shipping + taxes;
+  const shipping = 125;
+  const taxes = 0;
+  const total = subtotal + shipping + taxes;
 
   const workflowSteps = ['Drafting', 'Review', 'Approval', 'Processing'];
 
   return (
-    <div className="min-h-screen bg-[#E8F4ff] font-sans px-6 py-6">
-      <div className="max-w-[1100px] mx-auto">
+    <div className="min-h-screen bg-[#E8F4ff] font-sans px-3 sm:px-4 md:px-6 py-4 sm:py-6">
+      <div className="max-w-[2560px] mx-auto">
 
         {/* ── Breadcrumb ── */}
-        <div className="flex items-center gap-1.5 text-xs mb-4">
+        <div className="flex items-center gap-1.5 text-xs mb-3 sm:mb-4">
           <span className="text-gray-400">Procurement</span>
           <span className="text-gray-600">›</span>
-          <span className="text-gray-700 font-medium">New Purchase Request</span>
+          <span className="text-gray-700 font-medium">New Purch Request</span>
         </div>
 
         {/* ── Page Header ── */}
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
           <div>
-            <h1 className="text-2xl font-black text-black tracking-tight uppercase mb-2">
+            <h1 className="text-xl sm:text-2xl font-black text-black tracking-tight uppercase mb-2">
               Create Purchase Request
             </h1>
-            <div className="flex items-center gap-2.5">
+            <div className="flex flex-wrap items-center gap-2.5">
               <span className="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded">
                 REQ-2024-0812
               </span>
@@ -70,12 +70,12 @@ export default function CreatePurchaseRequest() {
               </span>
             </div>
           </div>
-          <div className="flex items-center gap-3 flex-shrink-0">
-            <button className="flex items-center gap-2 px-4 py-2.5 border border-gray-300 bg-white text-gray-700 text-sm font-semibold rounded-xl hover:bg-gray-50 transition-colors">
+          <div className="flex flex-wrap items-center gap-3 flex-shrink-0">
+            <button className="flex items-center gap-2 px-3 sm:px-4 py-2 border border-gray-300 bg-white text-gray-700 text-xs sm:text-sm font-semibold rounded-xl hover:bg-gray-50 transition-colors">
               <Save size={14} />
               Save Draft
             </button>
-            <button className="flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-xl transition-colors shadow-sm">
+            <button className="flex items-center gap-2 px-4 sm:px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-bold rounded-xl transition-colors shadow-sm">
               <Send size={14} />
               Submit for Approval
             </button>
@@ -83,14 +83,14 @@ export default function CreatePurchaseRequest() {
         </div>
 
         {/* ── Main Grid ── */}
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 sm:gap-5">
 
           {/* ════ LEFT COLUMN (2/3) ════ */}
-          <div className="xl:col-span-2 flex flex-col gap-5">
+          <div className="xl:col-span-2 flex flex-col gap-4 sm:gap-5">
 
             {/* Request Information Card */}
-            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-              <div className="flex items-center gap-2 mb-5">
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 sm:p-6">
+              <div className="flex items-center gap-2 mb-4 sm:mb-5">
                 <Info size={17} className="text-blue-500" />
                 <h2 className="text-base font-bold text-gray-900">Request Information</h2>
               </div>
@@ -137,16 +137,15 @@ export default function CreatePurchaseRequest() {
                 </div>
                 <div>
                   <label className={labelCls}>Priority Level</label>
-                  <div className="flex items-center gap-2 mt-1">
+                  <div className="flex flex-wrap items-center gap-2 mt-1">
                     {['Low', 'Medium', 'High'].map(p => (
                       <button
                         key={p}
                         onClick={() => setPriority(p)}
-                        className={`flex-1 py-2 text-sm font-semibold rounded-lg border transition-colors ${
-                          priority === p
+                        className={`flex-1 py-2 text-xs sm:text-sm font-semibold rounded-lg border transition-colors ${priority === p
                             ? 'border-blue-500 text-blue-600 bg-blue-50'
                             : 'border-gray-200 text-gray-500 bg-white hover:border-gray-300'
-                        }`}
+                          }`}
                       >
                         {p}
                       </button>
@@ -169,8 +168,8 @@ export default function CreatePurchaseRequest() {
             </div>
 
             {/* Purchase Items Card */}
-            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-              <div className="flex items-center justify-between mb-5">
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 sm:p-6">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
                 <div className="flex items-center gap-2">
                   <List size={17} className="text-blue-500" />
                   <h2 className="text-base font-bold text-gray-900">Purchase Items</h2>
@@ -180,74 +179,79 @@ export default function CreatePurchaseRequest() {
                 </span>
               </div>
 
-              {/* Table header */}
-              <div className="grid grid-cols-[2fr_1.2fr_0.8fr_1fr_1fr_auto] gap-3 px-2 pb-2 border-b border-gray-100 mb-1">
-                {['Item Reference', 'Category', 'Qty', 'Est. Unit Price', 'Total', 'Action'].map(h => (
-                  <div key={h} className="text-[10px] font-bold text-gray-400 tracking-wider uppercase">
-                    {h}
+              {/* Table - Responsive overflow */}
+              <div className="overflow-x-auto">
+                <div className="min-w-[600px]">
+                  {/* Table header */}
+                  <div className="grid grid-cols-[2fr_1.2fr_0.8fr_1fr_1fr_auto] gap-3 px-2 pb-2 border-b border-gray-100 mb-1">
+                    {['Item Reference', 'Category', 'Qty', 'Est. Unit Price', 'Total', 'Action'].map(h => (
+                      <div key={h} className="text-[10px] font-bold text-gray-400 tracking-wider uppercase">
+                        {h}
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
 
-              {/* Table rows */}
-              <div className="divide-y divide-gray-50">
-                {items.map((item) => (
-                  <div
-                    key={item.id}
-                    className="grid grid-cols-[2fr_1.2fr_0.8fr_1fr_1fr_auto] gap-3 items-center py-4 px-2"
-                  >
-                    {/* Item Reference */}
-                    <div>
-                      <div className="text-sm font-bold text-gray-900 leading-tight">{item.sku}</div>
-                      <div className="text-xs text-gray-400 mt-0.5">{item.name}</div>
-                    </div>
-
-                    {/* Category badge */}
-                    <div>
-                      <span className={`text-xs font-semibold px-2.5 py-1 rounded-md ${categoryColors[item.category] || 'bg-gray-100 text-gray-600'}`}>
-                        {item.category}
-                      </span>
-                    </div>
-
-                    {/* Qty input */}
-                    <div>
-                      <input
-                        type="number"
-                        value={item.qty}
-                        onChange={e => updateQty(item.id, e.target.value)}
-                        className="w-full px-2 py-1.5 text-sm text-center border border-gray-200 rounded-lg outline-none focus:border-blue-400 font-semibold"
-                        min={1}
-                      />
-                    </div>
-
-                    {/* Unit Price */}
-                    <div className="text-sm text-gray-700">
-                      ${item.unitPrice.toFixed(2)}
-                    </div>
-
-                    {/* Total */}
-                    <div className="text-sm font-bold text-gray-900">
-                      ${(item.qty * item.unitPrice).toLocaleString('en-US', { minimumFractionDigits: 2 })}
-                    </div>
-
-                    {/* Delete */}
-                    <div>
-                      <button
-                        onClick={() => removeItem(item.id)}
-                        className="p-1.5 text-gray-300 hover:text-red-400 hover:bg-red-50 rounded-lg transition-colors"
+                  {/* Table rows */}
+                  <div className="divide-y divide-gray-50">
+                    {items.map((item) => (
+                      <div
+                        key={item.id}
+                        className="grid grid-cols-[2fr_1.2fr_0.8fr_1fr_1fr_auto] gap-3 items-center py-4 px-2"
                       >
-                        <Trash2 size={15} />
-                      </button>
-                    </div>
+                        {/* Item Reference */}
+                        <div>
+                          <div className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">{item.sku}</div>
+                          <div className="text-[10px] sm:text-xs text-gray-400 mt-0.5">{item.name}</div>
+                        </div>
+
+                        {/* Category badge */}
+                        <div>
+                          <span className={`text-[10px] sm:text-xs font-semibold px-2 py-1 rounded-md ${categoryColors[item.category] || 'bg-gray-100 text-gray-600'}`}>
+                            {item.category}
+                          </span>
+                        </div>
+
+                        {/* Qty input */}
+                        <div>
+                          <input
+                            type="number"
+                            value={item.qty}
+                            onChange={e => updateQty(item.id, e.target.value)}
+                            className="w-full px-2 py-1.5 text-xs sm:text-sm text-center border border-gray-200 rounded-lg outline-none focus:border-blue-400 font-semibold"
+                            min={1}
+                          />
+                        </div>
+
+                        {/* Unit Price */}
+                        <div className="text-xs sm:text-sm text-gray-700">
+                          {item.unitPrice.toFixed(2)} PKR
+                        </div>
+
+                        {/* Total */}
+                        <div className="text-xs sm:text-sm font-bold text-gray-900">
+                          {(item.qty * item.unitPrice).toLocaleString('en-PK', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} PKR
+                        </div>
+
+                        {/* Delete */}
+                        <div>
+                          <button
+                            onClick={() => removeItem(item.id)}
+                            className="p-1.5 text-gray-300 hover:text-red-400 hover:bg-red-50 rounded-lg transition-colors"
+                          >
+                            <Trash2 size={15} />
+                          </button>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
+                </div>
               </div>
 
               {/* Add Line Item */}
               <div className="mt-4 pt-4 border-t border-gray-100">
                 <button
                   onClick={addItem}
-                  className="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-xl text-sm font-semibold text-gray-600 hover:border-blue-400 hover:text-blue-600 hover:bg-blue-50 transition-colors"
+                  className="flex items-center gap-2 px-3 sm:px-4 py-2 border border-gray-200 rounded-xl text-xs sm:text-sm font-semibold text-gray-600 hover:border-blue-400 hover:text-blue-600 hover:bg-blue-50 transition-colors"
                 >
                   <Plus size={15} />
                   Add Line Item
@@ -262,26 +266,26 @@ export default function CreatePurchaseRequest() {
 
             {/* Order Summary Card */}
             <div
-              className="rounded-2xl p-5 flex flex-col gap-4"
+              className="rounded-2xl p-4 sm:p-5 flex flex-col gap-4"
               style={{ background: 'linear-gradient(160deg, #1d4ed8 0%, #1e40af 60%, #1e3a8a 100%)' }}
             >
-              <h2 className="text-lg font-bold text-white">Order Summary</h2>
+              <h2 className="text-base sm:text-lg font-bold text-white">Order Summary</h2>
 
               {/* Line items */}
               <div className="flex flex-col gap-2.5">
-                <div className="flex items-center justify-between text-sm text-blue-100">
+                <div className="flex items-center justify-between text-xs sm:text-sm text-blue-100">
                   <span>Subtotal ({items.length} items)</span>
                   <span className="font-semibold text-white">
-                    ${subtotal.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                    {subtotal.toLocaleString('en-PK', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} PKR
                   </span>
                 </div>
-                <div className="flex items-center justify-between text-sm text-blue-100">
+                <div className="flex items-center justify-between text-xs sm:text-sm text-blue-100">
                   <span>Estimated Shipping</span>
-                  <span className="font-semibold text-white">${shipping.toFixed(2)}</span>
+                  <span className="font-semibold text-white">{shipping.toFixed(2)} PKR</span>
                 </div>
-                <div className="flex items-center justify-between text-sm text-blue-100">
+                <div className="flex items-center justify-between text-xs sm:text-sm text-blue-100">
                   <span>Taxes (calculated at checkout)</span>
-                  <span className="font-semibold text-white">${taxes.toFixed(2)}</span>
+                  <span className="font-semibold text-white">{taxes.toFixed(2)} PKR</span>
                 </div>
               </div>
 
@@ -290,19 +294,19 @@ export default function CreatePurchaseRequest() {
 
               {/* Total */}
               <div className="flex items-center justify-between">
-                <span className="text-sm font-bold text-white">Total Estimated Amount</span>
-                <span className="text-lg font-black text-blue-300">
-                  ${total.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                <span className="text-xs sm:text-sm font-bold text-white">Total Estimated Amount</span>
+                <span className="text-base sm:text-lg font-black text-blue-300">
+                  {total.toLocaleString('en-PK', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} PKR
                 </span>
               </div>
 
               {/* Submit button */}
-              <button className="w-full py-3 bg-blue-500 hover:bg-blue-400 text-white text-sm font-bold rounded-xl transition-colors">
+              <button className="w-full py-2.5 sm:py-3 bg-blue-500 hover:bg-blue-400 text-white text-xs sm:text-sm font-bold rounded-xl transition-colors">
                 Submit for Approval
               </button>
 
               {/* Note */}
-              <p className="text-[10px] text-blue-200 text-center leading-relaxed tracking-wide uppercase">
+              <p className="text-[9px] sm:text-[10px] text-blue-200 text-center leading-relaxed tracking-wide uppercase">
                 Review your items before submission.
                 Once submitted, the request enters the
                 approval workflow.
@@ -313,21 +317,21 @@ export default function CreatePurchaseRequest() {
 
               {/* Request Remarks */}
               <div>
-                <label className="text-sm font-bold text-white mb-2 block">Request Remarks</label>
+                <label className="text-xs sm:text-sm font-bold text-white mb-2 block">Request Remarks</label>
                 <textarea
                   value={remarks}
                   onChange={e => setRemarks(e.target.value)}
                   rows={3}
-                  className="w-full px-3 py-2.5 text-sm bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-200 outline-none focus:border-white/40 resize-none transition-colors"
+                  className="w-full px-3 py-2.5 text-xs sm:text-sm bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-200 outline-none focus:border-white/40 resize-none transition-colors"
                 />
               </div>
 
               {/* Supporting Documents */}
               <div>
-                <label className="text-sm font-bold text-white mb-2 block">Supporting Documents</label>
+                <label className="text-xs sm:text-sm font-bold text-white mb-2 block">Supporting Documents</label>
                 <div className="border-2 border-dashed border-white/30 rounded-xl p-4 flex flex-col items-center justify-center gap-2 cursor-pointer hover:border-white/50 transition-colors">
                   <Upload size={20} className="text-blue-200" />
-                  <span className="text-xs text-blue-200 text-center">
+                  <span className="text-[10px] sm:text-xs text-blue-200 text-center">
                     Click or drag files to upload
                   </span>
                 </div>
@@ -335,33 +339,30 @@ export default function CreatePurchaseRequest() {
             </div>
 
             {/* Approval Workflow Card */}
-            <div className="bg-[#1A8FA04D] rounded-2xl border border-[#1e3a6e] p-5">
-              <div className="text-[10px] font-bold text-blue-400 tracking-widest uppercase mb-4">
+            <div className="bg-[#1A8FA04D] rounded-2xl border border-[#1e3a6e] p-4 sm:p-5">
+              <div className="text-[9px] sm:text-[10px] font-bold text-blue-400 tracking-widest uppercase mb-4">
                 Approval Workflow
               </div>
               <div className="flex flex-col gap-3">
                 {workflowSteps.map((step, i) => (
                   <div key={step} className="flex items-center gap-3">
                     {/* Step circle */}
-                    <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 transition-colors ${
-                      i === 0
+                    <div className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-[10px] sm:text-xs font-bold flex-shrink-0 transition-colors ${i === 0
                         ? 'bg-blue-500 text-white'
                         : 'bg-[#243b5e] text-gray-500'
-                    }`}>
+                      }`}>
                       {i === 0
-                        ? <CheckCircle size={14} className="text-white" />
+                        ? <CheckCircle size={12} className="text-white" />
                         : i + 1
                       }
                     </div>
                     {/* Step label */}
-                    <span className={`text-sm font-semibold ${
-                      i === 0 ? 'text-blue-400' : 'text-gray-600'
-                    }`}>
+                    <span className={`text-xs sm:text-sm font-semibold ${i === 0 ? 'text-blue-400' : 'text-gray-600'}`}>
                       {step}
                     </span>
                     {/* Active indicator */}
                     {i === 0 && (
-                      <span className="ml-auto text-[10px] text-blue-400 font-bold">Active</span>
+                      <span className="ml-auto text-[9px] sm:text-[10px] text-blue-400 font-bold">Active</span>
                     )}
                   </div>
                 ))}

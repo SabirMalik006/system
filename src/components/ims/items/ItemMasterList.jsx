@@ -295,7 +295,7 @@ const ItemMasterList = () => {
                                 <div>
                                     <label className="block text-[11px] font-medium text-gray-700 mb-0.5">Price</label>
                                     <div className="relative">
-                                        <span className="absolute left-2.5 top-1.5 text-gray-500 text-xs">$</span>
+                                        <span className="absolute left-2.5 top-1.5 text-gray-500 text-xs">Rs</span>
                                         <input
                                             type="text"
                                             className="w-full bg-[#F1F5F9] border border-gray-300 rounded-sm pl-6 pr-2.5 py-1.5 focus:outline-none text-xs"

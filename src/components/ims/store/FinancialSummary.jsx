@@ -12,7 +12,7 @@ const FinancialSummary = () => {
                     {/* Unit Cost Row */}
                     <div className="flex justify-between items-center text-sm">
                         <span className="text-gray-700 font-medium">Unit Cost</span>
-                        <span className="text-gray-900 font-semibold">$24.00</span>
+                        <span className="text-gray-900 font-semibold">Rs. 24.00</span>
                     </div>
                     
                     {/* Quantity Row */}
@@ -24,13 +24,13 @@ const FinancialSummary = () => {
                     {/* Subtotal Row */}
                     <div className="flex justify-between items-center text-sm">
                         <span className="text-gray-700 font-medium">Subtotal</span>
-                        <span className="text-gray-900 font-semibold">$7,470.00</span>
+                        <span className="text-gray-900 font-semibold">Rs. 7,470.00</span>
                     </div>
                     
                     {/* Tax Row */}
                     <div className="flex justify-between items-center text-sm">
                         <span className="text-gray-700 font-medium">Tax (10%)</span>
-                        <span className="text-gray-900 font-semibold">$747.00</span>
+                        <span className="text-gray-900 font-semibold">Rs. 747.00</span>
                     </div>
                     
                     {/* Divider */}
@@ -41,7 +41,7 @@ const FinancialSummary = () => {
                 {/* Total Amount Card */}
                 <div className="flex justify-between items-center p-4 bg-white rounded-lg shadow-sm">
                     <span className="text-sm font-medium text-[#2563EB]">Total Amount:</span>
-                    <span className="text-xl font-bold text-[#2563EB]">$8,217.00</span>
+                    <span className="text-xl font-bold text-[#2563EB]">Rs. 8,217.00</span>
                 </div>
             </div>
         </div>

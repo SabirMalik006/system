@@ -53,13 +53,13 @@ export default function VendorProfilePanel({ onClose }) {
             <p className="text-[7px] font-semibold tracking-widest text-gray-400 uppercase mb-0.5">
               Contact Person
             </p>
-            <p className="text-[10px] font-semibold text-gray-800">Sarah Mitchell</p>
+            <p className="text-[10px] font-semibold text-gray-800">Haider</p>
           </div>
           <div>
             <p className="text-[7px] font-semibold tracking-widest text-gray-400 uppercase mb-0.5">
               Phone
             </p>
-            <p className="text-[10px] font-semibold text-gray-800">+1 (555) 092-1234</p>
+            <p className="text-[10px] font-semibold text-gray-800">+92209212343</p>
           </div>
         </div>
 
@@ -67,7 +67,7 @@ export default function VendorProfilePanel({ onClose }) {
           <p className="text-[7px] font-semibold tracking-widest text-gray-400 uppercase mb-0.5">
             Email
           </p>
-          <p className="text-[10px] font-semibold text-gray-800 truncate">s.mitchell@lumina.io</p>
+          <p className="text-[10px] font-semibold text-gray-800 truncate">s.alihamza@lumina.io</p>
         </div>
 
         <div>

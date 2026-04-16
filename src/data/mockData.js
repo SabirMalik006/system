@@ -34,7 +34,7 @@ export const statsData = [
   {
     id: 5,
     label: 'MOST ACTIVE USER',
-    value: 'Alex Sterling',
+    value: 'Aliyan',
     trend: 'SYSTEM ADMIN',
     icon: 'Users',
     iconColor: 'text-orange-500'
@@ -45,7 +45,7 @@ export const auditLogs = [
   {
     id: 1,
     timestamp: 'Oct 24, 2023 - 14:32:01',
-    user: 'Sarah Jenkins',
+    user: 'Hamza',
     action: 'CREATE',
     module: 'Inventory',
     resource: 'Product SKU PROD-9921',
@@ -55,7 +55,7 @@ export const auditLogs = [
   {
     id: 2,
     timestamp: 'Oct 24, 2023 - 14:15:22',
-    user: 'Tom Bradley',
+    user: 'Usman',
     action: 'UPDATE',
     module: 'Sales',
     resource: 'Order ORD-5542',
@@ -65,7 +65,7 @@ export const auditLogs = [
   {
     id: 3,
     timestamp: 'Oct 24, 2023 - 13:58:05',
-    user: 'Tom Bradley',
+    user: 'Danish',
     action: 'DELETE',
     module: 'Vendors',
     resource: 'Contract CNT-102',
@@ -75,7 +75,7 @@ export const auditLogs = [
   {
     id: 4,
     timestamp: 'Oct 24, 2023 - 13:40:11',
-    user: 'Tom Bradley',
+    user: 'Haider',
     action: 'REJECT',
     module: 'Approvals',
     resource: 'Purchase Req PROD-501',
@@ -85,7 +85,7 @@ export const auditLogs = [
   {
     id: 5,
     timestamp: 'Oct 24, 2023 - 12:55:40',
-    user: 'John Doe',
+    user: 'Yasir',
     action: 'READ',
     module: 'System',
     resource: 'Report View REP AUDIT-24',
@@ -114,9 +114,9 @@ export const filtersConfig = [
     value: '',
     options: [
       { value: 'all', label: 'All users' },
-      { value: 'sarah', label: 'Sarah Jenkins' },
-      { value: 'tom', label: 'Tom Bradley' },
-      { value: 'john', label: 'John Doe' }
+      { value: 'sarah', label: 'Ahmed' },
+      { value: 'tom', label: 'hamza' },
+      { value: 'john', label: 'usama' }
     ]
   },
   {
