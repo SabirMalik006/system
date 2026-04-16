@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import HrmNavbar from '../../components/layout/HrmNavbar';
 import DepartmentKPICards from '../../components/hrm/department/DepartmentKPICards';
 import DepartmentCharts from '../../components/hrm/department/DepartmentCharts';
@@ -6,6 +7,12 @@ import DepartmentBarChart from '../../components/hrm/department/DepartmentBarCha
 import DepartmentTable from '../../components/hrm/department/DepartmentTable';
 
 export default function Department() {
+  const navigate = useNavigate();
+
+  const handleAddEmployee = () => {
+    navigate('/personnel-profile');
+  };
+
   return (
     <div className="min-h-screen bg-[#e8f2fb] font-sans">
       <HrmNavbar activePage="Department" />
@@ -17,7 +24,10 @@ export default function Department() {
             </svg>
             Export CSV
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-[#1e6fbe] text-white rounded-lg text-sm font-medium hover:bg-[#175fa5] transition-colors">
+          <button 
+            onClick={handleAddEmployee}
+            className="flex items-center gap-2 px-4 py-2 bg-[#1e6fbe] text-white rounded-lg text-sm font-medium hover:bg-[#175fa5] transition-colors cursor-pointer"
+          >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
             </svg>

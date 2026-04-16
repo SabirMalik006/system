@@ -12,10 +12,15 @@ import KPIsSection from '../../components/hrm/profile/KPIsSection';
 import SkillsCertifications from '../../components/hrm/profile/SkillsCertifications';
 import AccountOverview from '../../components/hrm/profile/AccountOverview';
 import UserAccountLinkage from '../../components/hrm/profile/UserAccountLinkage';
+import Footer from '../../components/common/fotter';
 
 export default function EmployeeProfile() {
   return (
+    
     <div className="min-h-screen bg-[#dce9f7] font-sans">
+      <div className='mb-2' >
+        <HrmNavbar   />  
+      </div>
       <ProfileActionBar />
       <ProfileMetaBar />
       <div className="max-w-[2560px] mx-auto px-4 sm:px-5 py-4 flex flex-col gap-4">
@@ -37,6 +42,7 @@ export default function EmployeeProfile() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

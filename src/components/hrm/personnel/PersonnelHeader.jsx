@@ -3,7 +3,7 @@ import { IdCard, FileText, X, Upload } from 'lucide-react';
 
 export default function PersonnelHeader() {
   return (
-    <header className="bg-gradient-to-r from-[#0B4E89] to-[#0F5D98] px-5 sm:px-8 py-3.5 flex items-center justify-between sticky top-0 z-50 shadow-md">
+    <header className="bg-gradient-to-r from-[#0B4E89] to-[#0F5D98] px-5 sm:px-8 py-6 flex items-center justify-between sticky top-0 z-50 shadow-md">
       {/* Left: logo + title */}
       <div className="flex items-center gap-3">
         <div className="w-9 h-9 bg-blue-500 rounded-xl flex items-center justify-center flex-shrink-0">

@@ -10,6 +10,8 @@ import WorkforceMetrics from '../../components/hrm/dashboard/WorkforceMetrics';
 // AnalyticsSection is removed as per design
 import SkillProficiency from '../../components/hrm/dashboard/SkillProficiency';
 import LeaveVsApproval from '../../components/hrm/dashboard/LeaveVsApproval';
+import Footer from '../../components/common/fotter';
+
 
 export default function HrmDashboard() {
   return (
@@ -52,8 +54,9 @@ export default function HrmDashboard() {
           <SkillProficiency />
           <LeaveVsApproval />
         </div>
-
+        
       </div>
+      <Footer />
     </div>
   );
 }
