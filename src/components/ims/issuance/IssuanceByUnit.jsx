@@ -116,8 +116,8 @@ function DonutChart() {
           className="absolute top-7 left-38 -translate-x-1/2 cursor-pointer hover:opacity-80 transition-opacity"
           onClick={() => handleImageClick('/a4.svg')}
         >
-          <div className="w-7 h-7 rounded-full flex items-center justify-center">
-            <img src="/a4.svg" alt="" />
+          <div className="w-10 h-10 rounded-full flex items-center justify-center">
+            <img src="/a2.svg" alt="" />
           </div>
         </div>
         <div 

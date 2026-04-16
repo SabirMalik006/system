@@ -54,8 +54,8 @@ function DonutChart() {
 
   // Images click handlers mapping
   const imageClickHandlers = {
-    '/Overlay+Border+OverlayBlur (1).png': () => navigate('/stock-returns'),
-    '/Overlay+Border+OverlayBlur (2).png': () => navigate('/reports'),
+    '/a4.svg': () => navigate('/stock-returns'),
+    '/a3.svg': () => navigate('/reports'),
     '/88.png': () => navigate('/procurement-management'),
     '/Overlay+Border+OverlayBlur.png': () => navigate('/items'),
   };
@@ -89,8 +89,8 @@ function DonutChart() {
 
         {/* Images - Clickable */}
         {[
-          { angle: 235, img: '/Overlay+Border+OverlayBlur (1).png', label: 'Tools', path: '/stock-returns' },
-          { angle: 330, img: '/Overlay+Border+OverlayBlur (2).png', label: 'Consumable', path: '/reports' },
+          { angle: 235, img: '/a4.svg', label: 'Tools', path: '/stock-returns' },
+          { angle: 330, img: '/a3.svg', label: 'Consumable', path: '/reports' },
           { angle: 60, img: '/88.png', label: 'Sanitary', path: '/procurement-management' },
           { angle: 150, img: '/Overlay+Border+OverlayBlur.png', label: 'Electrical', path: '/items' },
         ].map((pos, i) => {

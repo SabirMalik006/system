@@ -109,7 +109,7 @@ function SkillBars({ data }) {
           return (
             <g key={i}>
               {keys.map((k, j) => {
-                const h = (d[k] / 120) * chartH; // normalize somehow, 120 max
+                const h = (d[k] / 120) * chartH;
                 const barX = x + j * (barW + gap);
                 return <rect key={k} x={barX} y={chartH - h} width={barW} height={h} fill={colors[k]} rx="1" />;
               })}
@@ -128,10 +128,14 @@ const employmentSegments = [
   { value: 40, color: '#60a5fa', label: 'Contract' },
   { value: 20, color: '#87cefa', label: 'Temporary' },
 ];
-const genderSegments = [
-  { value: 58, color: '#1d4ed8', label: 'Male' },
-  { value: 42, color: '#93c5fd', label: 'Female' },
+
+// Changed from Gender Distribution to Department Distribution
+const departmentSegments = [
+  { value: 45, color: '#1d4ed8', label: 'Technical' },
+  { value: 30, color: '#60a5fa', label: 'Admin' },
+  { value: 25, color: '#87cefa', label: 'Support' },
 ];
+
 const trendData = [
   { label: '2018', v: 820 }, { label: '2019', v: 890 }, { label: '2020', v: 810 },
   { label: '2021', v: 950 }, { label: '2022', v: 1020 }, { label: '2023', v: 1100 },
@@ -148,6 +152,12 @@ const skillData = [
 ];
 
 export default function DepartmentCharts() {
+  // Calculate total employees for department chart
+  const totalEmployees = departmentSegments.reduce((sum, seg) => sum + seg.value, 0);
+  const technicalCount = Math.round((45 / 100) * 1240);
+  const adminCount = Math.round((30 / 100) * 1240);
+  const supportCount = Math.round((25 / 100) * 1240);
+
   return (
     <div className="flex flex-col lg:flex-row gap-4 items-stretch">
       {/* Left Side: Donuts and Skill Bars */}
@@ -156,7 +166,7 @@ export default function DepartmentCharts() {
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-white rounded-xl p-4 border border-[#bfdbfe] shadow-sm flex flex-col items-center">
             <p className="text-[11px] font-bold text-gray-800 uppercase tracking-wide mb-4 w-full text-left">Employment Type</p>
-            <DonutChart segments={employmentSegments} size={130} thickness={25} centerLabel="3" centerSub="Total" />
+            <DonutChart segments={employmentSegments} size={130} thickness={25} centerLabel="1,240" centerSub="Employees" />
             <div className="flex items-center justify-center gap-3 mt-6 flex-wrap">
               {employmentSegments.map((s, i) => (
                 <div key={i} className="flex items-center gap-1.5">
@@ -167,16 +177,18 @@ export default function DepartmentCharts() {
             </div>
           </div>
           <div className="bg-white rounded-xl p-4 border border-[#bfdbfe] shadow-sm flex flex-col items-center">
-            <p className="text-[11px] font-bold text-gray-800 tracking-wide mb-4 w-full text-left">Gender Distribution</p>
-            <DonutChart segments={genderSegments} size={130} thickness={25} centerLabel="58%" centerSub="Male" />
-            <div className="flex items-center justify-center gap-5 mt-6">
-              {genderSegments.map((s, i) => (
-                <div key={i} className="flex flex-col items-center gap-1.5">
+            <p className="text-[11px] font-bold text-gray-800 tracking-wide mb-4 w-full text-left">Department Distribution</p>
+            <DonutChart segments={departmentSegments} size={130} thickness={25} centerLabel="1,240" centerSub="Total" />
+            <div className="flex items-center justify-center gap-3 mt-6 flex-wrap">
+              {departmentSegments.map((s, i) => (
+                <div key={i} className="flex flex-col items-center gap-1">
                   <div className="flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-sm flex-shrink-0" style={{ background: s.color }} />
                     <span className="text-[10px] text-gray-500 font-medium">{s.label}</span>
                   </div>
-                  <span className="text-[10px] text-gray-400 font-medium">{s.value === 58 ? 719 : 521}</span>
+                  <span className="text-[10px] text-gray-400 font-medium">
+                    {s.label === 'Technical' ? technicalCount : s.label === 'Admin' ? adminCount : supportCount}
+                  </span>
                 </div>
               ))}
             </div>
