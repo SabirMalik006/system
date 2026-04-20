@@ -120,7 +120,7 @@ export default function NewTransferOrderForm() {
               />
             </div>
           <div>
-  <label className={labelCls}>Hard Area here</label>
+  <label className={labelCls}>Hard Area Transfer</label>
   <div className="flex items-center gap-3">
     <button
       onClick={() => setIsHardAreaActive(!isHardAreaActive)}

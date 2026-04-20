@@ -7,8 +7,9 @@ const navLinks = [
   { label: 'Personnel', path: '/department', hasDropdown: false },
   { label: 'Attendance', path: '/attendance', hasDropdown: false },
   { label: 'Leave', path: '/leave-management', hasDropdown: false },
-  { label: 'Development', path: null, hasDropdown: true },
+  { label: 'Transfer and Training', path: null, hasDropdown: true },
   { label: 'Compliance', path: '/compliance', hasDropdown: false },
+  { label: 'Inspection', path: '/tools-inspection' },
 ];
 
 const developmentDropdownItems = [

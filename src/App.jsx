@@ -26,6 +26,7 @@ import HrmDashboard from './pages/hrm/HrmDashboard';
 import Department from './pages/hrm/Department';
 import EmployeeProfile from './pages/hrm/EmployeeProfile';
 import ToolsInspection from './pages/ims/ToolsInspection';
+import HrmNavbar from './components/layout/HrmNavbar';
 
 
 function App() {
@@ -127,7 +128,7 @@ function App() {
                     } />
                     <Route path="/tools-inspection" element={
                         <>
-                            <Navbar />
+                            <HrmNavbar />
                             <ToolsInspection />
                         </>
                     } />

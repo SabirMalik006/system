@@ -75,7 +75,7 @@ export default function DutyStatus() {
               </div>
               
               <div className="relative z-10 flex flex-col items-center">
-                <div className="text-[7px] font-bold text-gray-400 uppercase tracking-widest leading-tight text-center mb-0.5">INCOMPLETES<br/>PROFILES</div>
+                <div className="text-[7px] font-bold text-gray-400 uppercase tracking-widest leading-tight text-center mb-0.5">INCOMPLETE<br/>PROFILES</div>
                 <div className="text-[34px] font-black text-[#1e293b] leading-none mb-1">14</div>
               </div>
               
@@ -89,7 +89,7 @@ export default function DutyStatus() {
                 <circle cx="52" cy="52" r="50" fill="transparent" stroke="#3b82f6" strokeWidth="4" strokeDasharray="160 300" strokeLinecap="round" opacity="0.8" />
               </svg>
             </div>
-            <div className="text-[9px] font-bold text-gray-500 uppercase tracking-widest">INCOMPLETES PROFILES</div>
+            <div className="text-[9px] font-bold text-gray-500 uppercase tracking-widest">INCOMPLETE PROFILES</div>
           </div>
           
           {/* New Inductees */}

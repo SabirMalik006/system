@@ -28,7 +28,7 @@ const WorkforceShortageLiveStatus = () => {
             <div>
               <div className="flex items-center gap-2 mb-0.5">
                 <div className="w-1.5 h-1.5 bg-[#60a5fa] rounded-full"></div>
-                <span className="text-[11px] font-bold uppercase tracking-wide text-black">GE KARS AZ</span>
+                <span className="text-[11px] font-bold uppercase tracking-wide text-black">GE KARSAZ</span>
               </div>
               <div className="text-[#1A6FC4] text-[10px] ml-3.5">Plumber</div>
             </div>
