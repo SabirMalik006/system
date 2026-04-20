@@ -13,15 +13,15 @@ export default function InspectionHeader() {
         </div>
       </div>
       <div className="flex items-center gap-2 flex-shrink-0">
-        <button className="flex items-center gap-1.5 border border-gray-200 bg-white text-gray-600 text-xs font-semibold px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+        <button className="flex items-center cursor-pointer gap-1.5 border border-gray-200 bg-white text-gray-600 text-xs font-semibold px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors">
           <Calendar size={13} />
           Schedule
         </button>
-        <button className="flex items-center gap-1.5 border border-gray-200 bg-white text-gray-600 text-xs font-semibold px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+        <button className="flex items-center cursor-pointer gap-1.5 border border-gray-200 bg-white text-gray-600 text-xs font-semibold px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors">
           <Download size={13} />
           Export PDF
         </button>
-        <button className="flex items-center gap-1.5 bg-[#1a3a8f] hover:bg-blue-900 text-white text-xs font-bold px-4 py-2 rounded-lg transition-colors">
+        <button className="flex items-center cursor-pointer gap-1.5 bg-[#1a3a8f] hover:bg-blue-900 text-white text-xs font-bold px-4 py-2 rounded-lg transition-colors">
           <Plus size={13} />
           New Inspection
         </button>

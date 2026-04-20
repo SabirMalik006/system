@@ -124,7 +124,7 @@ export default function InspectionForm() {
         </div>
 
         {/* Submit */}
-        <button className="w-full py-2.5 bg-[#1a3a8f] hover:bg-blue-900 text-white text-sm font-bold rounded-xl transition-colors shadow-sm">
+        <button className="w-full cursor-pointer py-2.5 bg-[#1a3a8f] hover:bg-blue-900 text-white text-sm font-bold rounded-xl transition-colors shadow-sm">
           Submit Inspection
         </button>
       </div>
