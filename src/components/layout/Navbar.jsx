@@ -15,6 +15,7 @@ const Navbar = () => {
     { name: 'Procurements', path: '/procurement-management' },
     { name: 'Reports', path: '/reports' },
     { name: 'Vendors', path: '/vendors' },
+    { name: 'Inspection', path: '/tools-inspection' },
   ];
 
   const inventoryDropdownItems = [

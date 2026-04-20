@@ -25,6 +25,8 @@ import AttendancePage from './pages/hrm/AttendancePage';
 import HrmDashboard from './pages/hrm/HrmDashboard';
 import Department from './pages/hrm/Department';
 import EmployeeProfile from './pages/hrm/EmployeeProfile';
+import ToolsInspection from './pages/ims/ToolsInspection';
+
 
 function App() {
     return (
@@ -123,6 +125,13 @@ function App() {
                             <PurchaseRequest />
                         </>
                     } />
+                    <Route path="/tools-inspection" element={
+                        <>
+                            <Navbar />
+                            <ToolsInspection />
+                        </>
+                    } />
+                    
                 </Routes>
 
                 {/* HRM Routes with Navbar */}

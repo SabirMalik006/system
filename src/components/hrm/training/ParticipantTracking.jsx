@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Download, UserPlus, Search } from 'lucide-react';
 
 const participants = [
-  { name: 'Subhan Mehmood', empId: 'EMP-001',  dept: 'Plumbing',   program: 'Plumber',    startDate: '1-04-2022',  endDate: '11.04.2022', score: 60,  result: 'Promoted', resultStyle: 'bg-purple-100 text-purple-700', progress: 80 },
-  { name: 'Sabir Khan',     empId: 'EMP-002',  dept: 'Electrical', program: 'Sr Electrician',  startDate: '1-04-2022',  endDate: '17.04.2022', score: 70,  result: 'Completed', resultStyle: 'bg-green-100 text-green-700',  progress: 100 },
-  { name: 'Shahzad Sajid',   empId: 'EMP-003',  dept: 'Plumbing',   program: 'Painter',    startDate: 'June 2022',  endDate: '11.04.2022', score: 40,  result: null, resultStyle: '', progress: 40 },
-  { name: 'Ahmad Faris',     empId: 'EMP-004',  dept: 'Electrical', program: 'Welder',  startDate: '1-04-2022',  endDate: '17.04.2022', score: null, result: 'Completed', resultStyle: 'bg-green-100 text-green-700', progress: 100 },
+  { name: 'Subhan Mehmood', empId: 'EMP-001',  dept: 'Plumbing',   institute: 'Navvtac', program: 'Plumber',    startDate: '1-04-2022',  endDate: '11.04.2022', score: 60,  result: 'Promoted', resultStyle: 'bg-purple-100 text-purple-700', progress: 80 },
+  { name: 'Sabir Khan',     empId: 'EMP-002',  dept: 'Electrical', institute: 'Uptech', program: 'Sr Electrician',  startDate: '1-04-2022',  endDate: '17.04.2022', score: 70,  result: 'Completed', resultStyle: 'bg-green-100 text-green-700',  progress: 100 },
+  { name: 'Shahzad Sajid',   empId: 'EMP-003',  dept: 'Plumbing',   institute: 'Cisco', program: 'Painter',    startDate: 'June 2022',  endDate: '11.04.2022', score: 40,  result: null, resultStyle: '', progress: 40 },
+  { name: 'Ahmad Faris',     empId: 'EMP-004',  dept: 'Electrical', institute: 'TechTribe', program: 'Welder',  startDate: '1-04-2022',  endDate: '17.04.2022', score: null, result: 'Completed', resultStyle: 'bg-green-100 text-green-700', progress: 100 },
 ];
 
 export default function ParticipantTracking() {
@@ -13,7 +13,7 @@ export default function ParticipantTracking() {
   const filters = ['All Participants', 'Completed', 'In Progress', 'Not Started'];
 
   return (
-    <div className="bg-[#1a3a8f]  overflow-hidden shadow-sm">
+    <div className="bg-[#1a3a8f] overflow-hidden shadow-sm">
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-4">
         <div>
@@ -58,11 +58,11 @@ export default function ParticipantTracking() {
 
       {/* Table */}
       <div className="bg-white rounded-t-xl overflow-x-auto">
-        <table className="w-full min-w-[700px]">
+        <table className="w-full min-w-[800px]">
           <thead>
             <tr className="bg-gray-50 border-b border-gray-100">
-              {['Employee', 'Department', 'Program', 'Start Date', 'Planned End', 'Result', 'Score', 'Start Test', 'Test Status', 'Actions'].map(h => (
-                <th key={h} className="text-left px-3 py-2.5 text-[9px] font-bold text-gray-400 tracking-wider whitespace-nowrap">{h}</th>
+              {['Employee', 'Department', 'Institute', 'Program', 'Start Date', 'Planned End', 'Result', 'Score', 'Start Test', 'Test Status', 'Actions'].map(h => (
+                <th key={h} className="text-left px-3 py-2.5 text-[12px] font-bold text-gray-900 tracking-wider whitespace-nowrap">{h}</th>
               ))}
             </tr>
           </thead>
@@ -82,6 +82,7 @@ export default function ParticipantTracking() {
                   </div>
                 </td>
                 <td className="px-3 py-3 text-[11px] text-gray-600">{p.dept}</td>
+                <td className="px-3 py-3 text-[11px] text-gray-600">{p.institute}</td>
                 <td className="px-3 py-3 text-[11px] text-gray-600">{p.program}</td>
                 <td className="px-3 py-3 text-[11px] text-gray-600 whitespace-nowrap">{p.startDate}</td>
                 <td className="px-3 py-3 text-[11px] text-gray-600 whitespace-nowrap">{p.endDate}</td>

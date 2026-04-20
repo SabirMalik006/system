@@ -30,35 +30,35 @@ const RequiredInfo = () => {
                         <option>Water Tap</option>
                     </select>
                 </div>
-               <div>
-    <label className="text-sm font-medium text-gray-700 mb-2 block">QUANTITY RETURNED</label>
-    <div className="relative">
-        <input
-            type="text"
-            value={quantity}
-            className="w-full px-4 py-2 text-base text-center border border-gray-300 rounded-lg focus:outline-none focus:border-[#1A8FA0] bg-white font-medium"
-            readOnly
-        />
-        <div className="absolute right-2 top-1/2 transform -translate-y-1/2 flex flex-col">
-            <button 
-                onClick={() => handleQuantityChange('increment')}
-                className="p-0.5 hover:bg-gray-100 rounded transition-colors"
-            >
-                <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-                </svg>
-            </button>
-            <button 
-                onClick={() => handleQuantityChange('decrement')}
-                className="p-0.5 hover:bg-gray-100 rounded transition-colors"
-            >
-                <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-            </button>
-        </div>
-    </div>
-</div>
+                <div>
+                    <label className="text-sm font-medium text-gray-700 mb-2 block">QUANTITY RETURNED</label>
+                    <div className="relative">
+                        <input
+                            type="text"
+                            value={quantity}
+                            className="w-full px-4 py-2 text-base text-center border border-gray-300 rounded-lg focus:outline-none focus:border-[#1A8FA0] bg-white font-medium"
+                            readOnly
+                        />
+                        <div className="absolute right-2 top-1/2 transform -translate-y-1/2 flex flex-col">
+                            <button
+                                onClick={() => handleQuantityChange('increment')}
+                                className="p-0.5 hover:bg-gray-100 rounded transition-colors"
+                            >
+                                <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                                </svg>
+                            </button>
+                            <button
+                                onClick={() => handleQuantityChange('decrement')}
+                                className="p-0.5 hover:bg-gray-100 rounded transition-colors"
+                            >
+                                <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             {/* Row 2: Return Reason and Returning Staff - Side by Side */}
@@ -72,22 +72,39 @@ const RequiredInfo = () => {
                         style={{ height: '42px' }}
                     />
                 </div>
-               <div>
-    <label className="text-sm font-medium text-[#64748B] mb-2 block">RETURNING STAFF</label>
-    <div className="relative">
-        <select className="w-full px-4 py-2.5 text-sm border border-gray-200 rounded-lg bg-gray-50 text-[#0F172A] appearance-none cursor-pointer pr-10">
-            <option value="James Wilson">James Wilson</option>
-            <option value="John Smith">John Smith</option>
-            <option value="Sarah Johnson">Sarah Johnson</option>
-            <option value="Mike Brown">Mike Brown</option>
-        </select>
-        <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-            <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-        </div>
-    </div>
-</div>
+                <div>
+                    <label className="text-sm font-medium text-[#64748B] mb-2 block">RETURNING STAFF</label>
+                    <div className="relative">
+                        <select className="w-full px-4 py-2.5 text-sm border border-gray-200 rounded-lg bg-gray-50 text-[#0F172A] appearance-none cursor-pointer pr-10">
+                            <option value="James Wilson">James Wilson</option>
+                            <option value="John Smith">John Smith</option>
+                            <option value="Sarah Johnson">Sarah Johnson</option>
+                            <option value="Mike Brown">Mike Brown</option>
+                        </select>
+                        <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                            <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Row 3: Demolition Stock - New Field */}
+            <div className="grid grid-cols-2 gap-6">
+                <div>
+                    <label className="text-sm font-medium text-[#64748B] mb-2 block">DEMOLUTION STOCK</label>
+                    <select className="w-full px-4 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#1A8FA0] bg-white text-[#0F172A]">
+                        <option>Select Stock</option>
+                        <option>Scrap Material</option>
+                        <option>Damaged Goods</option>
+                        <option>End of Life Items</option>
+                        <option>Recyclable Items</option>
+                    </select>
+                </div>
+                <div>
+                    {/* Empty div to maintain grid alignment */}
+                </div>
             </div>
         </div>
     );

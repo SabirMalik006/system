@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { RefreshCw, ChevronDown, User } from 'lucide-react';
 
-const inputCls  = 'w-full px-4 py-2.5 text-sm border border-gray-200 rounded-lg bg-white text-gray-900 placeholder-gray-400 outline-none focus:border-blue-400 transition-colors font-semibold';
+const inputCls = 'w-full px-4 py-2.5 text-sm border border-gray-200 rounded-lg bg-white text-gray-900 placeholder-gray-400 outline-none focus:border-blue-400 transition-colors font-semibold';
 const selectCls = `${inputCls} appearance-none pr-7 cursor-pointer`;
-const labelCls  = 'block text-[10px] font-bold text-gray-600 tracking-wider uppercase mb-1.5';
+const labelCls = 'block text-[10px] font-bold text-gray-600 tracking-wider uppercase mb-1.5';
 
 export default function NewTransferOrderForm() {
   const [form, setForm] = useState({
@@ -15,6 +15,7 @@ export default function NewTransferOrderForm() {
     effectiveDate: 'mm/dd/yyyy',
     orderNumber: 'TRF-2023-XXXX',
   });
+  const [isHardAreaActive, setIsHardAreaActive] = useState(false);
 
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
 
@@ -99,7 +100,7 @@ export default function NewTransferOrderForm() {
             </div>
           </div>
 
-          {/* Effective Date + Order Number */}
+          {/* Effective Date + Order Number + Hard Area Toggle */}
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className={labelCls}>Effective Date</label>
@@ -118,6 +119,26 @@ export default function NewTransferOrderForm() {
                 readOnly
               />
             </div>
+          <div>
+  <label className={labelCls}>Hard Area here</label>
+  <div className="flex items-center gap-3">
+    <button
+      onClick={() => setIsHardAreaActive(!isHardAreaActive)}
+      className={`relative w-12 h-6 rounded-full transition-colors duration-300 focus:outline-none ${
+        isHardAreaActive ? 'bg-[#2196F3]' : 'bg-gray-300'
+      }`}
+    >
+      <span
+        className={`absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full transition-transform duration-300 ${
+          isHardAreaActive ? 'translate-x-6' : 'translate-x-0'
+        }`}
+      />
+    </button>
+    <span className="text-sm text-gray-600">
+      {isHardAreaActive ? 'Active' : 'Inactive'}
+    </span>
+  </div>
+</div>
           </div>
         </div>
 
