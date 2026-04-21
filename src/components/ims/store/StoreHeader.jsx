@@ -28,7 +28,7 @@ const StoreHeader = () => {
                         SAVE DRAFT
                     </button>
 
-                    <button className="flex items-center gap-2 font-medium px-4 sm:px-6 py-2 text-sm text-white bg-gradient-to-r from-[#2563EB] to-[#2196F3] rounded-lg hover:from-[#1D4ED8] hover:to-[#1976D2] transition-all shadow-sm whitespace-nowrap cursor-pointer">
+                    <button className="flex items-center gap-2 font-medium px-4 sm:px-6 py-2 text-sm text-white bg-gradient-to-b from-[#1E4D7B] to-[#1E4D7B] rounded-lg hover:from-[#1D4ED8] hover:to-[#1976D2] transition-all shadow-sm whitespace-nowrap cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <path d="M10.029 4.285A2 2 0 0 0 7 6v12a2 2 0 0 0 3.029 1.715l9.997-5.998a2 2 0 0 0 .003-3.432z"/>
                             <path d="M3 4v16"/>

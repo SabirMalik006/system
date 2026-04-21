@@ -41,17 +41,17 @@ const InventoryPreview = () => {
       </div>
 
       {/* Bottom teal panel */}
-      <div className="bg-[#1A8FA080] px-5 pt-6 pb-5 rounded-2xl m-3 mt-2 border-2 border-[#0C626F]">
+      <div className="bg-gradient-to-t from-[#2E5F8E] to-[#4A7FAE] px-5 pt-6 pb-5 rounded-2xl m-3 mt-2 border-2 border-[#0C626F]">
         {/* New Stock row */}
         <div className="flex items-center justify-between mb-2">
-          <span className="text-sm font-bold text-white">New Stock</span>
+          <span className="text-sm font-bold text-white/90">New Stock</span>
           <span className="text-xs font-semibold text-white bg-[#1A8FA0] px-2.5 py-0.5 rounded-full">
             +12 units
           </span>
         </div>
 
         {/* New Stock value */}
-        <div className="text-4xl font-bold text-[#1A8FA0] leading-tight">
+        <div className="text-4xl font-bold text-white/80 leading-tight">
           1,262
         </div>
       </div>

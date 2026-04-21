@@ -61,7 +61,7 @@ export default function CreatePurchaseRequest() {
               Create Purchase Request
             </h1>
             <div className="flex flex-wrap items-center gap-2.5">
-              <span className="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded">
+              <span className="bg-gradient-to-t from-[#1E4D7B] to-[#1E4D7B] text-white text-xs font-bold px-3 py-1 rounded">
                 REQ-2024-0812
               </span>
               <span className="flex items-center gap-1.5 text-xs text-gray-400">
@@ -75,7 +75,7 @@ export default function CreatePurchaseRequest() {
               <Save size={14} />
               Save Draft
             </button>
-            <button className="flex items-center gap-2 px-4 sm:px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-bold rounded-xl transition-colors shadow-sm">
+            <button className="flex items-center gap-2 px-4 sm:px-5 py-2 bg-gradient-to-t from-[#1E4D7B] to-[#1E4D7B] hover:bg-blue-700 text-white text-xs sm:text-sm font-bold rounded-xl transition-colors shadow-sm">
               <Send size={14} />
               Submit for Approval
             </button>
@@ -267,7 +267,7 @@ export default function CreatePurchaseRequest() {
             {/* Order Summary Card */}
             <div
               className="rounded-2xl p-4 sm:p-5 flex flex-col gap-4"
-              style={{ background: 'linear-gradient(160deg, #1d4ed8 0%, #1e40af 60%, #1e3a8a 100%)' }}
+              style={{ background: 'linear-gradient(160deg, #1E4D7B 0%, #1E4D7B 60%, #1e3a8a 100%)' }}
             >
               <h2 className="text-base sm:text-lg font-bold text-white">Order Summary</h2>
 
@@ -301,7 +301,7 @@ export default function CreatePurchaseRequest() {
               </div>
 
               {/* Submit button */}
-              <button className="w-full py-2.5 sm:py-3 bg-blue-500 hover:bg-blue-400 text-white text-xs sm:text-sm font-bold rounded-xl transition-colors">
+              <button className="w-full py-2.5 sm:py-3 bg-blue-800 hover:bg-blue-400 text-white text-xs sm:text-sm font-bold rounded-xl transition-colors">
                 Submit for Approval
               </button>
 
@@ -339,8 +339,8 @@ export default function CreatePurchaseRequest() {
             </div>
 
             {/* Approval Workflow Card */}
-            <div className="bg-[#1A8FA04D] rounded-2xl border border-[#1e3a6e] p-4 sm:p-5">
-              <div className="text-[9px] sm:text-[10px] font-bold text-blue-400 tracking-widest uppercase mb-4">
+            <div className="bg-[#1E4D7B] rounded-2xl border border-[#1e3a6e] p-4 sm:p-5">
+              <div className="text-[9px] sm:text-[10px] font-bold text-white/80 tracking-widest uppercase mb-4">
                 Approval Workflow
               </div>
               <div className="flex flex-col gap-3">
@@ -348,21 +348,21 @@ export default function CreatePurchaseRequest() {
                   <div key={step} className="flex items-center gap-3">
                     {/* Step circle */}
                     <div className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-[10px] sm:text-xs font-bold flex-shrink-0 transition-colors ${i === 0
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-[#243b5e] text-gray-500'
+                        ? 'bg-blue-500 text-white/80'
+                        : 'bg-[#243b5e] text-white/80'
                       }`}>
                       {i === 0
-                        ? <CheckCircle size={12} className="text-white" />
+                        ? <CheckCircle size={12} className="text-white/80" />
                         : i + 1
                       }
                     </div>
                     {/* Step label */}
-                    <span className={`text-xs sm:text-sm font-semibold ${i === 0 ? 'text-blue-400' : 'text-gray-600'}`}>
+                    <span className={`text-xs sm:text-sm font-semibold ${i === 0 ? 'text-white/80' : 'text-white/80'}`}>
                       {step}
                     </span>
                     {/* Active indicator */}
                     {i === 0 && (
-                      <span className="ml-auto text-[9px] sm:text-[10px] text-blue-400 font-bold">Active</span>
+                      <span className="ml-auto text-[9px] sm:text-[10px] text-white/80 font-bold">Active</span>
                     )}
                   </div>
                 ))}

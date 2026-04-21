@@ -19,9 +19,6 @@ export default function TrainingHeader() {
           <h1 className="text-base font-black text-gray-900 leading-tight">
             Training Management
           </h1>
-          <p className="text-xs text-blue-400 mt-0.5 font-normal">
-            HRMS / Training / Programs &amp; Participants
-          </p>
         </div>
 
         {/* Right: Buttons */}

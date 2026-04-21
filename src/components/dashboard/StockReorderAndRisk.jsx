@@ -89,10 +89,10 @@ function DonutChart() {
 
         {/* Images - Clickable */}
         {[
-          { angle: 235, img: '/a4.svg', label: 'Tools', path: '/stock-returns' },
-          { angle: 330, img: '/a3.svg', label: 'Consumable', path: '/reports' },
+          { angle: 255, img: '/a4.svg', label: 'Tools', path: '/stock-returns' },
+          { angle: 335, img: '/a3.svg', label: 'Consumable', path: '/reports' },
           { angle: 60, img: '/88.png', label: 'Sanitary', path: '/procurement-management' },
-          { angle: 150, img: '/Overlay+Border+OverlayBlur.png', label: 'Electrical', path: '/items' },
+          { angle: 160, img: '/Overlay+Border+OverlayBlur.png', label: 'Electrical', path: '/items' },
         ].map((pos, i) => {
           const pt = polarToXY(pos.angle, r + 1);
           return (
@@ -101,7 +101,7 @@ function DonutChart() {
               className="cursor-pointer hover:opacity-80 transition-opacity"
               onClick={() => handleImageClick(pos.img)}
             >
-              <foreignObject x={pt.x - 13} y={pt.y - 14} width="30" height="35">
+              <foreignObject x={pt.x - 13} y={pt.y - 15} width="33" height="33">
                 <img
                   src={pos.img}
                   alt={pos.label}

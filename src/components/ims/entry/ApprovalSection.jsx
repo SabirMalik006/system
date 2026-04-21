@@ -67,7 +67,7 @@ const ApprovalSection = ({ onConfirm }) => {
                 </button>
                 <button 
                     onClick={handleConfirm}
-                    className="px-4 py-2 text-sm text-white bg-gradient-to-r from-[#2563EB] to-[#2196F3] rounded-lg hover:from-[#1D4ED8] hover:to-[#1976D2] transition-all duration-300 shadow-sm hover:shadow-md flex items-center gap-1"
+                    className="px-4 py-2 text-sm text-white bg-gradient-to-t from-[#1E4D7B] to-[#1E4D7B] rounded-lg hover:from-[#1D4ED8] hover:to-[#1976D2] transition-all duration-300 shadow-sm hover:shadow-md flex items-center gap-1"
                 >
                     <img src="pp.png" alt="" />
                     Confirm Issuance

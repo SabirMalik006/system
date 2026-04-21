@@ -9,7 +9,7 @@ const SystemRules = () => {
     ];
 
     return (
-        <div className="bg-gradient-to-b from-[#0B3F72] to-[#1E60AF] rounded-xl border border-gray-200 p-5 text-white">
+        <div className="bg-gradient-to-t from-[#1E4D7B] to-[#1E4D7B] rounded-xl border border-gray-200 p-5 text-white">
            <div className='flex item-center gap-2 mb-4' >
              <img src="Icon (5).svg" alt="" />
             <h2 className="text-base font-semibold text-white ">System Rules</h2>

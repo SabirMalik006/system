@@ -15,7 +15,7 @@ const VendorTable = ({ vendors, onVendorClick }) => {
             );
         }
         return (
-            <span className="inline-flex px-3 py-1 text-xs font-medium rounded-full bg-[#1A8FA0] text-white">
+            <span className="inline-flex px-3 py-1 text-xs font-medium rounded-full bg-gradient-to-t from-[#1E4D7B] to-[#1E4D7B] text-white">
                 Active
             </span>
         );

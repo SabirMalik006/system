@@ -1,19 +1,22 @@
-import React, { useState } from 'react';
-import { X, Calendar, Users, Clock, BookOpen } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { X, Calendar, Users, Clock, BookOpen, User, Award, BarChart } from 'lucide-react';
 
 export default function TrainingFormModal({ isOpen, onClose, onSubmit }) {
   const [formData, setFormData] = useState({
-    programName: '',
+    title: '',
     category: '',
     type: '',
     instructor: '',
     startDate: '',
     endDate: '',
     duration: '',
-    maxParticipants: '',
-    location: '',
-    description: '',
+    enrolled: '',
+    completed: '',
+    avgScore: '',
+    status: '',
   });
+
+  const modalRef = useRef(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -27,37 +30,60 @@ export default function TrainingFormModal({ isOpen, onClose, onSubmit }) {
     onClose();
   };
 
+  // Close modal when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-3">
+      <div 
+        ref={modalRef}
+        className="bg-white rounded-xl shadow-xl w-full max-w-md overflow-hidden animate-fadeIn"
+      >
         {/* Header */}
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
-          <div>
-            <h2 className="text-lg font-bold text-gray-900">Create New Training Program</h2>
-            <p className="text-xs text-gray-500 mt-0.5">Fill in the details to add a new training program</p>
+        <div className=" px-5 py-3">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-base font-bold text-black">Add New Training Program</h2>
+              <p className="text-[11px] text-black mt-0.5">Fill in the details below</p>
+            </div>
+            <button 
+              onClick={onClose}
+              className="p-1 hover:bg-white/20 rounded-lg transition-colors"
+            >
+              <X size={16} className="text-black" />
+            </button>
           </div>
-          <button 
-            onClick={onClose}
-            className="p-1 hover:bg-gray-100 rounded-lg transition-colors"
-          >
-            <X size={18} className="text-gray-500" />
-          </button>
         </div>
 
         {/* Form Body */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-5">
-          {/* Program Name */}
+        <form onSubmit={handleSubmit} className="p-4 space-y-3 max-h-[70vh] overflow-y-auto">
+          {/* Title */}
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1.5">
-              Program Name <span className="text-red-500">*</span>
+            <label className="block text-[10px] font-semibold text-gray-700 mb-1">
+              Title <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
-              name="programName"
-              value={formData.programName}
+              name="title"
+              value={formData.title}
               onChange={handleChange}
               placeholder="e.g., Electrical Safety Training"
               className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#1A8FA0]"
@@ -65,59 +91,60 @@ export default function TrainingFormModal({ isOpen, onClose, onSubmit }) {
             />
           </div>
 
-          {/* Category & Type - 2 columns */}
-          <div className="grid grid-cols-2 gap-4">
+          {/* Category & Type */}
+          <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1.5">Category</label>
+              <label className="block text-[10px] font-semibold text-gray-700 mb-1">Category</label>
               <select
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
-                className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#1A8FA0]"
+                className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#1A8FA0] bg-white"
               >
-                <option value="">Select Category</option>
+                <option value="">Select</option>
                 <option value="Technical Skills">Technical Skills</option>
                 <option value="Safety">Safety</option>
                 <option value="Soft Skills">Soft Skills</option>
-                <option value="Compliance">Compliance</option>
               </select>
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1.5">Training Type</label>
+              <label className="block text-[10px] font-semibold text-gray-700 mb-1">Type</label>
               <select
                 name="type"
                 value={formData.type}
                 onChange={handleChange}
-                className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#1A8FA0]"
+                className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#1A8FA0] bg-white"
               >
-                <option value="">Select Type</option>
+                <option value="">Select</option>
                 <option value="Workshop">Workshop</option>
                 <option value="On-Site">On-Site</option>
                 <option value="Classroom">Classroom</option>
-                <option value="Online">Online</option>
               </select>
             </div>
           </div>
 
           {/* Instructor */}
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1.5">Institute Name</label>
-            <input
-              type="text"
-              name="instructor"
-              value={formData.instructor}
-              onChange={handleChange}
-              placeholder="e.g., Eng. Kindred Mfr"
-              className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#1A8FA0]"
-            />
+            <label className="block text-[10px] font-semibold text-gray-700 mb-1">Instructor</label>
+            <div className="relative">
+              <User size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+              <input
+                type="text"
+                name="instructor"
+                value={formData.instructor}
+                onChange={handleChange}
+                placeholder="e.g., Eng. Kindred Mfr"
+                className="w-full pl-9 pr-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#1A8FA0]"
+              />
+            </div>
           </div>
 
-          {/* Start Date & End Date - 2 columns */}
-          <div className="grid grid-cols-2 gap-4">
+          {/* Start Date & End Date */}
+          <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1.5">Start Date</label>
+              <label className="block text-[10px] font-semibold text-gray-700 mb-1">Start Date</label>
               <div className="relative">
-                <Calendar size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                <Calendar size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                 <input
                   type="date"
                   name="startDate"
@@ -128,9 +155,9 @@ export default function TrainingFormModal({ isOpen, onClose, onSubmit }) {
               </div>
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1.5">End Date</label>
+              <label className="block text-[10px] font-semibold text-gray-700 mb-1">End Date</label>
               <div className="relative">
-                <Calendar size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                <Calendar size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                 <input
                   type="date"
                   name="endDate"
@@ -142,76 +169,99 @@ export default function TrainingFormModal({ isOpen, onClose, onSubmit }) {
             </div>
           </div>
 
-          {/* Duration & Max Participants - 2 columns */}
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1.5">Duration (Days)</label>
-              <div className="relative">
-                <Clock size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-                <input
-                  type="number"
-                  name="duration"
-                  value={formData.duration}
-                  onChange={handleChange}
-                  placeholder="e.g., 3"
-                  className="w-full pl-9 pr-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#1A8FA0]"
-                />
-              </div>
+          {/* Duration */}
+          <div>
+            <label className="block text-[10px] font-semibold text-gray-700 mb-1">Duration</label>
+            <div className="relative">
+              <Clock size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+              <input
+                type="text"
+                name="duration"
+                value={formData.duration}
+                onChange={handleChange}
+                placeholder="e.g., 3 Days"
+                className="w-full pl-9 pr-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#1A8FA0]"
+              />
             </div>
+          </div>
+
+          {/* Enrolled & Completed */}
+          <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1.5">Max Participants</label>
+              <label className="block text-[10px] font-semibold text-gray-700 mb-1">Enrolled</label>
               <div className="relative">
-                <Users size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                <Users size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                 <input
                   type="number"
-                  name="maxParticipants"
-                  value={formData.maxParticipants}
+                  name="enrolled"
+                  value={formData.enrolled}
                   onChange={handleChange}
                   placeholder="e.g., 50"
                   className="w-full pl-9 pr-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#1A8FA0]"
                 />
               </div>
             </div>
+            <div>
+              <label className="block text-[10px] font-semibold text-gray-700 mb-1">Completed</label>
+              <div className="relative">
+                <Award size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                <input
+                  type="number"
+                  name="completed"
+                  value={formData.completed}
+                  onChange={handleChange}
+                  placeholder="e.g., 45"
+                  className="w-full pl-9 pr-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#1A8FA0]"
+                />
+              </div>
+            </div>
           </div>
 
-          {/* Location */}
-          <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1.5">Location / Venue</label>
-            <input
-              type="text"
-              name="location"
-              value={formData.location}
-              onChange={handleChange}
-              placeholder="e.g., Main Conference Hall"
-              className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#1A8FA0]"
-            />
+          {/* Avg Score & Status */}
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block text-[10px] font-semibold text-gray-700 mb-1">Avg Score</label>
+              <div className="relative">
+                <BarChart size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                <input
+                  type="text"
+                  name="avgScore"
+                  value={formData.avgScore}
+                  onChange={handleChange}
+                  placeholder="e.g., 85.5%"
+                  className="w-full pl-9 pr-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#1A8FA0]"
+                />
+              </div>
+            </div>
+            <div>
+              <label className="block text-[10px] font-semibold text-gray-700 mb-1">Status</label>
+              <select
+                name="status"
+                value={formData.status}
+                onChange={handleChange}
+                className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#1A8FA0] bg-white"
+              >
+                <option value="">Select Status</option>
+                <option value="Completed">Completed</option>
+                <option value="Ongoing">Ongoing</option>
+                <option value="Upcoming">Upcoming</option>
+                <option value="Postponed">Postponed</option>
+              </select>
+            </div>
           </div>
 
-          {/* Description */}
-          <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1.5">Description</label>
-            <textarea
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              rows="3"
-              placeholder="Describe the training program content and objectives..."
-              className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#1A8FA0] resize-none"
-            />
-          </div>
-
-          {/* Form Actions */}
-          <div className="flex gap-3 pt-4 border-t border-gray-200">
+          {/* Action Buttons */}
+          <div className="flex gap-3 pt-3">
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 py-2.5 border border-gray-300 text-gray-700 text-sm font-semibold rounded-lg hover:bg-gray-50 transition-colors"
+              className="flex-1 py-2 border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="flex-1 py-2.5 bg-[#1A8FA0] hover:bg-[#167a89] text-white text-sm font-semibold rounded-lg transition-colors"
+              className="flex-1 py-2 bg-gradient-to-r from-[#1E4D7B] to-[#1A6FC4] hover:from-[#163A50] hover:to-[#0D4A6E] text-white text-sm font-medium rounded-lg transition-all shadow-md"
             >
               Create Program
             </button>

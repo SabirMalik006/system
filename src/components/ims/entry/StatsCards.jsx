@@ -6,21 +6,21 @@ const StatsCards = ({ showLowStockAlert = true }) => {
             label: "TOTAL ISSUANCES", 
             value: "24", 
             icon: "/Overlay.png",
-            bgGradient: "from-[#3AA5B9] to-[#1E4F7A]",
+            bgGradient: "bg-gradient-to-t from-[#1E4D7B] to-[#1E4D7B]",
             alwaysShow: true
         },
         { 
             label: "PENDING APPROVALS", 
             value: "05", 
             icon: "/Overlay (1).png",
-            bgGradient: "from-[#3AA5B9] to-[#1E4F7A]",
+            bgGradient: "bg-gradient-to-t from-[#1E4D7B] to-[#1E4D7B]",
             alwaysShow: true
         },
         { 
             label: "APPROVED TOOM", 
             value: "12", 
             icon: "/Overlay (2).png",
-            bgGradient: "from-[#3AA5B9] to-[#1E4F7A]",
+            bgGradient: "bg-gradient-to-t from-[#1E4D7B] to-[#1E4D7B]",
             alwaysShow: true
         },
         { 

@@ -2,8 +2,8 @@ import React from 'react';
 
 const QuickInsightCard = ({ currentStock = 1250, safetyThreshold = 200 }) => {
     return (
-        <div className="bg-gradient-to-t from-[#1E4D7B] to-[#1A6FC4] rounded-lg border border-gray-200 p-6 text-white z-1 relative">
-            <img src="/Vector.png" alt="" className='absolute top-0 right-0 z-0' />
+        <div className="bg-gradient-to-t from-[#1E4D7B] to-[#1E4D7B] rounded-lg border border-gray-200 p-6 text-white z-1 relative">
+            {/* <img src="/Vector.png" alt="" className='absolute top-0 right-0 z-0' /> */}
             <div className='flex items-center gap-2 font-500' >
                 <img src="/f.png" alt="" className='pb-2' />
                 <h2 className="text-md font-semibold  mb-3">Quick Insight</h2>

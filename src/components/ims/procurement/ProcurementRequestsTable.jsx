@@ -42,7 +42,7 @@ const detailData = {
     { item: 'Thread Seal Tape',  qty: 30 },
   ],
   trail: [
-    { label: 'Unit Officer Approved', sub: 'Asad Hassan · Lvl 1 · 14 Jun, 09:42' },
+    { label: 'Officer Approved', sub: 'Asad Hassan · Lvl 1 · 14 Jun, 09:42' },
     { label: 'Controller Approved',   sub: 'Farida Karimi · Lvl 2 · 14 Jun, 14:15' },
     { label: 'PO Generated',          sub: 'System · PO-2025-00198 · 15 Jun' },
   ],
