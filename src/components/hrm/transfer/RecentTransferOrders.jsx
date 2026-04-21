@@ -2,12 +2,12 @@ import React from 'react';
 import { Eye, FileText } from 'lucide-react';
 
 const orders = [
-  { emp: 'JD', empId: 'EMP-10294 • Senior Dev', avatarBg: '#ebf4ff', avatarText: '#1a73e8', from: 'Headquarters\nIT Division', to: 'Dubai Branch\nGlobal Tech Center', date: 'Oct 15,\n2023', status: 'Executed', statusStyle: 'bg-[#e2f5e9] text-[#1f874c]', hardAreaTransfer: 'Active' },
-  { emp: 'MS', empId: 'EMP-10355 • HR Manager',    avatarBg: '#fff3cd', avatarText: '#c46c24', from: 'South Station\nPeople Ops',  to: 'Headquarters\nCorporate HR',      date: 'Nov 01,\n2023', status: 'In Approval', statusStyle: 'bg-[#f0f4f8] text-[#47607a]', hardAreaTransfer: 'Inactive' },
-  { emp: 'JD', empId: 'EMP-10294 • Senior Dev', avatarBg: '#ebf4ff', avatarText: '#1a73e8', from: 'Headquarters\nIT Division', to: 'Dubai Branch\nGlobal Tech Center', date: 'Oct 15,\n2023', status: 'Executed', statusStyle: 'bg-[#e2f5e9] text-[#1f874c]', hardAreaTransfer: 'Active' },
-  { emp: 'MS', empId: 'EMP-10355 • HR Manager',    avatarBg: '#fff3cd', avatarText: '#c46c24', from: 'South Station\nPeople Ops',  to: 'Headquarters\nCorporate HR',      date: 'Nov 01,\n2023', status: 'In Approval', statusStyle: 'bg-[#f0f4f8] text-[#47607a]', hardAreaTransfer: 'Inactive' },
-  { emp: 'JD', empId: 'EMP-10294 • Senior Dev', avatarBg: '#ebf4ff', avatarText: '#1a73e8', from: 'Headquarters\nIT Division', to: 'Dubai Branch\nGlobal Tech Center', date: 'Oct 15,\n2023', status: 'Executed', statusStyle: 'bg-[#e2f5e9] text-[#1f874c]', hardAreaTransfer: 'Active' },
-  { emp: 'MS', empId: 'EMP-10355 • HR Manager',    avatarBg: '#fff3cd', avatarText: '#c46c24', from: 'South Station\nPeople Ops',  to: 'Headquarters\nCorporate HR',      date: 'Nov 01,\n2023', status: 'In Approval', statusStyle: 'bg-[#f0f4f8] text-[#47607a]', hardAreaTransfer: 'Inactive' },
+  { emp: 'JD', empId: 'EMP-10294 • Senior Dev', avatarBg: '#ebf4ff', avatarText: '#1a73e8', from: 'Headquarters\nIT Division', to: 'Dubai Branch\nGlobal Tech Center', date: 'Oct 15,\n2023', status: 'Executed', statusStyle: 'bg-[#e2f5e9] text-[#1f874c]', hardAreaTransfer: 'On' },
+  { emp: 'MS', empId: 'EMP-10355 • HR Manager',    avatarBg: '#fff3cd', avatarText: '#c46c24', from: 'South Station\nPeople Ops',  to: 'Headquarters\nCorporate HR',      date: 'Nov 01,\n2023', status: 'In Approval', statusStyle: 'bg-[#f0f4f8] text-[#47607a]', hardAreaTransfer: 'Off' },
+  { emp: 'JD', empId: 'EMP-10294 • Senior Dev', avatarBg: '#ebf4ff', avatarText: '#1a73e8', from: 'Headquarters\nIT Division', to: 'Dubai Branch\nGlobal Tech Center', date: 'Oct 15,\n2023', status: 'Executed', statusStyle: 'bg-[#e2f5e9] text-[#1f874c]', hardAreaTransfer: 'On' },
+  { emp: 'MS', empId: 'EMP-10355 • HR Manager',    avatarBg: '#fff3cd', avatarText: '#c46c24', from: 'South Station\nPeople Ops',  to: 'Headquarters\nCorporate HR',      date: 'Nov 01,\n2023', status: 'In Approval', statusStyle: 'bg-[#f0f4f8] text-[#47607a]', hardAreaTransfer: 'Off' },
+  { emp: 'JD', empId: 'EMP-10294 • Senior Dev', avatarBg: '#ebf4ff', avatarText: '#1a73e8', from: 'Headquarters\nIT Division', to: 'Dubai Branch\nGlobal Tech Center', date: 'Oct 15,\n2023', status: 'Executed', statusStyle: 'bg-[#e2f5e9] text-[#1f874c]', hardAreaTransfer: 'On' },
+  { emp: 'MS', empId: 'EMP-10355 • HR Manager',    avatarBg: '#fff3cd', avatarText: '#c46c24', from: 'South Station\nPeople Ops',  to: 'Headquarters\nCorporate HR',      date: 'Nov 01,\n2023', status: 'In Approval', statusStyle: 'bg-[#f0f4f8] text-[#47607a]', hardAreaTransfer: 'Off' },
 ];
 
 export default function RecentTransferOrders() {
@@ -70,7 +70,7 @@ export default function RecentTransferOrders() {
                 {/* Hard Area Transfer */}
                 <td className="px-5 py-4 text-center">
                   <span className={`text-[10px] font-bold px-3 py-1.5 rounded-full ${
-                    row.hardAreaTransfer === 'Active' 
+                    row.hardAreaTransfer === 'On' 
                       ? 'bg-green-100 text-green-700' 
                       : 'bg-red-100 text-red-700'
                   }`}>
