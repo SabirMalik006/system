@@ -13,7 +13,7 @@ const navLinks = [
 ];
 
 const developmentDropdownItems = [
-  { name: 'Inter Unit Transfer', path: '/inter-unit-transfer' },
+  { name: 'Transfer', path: '/inter-unit-transfer' },
   { name: 'Training Management', path: '/training-management' },
 ];
 

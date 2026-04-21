@@ -16,7 +16,7 @@ export default function TrainingHeader() {
         {/* Left: Title + Breadcrumb */}
         <div>
           <h1 className="text-[20px] font-black text-gray-900 leading-tight">
-            Training Management
+            Inspection
           </h1>
         </div>
 

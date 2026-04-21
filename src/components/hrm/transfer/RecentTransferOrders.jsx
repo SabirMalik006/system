@@ -2,12 +2,12 @@ import React from 'react';
 import { Eye, FileText } from 'lucide-react';
 
 const orders = [
-  { emp: 'JD', empId: 'EMP-10294 • Senior Dev', avatarBg: '#ebf4ff', avatarText: '#1a73e8', from: 'Headquarters\nIT Division', to: 'Dubai Branch\nGlobal Tech Center', date: 'Oct 15,\n2023', status: 'Executed', statusStyle: 'bg-[#e2f5e9] text-[#1f874c]' },
-  { emp: 'MS', empId: 'EMP-10355 • HR Manager',    avatarBg: '#fff3cd', avatarText: '#c46c24', from: 'South Station\nPeople Ops',  to: 'Headquarters\nCorporate HR',      date: 'Nov 01,\n2023', status: 'In Approval', statusStyle: 'bg-[#f0f4f8] text-[#47607a]' },
-  { emp: 'JD', empId: 'EMP-10294 • Senior Dev', avatarBg: '#ebf4ff', avatarText: '#1a73e8', from: 'Headquarters\nIT Division', to: 'Dubai Branch\nGlobal Tech Center', date: 'Oct 15,\n2023', status: 'Executed', statusStyle: 'bg-[#e2f5e9] text-[#1f874c]' },
-  { emp: 'MS', empId: 'EMP-10355 • HR Manager',    avatarBg: '#fff3cd', avatarText: '#c46c24', from: 'South Station\nPeople Ops',  to: 'Headquarters\nCorporate HR',      date: 'Nov 01,\n2023', status: 'In Approval', statusStyle: 'bg-[#f0f4f8] text-[#47607a]' },
-  { emp: 'JD', empId: 'EMP-10294 • Senior Dev', avatarBg: '#ebf4ff', avatarText: '#1a73e8', from: 'Headquarters\nIT Division', to: 'Dubai Branch\nGlobal Tech Center', date: 'Oct 15,\n2023', status: 'Executed', statusStyle: 'bg-[#e2f5e9] text-[#1f874c]' },
-  { emp: 'MS', empId: 'EMP-10355 • HR Manager',    avatarBg: '#fff3cd', avatarText: '#c46c24', from: 'South Station\nPeople Ops',  to: 'Headquarters\nCorporate HR',      date: 'Nov 01,\n2023', status: 'In Approval', statusStyle: 'bg-[#f0f4f8] text-[#47607a]' },
+  { emp: 'JD', empId: 'EMP-10294 • Senior Dev', avatarBg: '#ebf4ff', avatarText: '#1a73e8', from: 'Headquarters\nIT Division', to: 'Dubai Branch\nGlobal Tech Center', date: 'Oct 15,\n2023', status: 'Executed', statusStyle: 'bg-[#e2f5e9] text-[#1f874c]', hardAreaTransfer: 'Active' },
+  { emp: 'MS', empId: 'EMP-10355 • HR Manager',    avatarBg: '#fff3cd', avatarText: '#c46c24', from: 'South Station\nPeople Ops',  to: 'Headquarters\nCorporate HR',      date: 'Nov 01,\n2023', status: 'In Approval', statusStyle: 'bg-[#f0f4f8] text-[#47607a]', hardAreaTransfer: 'Inactive' },
+  { emp: 'JD', empId: 'EMP-10294 • Senior Dev', avatarBg: '#ebf4ff', avatarText: '#1a73e8', from: 'Headquarters\nIT Division', to: 'Dubai Branch\nGlobal Tech Center', date: 'Oct 15,\n2023', status: 'Executed', statusStyle: 'bg-[#e2f5e9] text-[#1f874c]', hardAreaTransfer: 'Active' },
+  { emp: 'MS', empId: 'EMP-10355 • HR Manager',    avatarBg: '#fff3cd', avatarText: '#c46c24', from: 'South Station\nPeople Ops',  to: 'Headquarters\nCorporate HR',      date: 'Nov 01,\n2023', status: 'In Approval', statusStyle: 'bg-[#f0f4f8] text-[#47607a]', hardAreaTransfer: 'Inactive' },
+  { emp: 'JD', empId: 'EMP-10294 • Senior Dev', avatarBg: '#ebf4ff', avatarText: '#1a73e8', from: 'Headquarters\nIT Division', to: 'Dubai Branch\nGlobal Tech Center', date: 'Oct 15,\n2023', status: 'Executed', statusStyle: 'bg-[#e2f5e9] text-[#1f874c]', hardAreaTransfer: 'Active' },
+  { emp: 'MS', empId: 'EMP-10355 • HR Manager',    avatarBg: '#fff3cd', avatarText: '#c46c24', from: 'South Station\nPeople Ops',  to: 'Headquarters\nCorporate HR',      date: 'Nov 01,\n2023', status: 'In Approval', statusStyle: 'bg-[#f0f4f8] text-[#47607a]', hardAreaTransfer: 'Inactive' },
 ];
 
 export default function RecentTransferOrders() {
@@ -24,11 +24,11 @@ export default function RecentTransferOrders() {
 
       {/* Table */}
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[700px]">
+        <table className="w-full min-w-[800px]">
           <thead>
             <tr className="bg-[#274c77] text-white">
-              {['EMPLOYEE DETAILS', 'CURRENT STATION', 'NEW POSTING', 'RELEASE DATE', 'STATUS', 'ACTIONS'].map(h => (
-                <th key={h} className={`text-left px-5 py-3 text-[10px] font-bold tracking-wider uppercase ${h === 'STATUS' || h === 'ACTIONS' ? 'text-center' : ''}`}>
+              {['EMPLOYEE DETAILS', 'CURRENT STATION', 'NEW POSTING', 'HARD AREA TRANSFER', 'RELEASE DATE', 'STATUS', 'ACTIONS'].map(h => (
+                <th key={h} className={`text-left px-5 py-3 text-[10px] font-bold tracking-wider uppercase ${(h === 'STATUS' || h === 'ACTIONS' || h === 'HARD AREA TRANSFER') ? 'text-center' : ''}`}>
                   {h}
                 </th>
               ))}
@@ -66,6 +66,16 @@ export default function RecentTransferOrders() {
                       {line}
                     </div>
                   ))}
+                </td>
+                {/* Hard Area Transfer */}
+                <td className="px-5 py-4 text-center">
+                  <span className={`text-[10px] font-bold px-3 py-1.5 rounded-full ${
+                    row.hardAreaTransfer === 'Active' 
+                      ? 'bg-green-100 text-green-700' 
+                      : 'bg-red-100 text-red-700'
+                  }`}>
+                    {row.hardAreaTransfer}
+                  </span>
                 </td>
                 {/* Release Date */}
                 <td className="px-5 py-4 text-xs font-bold text-gray-900 whitespace-nowrap">
