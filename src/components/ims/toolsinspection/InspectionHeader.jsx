@@ -37,7 +37,7 @@ export default function TrainingHeader() {
             className="flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2 rounded-xl transition-colors shadow-sm cursor-pointer"
           >
             <Plus size={14} />
-            New Program
+            Toolkit
           </button>
         </div>
       </div>
